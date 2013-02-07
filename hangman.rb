@@ -20,10 +20,10 @@ class Hangman
 	
 	# Checks if player has guessed the whole word
 	def guess_word
-	  if @secret.include? "_"
-	    false
+	  if @guessed.include? "_"
+	    true
     else
-      true
+      false
     end
 		# TODO guess the whole word
 	end
@@ -74,9 +74,9 @@ class Hangman
       end
     end
     if guess_word()
-      puts "you win"
-    else
       puts "you loose"
+    else
+      puts "you win"
     end
   end
 end
