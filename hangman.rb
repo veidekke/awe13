@@ -67,11 +67,7 @@ class Hangman
 	    puts "Tries left: #{tries_left}"
 	    puts "Guess a character: "
       x = gets.chomp
-      if guess_character(x)
-    	  puts "correct guess"
-      else
-    	  puts "incorrect guess"
-      end
+      guess_character(x)
     end
     if guess_word()
       puts "you loose"
