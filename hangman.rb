@@ -57,17 +57,17 @@ class Hangman
         end
 	
 	def questioning
-	  while guess_word() && @tries_left > 0
+	  while !won? && @tries_left > 0
 	    puts "Progress: #{guessed}"
 	    puts "Tries left: #{tries_left}"
 	    puts "Guess a character: "
       x = gets.chomp
       guess_character(x)
     end
-    if guess_word()
-      puts "you loose"
-    else
+    if won?
       puts "you win"
+    else
+      puts "you loose"
     end
   end
 end
