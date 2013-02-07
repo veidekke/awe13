@@ -74,7 +74,8 @@ end
 
 
 # TODO Loop for user interaction until word is guess or tries is zero
-hang = Hangman.new("Huund")
+words = ["Hund", "Katze", "Maus", "Zirkus", "AWE", "Ruby", "Informatik", "Tisch", "Stuhl", "Maus", "Bett"]
+hang = Hangman.new(words[rand(words.length)])
 hang.questioning
 
 
