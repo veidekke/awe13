@@ -19,7 +19,12 @@ class Hangman
 	end
 	
 	# Checks if player has guessed the whole word
-	def guess_word(word)
+	def guess_word
+	  if @secret.include? "_"
+	    false
+    else
+      true
+    end
 		# TODO guess the whole word
 	end
 	
@@ -56,33 +61,29 @@ class Hangman
 		
 	end
 	
+	def questioning
+	  while guess_word() && @tries_left > 0
+	    puts "Progress: #{guessed}"
+	    puts "Tries left: #{tries_left}"
+	    puts "Guess a character: "
+      x = gets.chomp
+      if guess_character(x)
+    	  puts "correct guess"
+      else
+    	  puts "incorrect guess"
+      end
+    end
+    if guess_word()
+      puts "you win"
+    else
+      puts "you loose"
+    end
+  end
 end
 
 
 # TODO Loop for user interaction until word is guess or tries is zero
-
-hang = Hangman.new("Hund")
-# TODO Random word? Word from command line argument? Word scraped from online word list?
-
-puts "Progress: #{hang.guessed}"
-
-if hang.guess_character("U")
-	puts "correct guess"
-else
-	puts "incorrect guess"
-end
-
-puts "Tries left: #{hang.tries_left}"
-
-# Test: guess again
-hang.guess_character("u")
-
-puts "Progress: #{hang.guessed}"
-
-
-hang.guess_character("h")
-puts "Tries left: #{hang.tries_left}"
-puts "Progress: #{hang.guessed}"
-
+hang = Hangman.new("Huund")
+hang.questioning
 
 
