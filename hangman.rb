@@ -15,9 +15,7 @@ class Hangman
 
     # Checks if player has guessed the whole word
     def guess_word(word)
-        if word == @secret
-            true
-        end
+        word == @secret
     end
 
     # Returns true if player's guessed character is in the secret word
