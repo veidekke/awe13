@@ -18,16 +18,21 @@ class Roman_number_test < Test::Unit::TestCase
   end
   
   def test_complecate_latin_numbers_without_subtraction
-    
+    assert_equal("II", @roman_number.to_roman_number(2))
+    assert_equal("VI", @roman_number.to_roman_number(6))
+    assert_equal("XVI", @roman_number.to_roman_number(16))
+    assert_equal("DCL", @roman_number.to_roman_number(650))
+    assert_equal("MMDCLXI", @roman_number.to_roman_number(2661))
   end
   
-  
   def test_complecate_latin_numbers_with_subtraction
-    
+    assert_equal("IV", @roman_number.to_roman_number(4))
+    assert_equal("MCMLI", @roman_number.to_roman_number(1951))
+    assert_equal("CDXXXIV", @roman_number.to_roman_number(434))
   end
   
   def test_special_cases_latin_numbers
-    
+    assert_equal(nil, @roman_number.to_roman_number(-4), "Negative Zahlen sind nicht darstellbar")
   end
   
   #Testen von from_roman_number
