@@ -15,11 +15,16 @@ class Roman_Number
     1000 => "M"
     }
   
-  def from_roman_number(char)
+  def from_roman_number(roman)
   
   end
   
-  def to_roman_number(int)
+  def to_roman_number(latin)
     
   end
+  
+  def check_syntax(roman)
+	
+  end
+  
 end
