@@ -43,7 +43,7 @@
   end
 
   def check_latin_syntax(latin)
-    !latin.match(/[^0-9]/) && latin.to_i >= 0
+    !latin.match(/[^0-9]/) && latin.to_i > 0
   end
 
 end
