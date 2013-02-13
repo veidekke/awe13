@@ -21,7 +21,7 @@ class Roman_number_test < Test::Unit::TestCase
     assert_equal("II", @roman_number.to_roman_number(2))
     assert_equal("VI", @roman_number.to_roman_number(6))
     assert_equal("XVI", @roman_number.to_roman_number(16))
-    assert_equal("DCL", @roman_number.to_roman_number(650))
+    assert_equal("DCL", @roman_number.to_roman_number(550))
     assert_equal("MMDCLXI", @roman_number.to_roman_number(2661))
   end
   
@@ -50,7 +50,7 @@ class Roman_number_test < Test::Unit::TestCase
     assert_equal(2, @roman_number.from_roman_number("II"))
     assert_equal(6, @roman_number.from_roman_number("VI"))
     assert_equal(16, @roman_number.from_roman_number("XVI"))
-    assert_equal(650, @roman_number.from_roman_number("DLC"))
+    assert_equal(550, @roman_number.from_roman_number("DLC"))
     assert_equal(2661, @roman_number.from_roman_number("MMDCLXI"))
   end
   
@@ -63,7 +63,7 @@ class Roman_number_test < Test::Unit::TestCase
   
   def test_special_cases_roman_numbers
     assert_equal(nil, @roman_number.from_roman_number("IIII"))
-    assert_equal(nil, @roman_number.from_roman_number("IIV"))
+    assert_equal(nil, @roman_number.from_roman_number("FOO"))
   end
   
 end
