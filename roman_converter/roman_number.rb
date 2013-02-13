@@ -32,6 +32,16 @@
 
   def to_roman_number(latin)
     return  if latin <= 0
+    
+    roman = ""
+    MAP.each { |k, v|
+                while latin >= k
+                    roman += v
+                    latin -= k
+                end
+            }
+                    
+    roman
   end
 
   # Returns false if roman is no valid roman number.
@@ -54,3 +64,6 @@
   end
 
 end
+
+rn = Roman_Number.new
+puts rn.to_roman_number 650
