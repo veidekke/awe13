@@ -21,7 +21,7 @@ class Roman_number_test < Test::Unit::TestCase
     assert_equal("II", @roman_number.to_roman_number(2))
     assert_equal("VI", @roman_number.to_roman_number(6))
     assert_equal("XVI", @roman_number.to_roman_number(16))
-    assert_equal("DCL", @roman_number.to_roman_number(550))
+    assert_equal("DLC", @roman_number.to_roman_number(550))
     assert_equal("MMDCLXI", @roman_number.to_roman_number(2661))
   end
   
