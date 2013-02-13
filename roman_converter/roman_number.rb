@@ -64,6 +64,3 @@
   end
 
 end
-
-rn = Roman_Number.new
-puts rn.to_roman_number 650
