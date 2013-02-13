@@ -1,5 +1,5 @@
 ﻿class Roman_Number
-  @MAP = {
+  MAP = {
     1000 => "M",
     900 => "CM",
     500 => "D",
@@ -19,7 +19,7 @@
     return  if !check_roman_syntax roman
 
     latin = 0
-    @MAP.each { |k, v|
+    MAP.each { |k, v|
         # Little ugly that v and k are used the other way round
         until roman.index(v) != 0
             roman.slice! v
@@ -31,9 +31,7 @@
   end
 
   def to_roman_number(latin)
-    return  if !check_latin_syntax latin
-    
-    # TODO
+    return  if latin <= 0
   end
 
   # Returns false if roman is no valid roman number.
@@ -41,7 +39,7 @@
   def check_roman_syntax(roman)
     roman.upcase!
     roman.each_char { |c|
-                        if !(@MAP.has_value? c)
+                        if !(MAP.has_value? c)
                             puts "#{c} ist kein gueltiges roemisches Literal."
                             return false
                         end
@@ -53,10 +51,6 @@
     end
 
     true
-  end
-
-  def check_latin_syntax(latin)
-    !latin.match(/[^0-9]/) && latin.to_i > 0
   end
 
 end
