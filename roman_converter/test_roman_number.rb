@@ -62,8 +62,8 @@ class Roman_number_test < Test::Unit::TestCase
   end
   
   def test_special_cases_roman_numbers
-    assert_equal(nil, @roman_number.to_roman_number("IIII"))
-    assert_equal(nil, @roman_number.to_roman_number("IIV"))
+    assert_equal(nil, @roman_number.from_roman_number("IIII"))
+    assert_equal(nil, @roman_number.from_roman_number("IIV"))
   end
   
 end
