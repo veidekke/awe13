@@ -17,7 +17,7 @@ class Roman_number_test < Test::Unit::TestCase
     assert_equal("M", @roman_number.to_roman_number(1000))
   end
   
-  def test_complecate_latin_numbers_without_subtraction
+  def test_complecated_latin_numbers_without_subtraction
     assert_equal("II", @roman_number.to_roman_number(2))
     assert_equal("VI", @roman_number.to_roman_number(6))
     assert_equal("XVI", @roman_number.to_roman_number(16))
@@ -25,7 +25,7 @@ class Roman_number_test < Test::Unit::TestCase
     assert_equal("MMDCLXI", @roman_number.to_roman_number(2661))
   end
   
-  def test_complecate_latin_numbers_with_subtraction
+  def test_complecated_latin_numbers_with_subtraction
     assert_equal("IV", @roman_number.to_roman_number(4))
     assert_equal("MCMLI", @roman_number.to_roman_number(1951))
     assert_equal("CDXXXIV", @roman_number.to_roman_number(434))
@@ -46,18 +46,18 @@ class Roman_number_test < Test::Unit::TestCase
     assert_equal(1000, @roman_number.from_roman_number("M"))
   end
   
-  def test_complecate_roman_numbers_without_subtraction
-    assert_equal("II", @roman_number.from_roman_number(2))
-    assert_equal("VI", @roman_number.from_roman_number(6))
-    assert_equal("XVI", @roman_number.from_roman_number(16))
-    assert_equal("DCL", @roman_number.from_roman_number(650))
-    assert_equal("MMDCLXI", @roman_number.from_roman_number(2661))
+  def test_complecated_roman_numbers_without_subtraction
+    assert_equal(2, @roman_number.from_roman_number("II"))
+    assert_equal(6, @roman_number.from_roman_number("VI"))
+    assert_equal(16, @roman_number.from_roman_number("XVI"))
+    assert_equal(650, @roman_number.from_roman_number("DLC"))
+    assert_equal(2661, @roman_number.from_roman_number("MMDCLXI"))
   end
   
-  def test_complecate_roman_numbers_with_subtraction
-    assert_equal("IV", @roman_number.from_roman_number(4))
-    assert_equal("MCMLI", @roman_number.from_roman_number(1951))
-    assert_equal("CDXXXIV", @roman_number.from_roman_number(434))
+  def test_complecated_roman_numbers_with_subtraction
+    assert_equal(4, @roman_number.from_roman_number("IV"))
+    assert_equal(1951, @roman_number.from_roman_number("MCMLI"))
+    assert_equal(434, @roman_number.from_roman_number("CDXXXIV"))
     
   end
   
