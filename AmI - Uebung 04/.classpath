@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="G:/Users/B/Desktop/AmI - Uebung 04/cling-distribution-2.0-alpha3/cling-distribution-2.0-alpha3/core/cling-core-2.0-alpha3.jar"/>
+	<classpathentry kind="lib" path="G:/Users/B/Desktop/AmI - Uebung 04/teleal-common-1.0.14.jar"/>
+	<classpathentry kind="lib" path="G:/Users/B/Desktop/AmI - Uebung 04/cling-distribution-2.0-alpha3/cling-distribution-2.0-alpha3/core/seamless-http-1.0-alpha3.jar"/>
+	<classpathentry kind="lib" path="G:/Users/B/Desktop/AmI - Uebung 04/cling-distribution-2.0-alpha3/cling-distribution-2.0-alpha3/core/seamless-util-1.0-alpha3.jar"/>
+	<classpathentry kind="lib" path="G:/Users/B/Desktop/AmI - Uebung 04/cling-distribution-2.0-alpha3/cling-distribution-2.0-alpha3/core/seamless-xml-1.0-alpha3.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
