@@ -20,6 +20,7 @@ public abstract class Storage {
 		for(Garment g : MoonServer.getGarments()) {
 			if(g.getBarcode().equals(barcode)) {
 				garments.add(g);
+				g.setLocation(this);
 				System.out.println("Garment (" + g.getName() + ") has been added to storage " + no);
 				return;
 			}
@@ -30,8 +31,10 @@ public abstract class Storage {
 	public void removeGarment(String barcode) {
 		for(Garment g : MoonServer.getGarments()) {
 			if(g.getBarcode().equals(barcode)) {
-				if(garments.remove(g))
+				if(garments.remove(g)) {
+					g.setLocation(null);
 					System.out.println("Garment (" + g.getName() + ") has been removed from storage " + no);
+				}
 				else
 					System.out.println("Garment (" + g.getName() + ") is not in storage " + no);
 				return;
