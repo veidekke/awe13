@@ -7,7 +7,14 @@ import org.fourthline.cling.model.meta.*;
 import org.fourthline.cling.model.types.*;
 import org.fourthline.cling.registry.*;
 import org.fourthline.cling.controlpoint.ActionCallback;
+import org.fourthline.cling.controlpoint.*;
+import org.fourthline.cling.model.gena.*;
+import org.fourthline.cling.model.state.*;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class MoonClient implements Runnable {
 
@@ -31,7 +38,6 @@ public class MoonClient implements Runnable {
           // Broadcast a search message for all devices
           upnpService.getControlPoint().search(
             new UDNHeader(UDN.uniqueSystemIdentifier("MOON Wardrobe"))
-            //new STAllHeader()
           );
 
       } catch (Exception ex) {
@@ -46,17 +52,15 @@ public class MoonClient implements Runnable {
 
       @Override
       public void remoteDeviceAdded(Registry registry, RemoteDevice device) {
-        
         Service shelfService;
         if ((shelfService = device.findService(serviceIdShelf)) != null) {
           initService(shelfService);
-          //executeAction(upnpService, switchPower);
         }
       }
 
       @Override
       public void remoteDeviceRemoved(Registry registry, RemoteDevice device) {
-        //Service switchPower;
+        System.out.println("TODO Delete Facts from Jessy");
         //if ((switchPower = device.findService(serviceId)) != null) {
          // System.out.println("Service disappeared: " + switchPower);
         //}
@@ -65,17 +69,14 @@ public class MoonClient implements Runnable {
   }
 
   private void initService(Service service){
-    
-    System.out.println("Service discovered: " + service);
-    
-    //StateVariable[] stateVariables = service.getStateVariables();
+    System.out.println("Service discovered: " + service.getServiceId());
     Action[] actions = service.getActions();
     ArrayList<Action> outputActions = getOutputActions(actions);
     System.out.println("StateVariables of Service '" + service.getServiceId() + "' have the following values: ");
     insertStatesIntoJess(outputActions);
     
-    //SubscriptionCallback callback = getSubscriptionCallback(service);
-    //upnpService.getControlPoint().execute(callback);
+    SubscriptionCallback callback = getSubscriptionCallback(service);
+    upnpService.getControlPoint().execute(callback);
   }
 
   private ArrayList<Action> getOutputActions(Action[] actions){
@@ -114,7 +115,7 @@ public class MoonClient implements Runnable {
       }
     };
   }
-/*
+
   private SubscriptionCallback getSubscriptionCallback(Service service){
     SubscriptionCallback callback = new SubscriptionCallback(service, 600) {
 
@@ -141,8 +142,10 @@ public class MoonClient implements Runnable {
       public void eventReceived(GENASubscription sub) {
           System.out.println("Event: " + sub.getCurrentSequence().getValue());
           Map<String, StateVariableValue> values = sub.getCurrentValues();
-          StateVariableValue status = values.get("Status");
-          System.out.println("Status is: " + status.toString());
+          Object[] variables = values.keySet().toArray();
+          for(Object variable : variables){
+            System.out.println(variable.toString() +": " + values.get(variable.toString()));
+          }
       }
 
       public void eventsMissed(GENASubscription sub, int numberOfMissedEvents) {
@@ -151,5 +154,5 @@ public class MoonClient implements Runnable {
     };
 
     return callback;
-  }*/
+  }
 }
