@@ -166,6 +166,7 @@ public class MoonServer implements Runnable {
 
     return new LocalDevice(identity, type, details, new LocalService[] {moonShelvesService, moonRFIDService});   
    	}
+	
 
 	public static List<Shelf> getShelves() {
 		return shelves;
