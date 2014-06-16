@@ -17,13 +17,27 @@ public abstract class Storage {
 	}
 	
 	public void addGarment(String barcode) {
-		System.out.println("Garment (" + barcode + ") has been added to storage " + no);
-		// TODO: garments.add();
+		for(Garment g : MoonServer.getGarments()) {
+			if(g.getBarcode().equals(barcode)) {
+				garments.add(g);
+				System.out.println("Garment (" + g.getName() + ") has been added to storage " + no);
+			} else {
+				System.out.println("Garment with the barcode " + barcode + " does not exist."); 
+			}
+		}
 	}
 	
 	public void removeGarment(String barcode) {
-		System.out.println("Garment (" + barcode + ") has been removed from storage " + no);
-		// TODO: garments.remove(garment);
+		for(Garment g : MoonServer.getGarments()) {
+			if(g.getBarcode().equals(barcode)) {
+				if(garments.remove(g))
+					System.out.println("Garment (" + g.getName() + ") has been removed from storage " + no);
+				else
+					System.out.println("Garment (" + g.getName() + ") is not in storage " + no);
+			} else {
+				System.out.println("Garment with the barcode " + barcode + " does not exist.");
+			}
+		}		
 	}
 	
 	public int getNo() {

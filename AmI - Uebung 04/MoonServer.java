@@ -18,11 +18,12 @@ public class MoonServer implements Runnable {
 
   public static final String[] METHODS = { "help", "put", "take", "showStorage",
     "open", "close", "movement"};
-  public static final String[] GARMENT_NAMES = {"Rotes T-Shirt", "Blaues T-Shirt", "Grünes T-Shirt",
+  
+  private static final String[] GARMENT_NAMES = {"Rotes T-Shirt", "Blaues T-Shirt", "Grünes T-Shirt",
 	                                              "Schwarzer Pullover", "Grauer Pullover", "Weiße Boxershorts", "Rote Boxershorts mit Herzchen",
 	                                              "Schwarze Socken"};
   
-  public static List<Garment> garments;
+  private static List<Garment> garments;
 
   /*
    * A list of all shelves (6 in this model).
@@ -35,16 +36,22 @@ public class MoonServer implements Runnable {
   private static List<Drawer> drawers = new ArrayList<Drawer>(2);
   
   public static void main(String[] args) throws Exception {
-  	garments = new ArrayList<Garment>(8);
+  	setGarments(new ArrayList<Garment>(8));
 
   	for(int i = 0; i < GARMENT_NAMES.length; i++) {
-          garments.add(new Garment(""+i, GARMENT_NAMES[i],"http://www.url.to/photo/"+i));
+          getGarments().add(new Garment(""+i, GARMENT_NAMES[i],"http://www.url.to/photo/"+i));
       }
   	
-  	setShelves(new ArrayList<Shelf>(6));
+  	shelves = new ArrayList<Shelf>(6);
   	
   	for(int i = 0; i < 6; i++) {
-		getShelves().add(new Shelf(i));
+		shelves.add(new Shelf(i));
+	}
+  	
+  	drawers = new ArrayList<Drawer>(2);
+  	
+  	for(int i = 0; i < 2; i++) {
+		drawers.add(new Drawer(i));
 	}
   	
     Thread serverThread = new Thread(new MoonServer());
@@ -182,6 +189,14 @@ public class MoonServer implements Runnable {
 
 	public static void setDrawers(List<Drawer> drawers) {
 		MoonServer.drawers = drawers;
+	}
+
+	public static List<Garment> getGarments() {
+		return garments;
+	}
+
+	public static void setGarments(List<Garment> garments) {
+		MoonServer.garments = garments;
 	}
 	
 	
