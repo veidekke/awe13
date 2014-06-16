@@ -82,7 +82,7 @@
 
 ;; Now define the rules.
 
-/*
+
 (defrule uebung03aufg31
     "Wenn per Schalter in einem Raum eine beliebige Tür
     geschlossen wird, mache alle Lichter in anderen Räumen
@@ -94,9 +94,10 @@
 	?light <- (or (Light {label == ?dev_in_other_room}) (DimLight {label == ?dev_in_other_room})) ; Lichter/Dimmlichter in anderen Räumen
     =>
 	(add (new ChangeDevice ?light.label 0))  ; Lichter/Dimmlichter ausschalten
+	;TODO: Schranklicht schalten
   (printout t "Aufgabe 3.1" crlf))
   
-  
+ /* 
 (defrule uebung03aufg32
     "Wird in einem Raum ein Lichtschalter gedrückt, gehen in
      allen anderen Räumen die Lichter aus (außer das gerade eingeschaltete)."
@@ -110,6 +111,7 @@
             ) ; Lichter/Dimmlichter in anderen Räumen, die gerade nicht geschaltet wurden
     =>
 	(add (new ChangeDevice ?light.label 0))  ; Lichter/Dimmlichter ausschalten
+	;TODO: Schranklicht schalten
   (printout t "Aufgabe 3.2" crlf))
   
   
@@ -130,6 +132,7 @@
   ?light <- (or (Light {type == "main" && label == ?dev_in_neighborroom}) (DimLight {type == "main" && label == ?dev_in_neighborroom}))                   ; Deckenlichter im Nachbarraum
   =>
     (add (new ChangeDevice ?light.label 255))        ; Deckenlichter einschalten
+    ;TODO: Schranklicht schalten
     (printout t "Aufgabe 3.3" crlf))
 */
   

@@ -88,6 +88,7 @@ public class Jessy {
                         }
                         engine.remove(cl);
                     }
+                    // TODO: switch MOON lights via UPnP
                     
                     Iterator wmi2 = engine.getObjects(new Filter.ByClass(PlaySound.class));
                     while (wmi2.hasNext()) {

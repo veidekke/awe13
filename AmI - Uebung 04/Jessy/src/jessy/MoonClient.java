@@ -8,12 +8,13 @@ import org.fourthline.cling.model.action.*;
 import org.fourthline.cling.model.meta.*;
 import org.fourthline.cling.model.types.*;
 import org.fourthline.cling.registry.*;
-import org.fourthline.cling.controlpoint.ActionCallback;
 import org.fourthline.cling.controlpoint.*;
 import org.fourthline.cling.model.gena.*;
 import org.fourthline.cling.model.state.*;
 import java.util.ArrayList;
 import java.util.Map;
+
+import jess.JessException;
 import jess.Rete;
 
 public class MoonClient implements Runnable {
@@ -140,7 +141,26 @@ public class MoonClient implements Runnable {
           Object[] variables = values.keySet().toArray();
           for(Object variable : variables){
             System.out.println(variable.toString() +": " + values.get(variable.toString()));
-          }
+          }               
+          
+          // Fake telegram, triggering rule uebung03aufg31:
+          Telegram telegram = new Telegram();
+          telegram.source	= "wardrobe";
+          telegram.dest		= "lowerLeftDoor";
+          telegram.value	= 0;
+          
+          // TODO: add some real facts to engine
+          
+          System.out.println("UPnP event, fake telegram: \n* "+telegram.source+"->"+telegram.dest+"="+telegram.value);
+          
+          try {
+			engine.add(telegram);
+			engine.run();
+            engine.remove(telegram);
+		} catch (JessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
       }
 
       public void eventsMissed(GENASubscription sub, int numberOfMissedEvents) {
