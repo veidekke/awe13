@@ -17,10 +17,12 @@ public abstract class Storage {
 	}
 	
 	public void addGarment(String barcode) {
+		System.out.println("Garment (" + barcode + ") has been added to storage " + no);
 		// TODO: garments.add();
 	}
 	
 	public void removeGarment(String barcode) {
+		System.out.println("Garment (" + barcode + ") has been removed from storage " + no);
 		// TODO: garments.remove(garment);
 	}
 	
