@@ -149,22 +149,26 @@ public class MoonServer implements Runnable {
                     )
             );
 
-    LocalService<SwitchPower> moonShelvesService =
+    LocalService<MoonShelves> moonShelvesService =
             new AnnotationLocalServiceBinder().read(MoonShelves.class);
     
-    LocalService<SwitchPower> moonRFIDService =
+    LocalService<MoonRFID> moonRFIDService =
             new AnnotationLocalServiceBinder().read(MoonRFID.class);
+    
+    LocalService<MoonDrawers> moonDrawersService =
+            new AnnotationLocalServiceBinder().read(MoonDrawers.class);
 
-    
-    // TODO: Hier alle anderen Services binden und deren Manager setzen
-    
+        
     moonShelvesService.setManager(
             new DefaultServiceManager(moonShelvesService, MoonShelves.class));
             
     moonRFIDService.setManager(
-    		new DefaultServiceManager(moonRFIDService, MoonRFID.class));    
+    		new DefaultServiceManager(moonRFIDService, MoonRFID.class));   
+    
+    moonDrawersService.setManager(
+    		new DefaultServiceManager(moonDrawersService, MoonDrawers.class)); 
 
-    return new LocalDevice(identity, type, details, new LocalService[] {moonShelvesService, moonRFIDService});   
+    return new LocalDevice(identity, type, details, new LocalService[] {moonShelvesService, moonRFIDService, moonDrawersService});   
    	}
 	
 	public static List<Storage> getStorageSpaces() {

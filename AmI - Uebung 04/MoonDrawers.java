@@ -23,14 +23,13 @@ public class MoonDrawers {
 	 */
 	private final PropertyChangeSupport propertyChangeSupport;
 
+	@SuppressWarnings("unused")
 	@UpnpStateVariable(defaultValue = "-1")
-    private short lastStorageNo = -1;
+    private short lastDrawerNo = -1;	
 	
+	@SuppressWarnings("unused")
 	@UpnpStateVariable(defaultValue = "false")
-    private boolean isShelf = false;
-	
-	@UpnpStateVariable(defaultValue = "-1")
-    private String lastGarment = "no garment has been added or removed";
+    private boolean lastState = false;
 		
 	/**
      * Constructor. Initializes shelves and propertyChangeSupport.
@@ -39,9 +38,24 @@ public class MoonDrawers {
     	this.propertyChangeSupport = new PropertyChangeSupport(this);
     }    
 	
-    
+    /**
+     * Open/close the drawer with the given number.
+     * 
+     * @param state
+     * 				true for open, false for close
+     * @param drawerNo
+     * 				the number of the drawer
+     */
+    @UpnpAction
+    public void changeState(@UpnpInputArgument(name = "LastState") boolean state, @UpnpInputArgument(name = "LastDrawerNo") short drawerNo) {
+    	for(Storage storage : MoonServer.getStorageSpaces()) {
+    		if(storage instanceof Drawer && storage.getNo() == drawerNo)
+    			((Drawer) storage).setOpen(state);
+    	}
+    }
+   	    
     public PropertyChangeSupport getPropertyChangeSupport() {
         return propertyChangeSupport;
-    }
+    }    
 
 }

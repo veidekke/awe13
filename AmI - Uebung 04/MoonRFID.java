@@ -63,6 +63,29 @@ public class MoonRFID {
     	}
     }
     
+    /**
+	 * Remove a piece of clothing from a shelf or drawer.
+	 * 
+	 * @param isShelf
+	 * 					is the storage a shelf (or a drawer)?
+	 * @param storageNo
+	 * 					the number of the shelf/drawer
+	 * @param barcode 
+	 * 					the barcode of the garment
+	 */
+    @UpnpAction
+    public void removeGarment(@UpnpInputArgument(name = "IsShelf") boolean isShelf, @UpnpInputArgument(name = "LastStorageNo") short storageNo, @UpnpInputArgument(name = "LastGarment") String barcode) {
+    	for(Storage storage : MoonServer.getStorageSpaces()) {
+       		if(storage.getNo() == storageNo && ((isShelf && storage instanceof Shelf) || (!isShelf && storage instanceof Drawer))) {
+       			storage.removeGarment(barcode);
+       			lastGarment = barcode;
+       			this.isShelf = isShelf;
+       			getPropertyChangeSupport().firePropertyChange("LastGarment", 0, lastGarment);
+       			getPropertyChangeSupport().firePropertyChange("IsShelf", 0, this.isShelf);
+       		}
+    	}
+    }
+    
     public PropertyChangeSupport getPropertyChangeSupport() {
         return propertyChangeSupport;
     }
