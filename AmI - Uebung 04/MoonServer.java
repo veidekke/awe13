@@ -71,29 +71,6 @@ public class MoonServer implements Runnable {
         e.printStackTrace(System.err);
         System.exit(1);
     }
-
-    Device device = upnpService.getRegistry().getDevice(UDN.uniqueSystemIdentifier("MOON Wardrobe"), true);
-    Service service = device.findService(new UDAServiceId("MOON-6-2-Shelves"));
-    Action setColorAction = service.getAction("SetColor");
-    ActionInvocation setColorInvocation = new ActionInvocation(setColorAction);
-    setColorInvocation.setInput("LastShelfNo", "1");
-    setColorInvocation.setInput("ShelfColor", "22,44,66");
-    ActionCallback setColorCallback = new ActionCallback(setColorInvocation) {
-      @Override
-      public void success(ActionInvocation invocation) {
-          ActionArgumentValue[] output = invocation.getOutput();
-          //assertEquals(output.length, 0);
-      }
-
-      @Override
-      public void failure(ActionInvocation invocation,
-                          UpnpResponse operation,
-                          String defaultMsg) {
-          System.err.println(defaultMsg);
-      }
-    };
-
-    upnpService.getControlPoint().execute(setColorCallback);
     
     Scanner scan = new Scanner(System.in);
     while (true) {
@@ -112,50 +89,88 @@ public class MoonServer implements Runnable {
     Device device = upnpService.getRegistry().getDevice(UDN.uniqueSystemIdentifier("MOON Wardrobe"), true);
     Service shelfService = device.findService(new UDAServiceId("MOON-6-2-Shelfs"));
     Service rfidService = device.findService(new UDAServiceId("MOON-6-2-RFID"));
+    Service drawerService = device.findService(new UDAServiceId("MOON-6-2-Drawer"));
     
     if(methodname.equals("showStorage"))
       printStorage();
     else if(methodname.equals("help"))
       printHelp();
     else if(methodname.equals("put"))
-      performPut(shelfService, splitResult[2], splitResult[4], splitResult[6]);
+      performPut(rfidService, splitResult[2], splitResult[4], splitResult[6]);
     else if(methodname.equals("take"))
-      performTake(splitResult[2]);
-    else if(methodname.equals("open"))
-      performOpen(splitResult[2]);
-    else if(methodname.equals("close"))
-      performClose(splitResult[2]);
+      performTake(rfidService, splitResult[2]);
+    else if(methodname.equals("open") || methodname.equals("close"))
+      changeDrawerStatus(drawerService, splitResult[2], methodname.equals("open"));
     else if(methodname.equals("movement"))
-      performMovement(splitResult[2]);
+      performMovement(shelfService, splitResult[2]);
   } 
 
-  private void performPut(Service shelfService, String storagetype, String no, String barcode){
-
+  private void performPut(Service rfidService, String storagetype, String no, String barcode){
+    Action action = rfidService.getAction("AddGarment");
+    ActionInvocation invocation = new ActionInvocation(action);
+    invocation.setInput("IsShelf", storagetype.equals("shelf"));
+    invocation.setInput("LastStorageNo", no);
+    invocation.setInput("LastGarment", barcode);
+    upnpService.getControlPoint().execute(getCallback(invocation));
   }
 
-  private void performTake(String barcode){
-
+  private void performTake(Service rfidService, String barcode){
+    Action action = rfidService.getAction("RemoveGarment");
+    ActionInvocation invocation = new ActionInvocation(action);
+    Storage location = null;
+    for(Garment garment : garments){
+      if(garment.getBarcode().equals(barcode))
+        location = garment.getLocation();
+    }
+    if(location == null){
+      System.out.println("No garment found for barcode: " + barcode);
+    } else{
+      invocation.setInput("IsShelf", location instanceof Shelf);
+      invocation.setInput("LastStorageNo", (short) location.getNo());
+      invocation.setInput("LastGarment", barcode);
+      upnpService.getControlPoint().execute(getCallback(invocation));
+    }
+  }
+  
+  private void changeDrawerStatus(Service drawerService,  String no, boolean state){
+    Action action = drawerService.getAction("ChangeState");
+    ActionInvocation invocation = new ActionInvocation(action);
+    invocation.setInput("LastState", state);
+    invocation.setInput("LastDrawerNo", no);
+    upnpService.getControlPoint().execute(getCallback(invocation));
   }
 
-  private void performOpen(String no){
-
-  }
-  private void performClose(String no){
-
-  }
-  private void performMovement(String no){
-
+  private void performMovement(Service shelfService, String no){
+    Action action = shelfService.getAction("SimulateMovement");
+    ActionInvocation invocation = new ActionInvocation(action);
+    invocation.setInput("LastShelfNo", no);
+    upnpService.getControlPoint().execute(getCallback(invocation));
   }
 
   private void printStorage(){
+    String storageInfo = "Garments outside the Storage: ";
+    for (Garment garment : garments){
+      if(garment.getLocation() == null)
+        storageInfo += garment.getName() + "(bc: " + garment.getBarcode() + ")" + ", ";
+    }
+    System.out.println(storageInfo);
 
+    for(Storage storage : storageSpace){
+      String storagetype = storage instanceof Shelf ? "Shelf - " : "Drawer - ";
+      storageInfo = storagetype + storage.getNo() + ":";
+      List<Garment> garmentsInStorage = storage.getGarments();
+      for(Garment garment : garmentsInStorage){
+        storageInfo += garment.getName() + "(bc: " + garment.getBarcode() + ")" + ", ";
+      }
+      System.out.println(storageInfo);
+    }
   }
 
   private void printHelp(){
     System.out.println("Following methods and arguments are valid:");
     System.out.println("help");
     System.out.println("showStorage");
-    System.out.println("put -storagetype <storagetype> -no <number of Storage> -barcode <barcode>");
+    System.out.println("put -storagetype <shelf || drawer> -no <number of Storage> -barcode <barcode>");
     System.out.println("take -barcode <barcode>");
     System.out.println("open -no <number of Drawer>");
     System.out.println("close -no <number of Drawer>");
@@ -233,7 +248,22 @@ public class MoonServer implements Runnable {
 
     return new LocalDevice(identity, type, details, new LocalService[] {moonShelvesService, moonRFIDService, moonDrawersService});   
    	}
-	
+    private ActionCallback getCallback(ActionInvocation invocation){
+      return new ActionCallback(invocation) {
+        @Override
+        public void success(ActionInvocation invocation) {
+            ActionArgumentValue[] output = invocation.getOutput();
+            //assertEquals(output.length, 0);
+        }
+
+        @Override
+        public void failure(ActionInvocation invocation,
+                            UpnpResponse operation,
+                            String defaultMsg) {
+            System.err.println(defaultMsg);
+        }
+      };
+    }
 	public static List<Storage> getStorageSpaces() {
 		return storageSpace;
 	}
