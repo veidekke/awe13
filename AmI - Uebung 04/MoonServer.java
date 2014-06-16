@@ -5,10 +5,14 @@ import org.fourthline.cling.binding.annotations.*;
 import org.fourthline.cling.model.*;
 import org.fourthline.cling.model.meta.*;
 import org.fourthline.cling.model.types.*;
+import java.util.Scanner;
 
 import java.io.IOException;
 
 public class MoonServer implements Runnable {
+
+    public static final String[] METHODS = { "help", "put", "take", "showStorage",
+      "open", "close", "movement"};
 
     public static void main(String[] args) throws Exception {
         Thread serverThread = new Thread(new MoonServer());
@@ -38,7 +42,48 @@ public class MoonServer implements Runnable {
             e.printStackTrace(System.err);
             System.exit(1);
         }
+
+        Scanner scan = new Scanner(System.in);
+        while (true) {
+          String s = scan.nextLine();
+          String[] result = s.split(" ");
+          String methodname = result[0].equals("") ? s : result[0];
+          
+          if(isValidMethodName(methodname)){
+            System.out.println("yeah");
+            boolean validOptions = validOptions(methodname, s.split("-"));
+          } else {
+            System.out.println("Unknown method. Type 'help' to get the list of all possible methods");
+          }
+
+        }
+
     }
+
+  private boolean validOptions(String methodname, String[] splitResult){
+    boolean validOptions = false;
+    switch(methodname){
+      case "showStorage":
+        validOptions = splitResult[0].equals("");
+        break;
+      case "help":
+        validOptions = splitResult[0].equals("");
+        break; 
+    }
+    
+
+    return validOptions;
+  }
+
+  private boolean isValidMethodName(String name){
+    boolean isValidMethod = false;
+    for(String methodname : METHODS){
+      if (methodname.equals(name))
+        isValidMethod = true;
+    }
+    
+    return isValidMethod;
+  }
 
 	private LocalDevice createDevice() throws ValidationException, LocalServiceBindingException, IOException {
 
