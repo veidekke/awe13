@@ -108,12 +108,14 @@ public class MoonServer implements Runnable {
   }
 
   private void performAction(String methodname, String[] splitResult){
+    Service shelfService = device.findService(new UDAServiceId("MOON-6-2-Shelfs"));
+    Service rfidService = device.findService(new UDAServiceId("MOON-6-2-RFID"));
     if(methodname.equals("showStorage"))
       printStorage();
     else if(methodname.equals("help"))
       printHelp();
     else if(methodname.equals("put"))
-      performPut(splitResult[2], splitResult[4], splitResult[6]);
+      performPut(shelfService, splitResult[2], splitResult[4], splitResult[6]);
     else if(methodname.equals("take"))
       performTake(splitResult[2]);
     else if(methodname.equals("open"))
@@ -124,7 +126,7 @@ public class MoonServer implements Runnable {
       performMovement(splitResult[2]);
   } 
 
-  private void performPut(String storagetype, String no, String barcode){
+  private void performPut(Service shelfService, String storagetype, String no, String barcode){
 
   }
 
