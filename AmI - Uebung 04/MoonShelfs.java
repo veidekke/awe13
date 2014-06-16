@@ -39,16 +39,25 @@ public class MoonShelfs {
 	 * TODO: andere Services: Schubladen, RFID
 	 */
 	
+	/*
+	 * Used to announce state changes.
+	 */
 	private final PropertyChangeSupport propertyChangeSupport;
 	
+	/*
+	 * A list of all shelves (6 in this model).
+	 */
     private List<Shelf> shelves = new ArrayList<Shelf>(6);
     
     @UpnpStateVariable(defaultValue = "0")
     private short lastShelfNo = 0;
             
-    @UpnpStateVariable(datatype = "string", defaultValue = "0,0,0", sendEvents = false)
+    @UpnpStateVariable(datatype = "string", defaultValue = "255,255,255", sendEvents = false)
     private List<Short> lastShelfColor = new ArrayList<Short>(3);
         
+    /*
+     * Constructor. Initializes shelves and propertyChangeSupport.
+     */
     public MoonShelfs() {
     	this.propertyChangeSupport = new PropertyChangeSupport(this);
     	
@@ -57,6 +66,9 @@ public class MoonShelfs {
     	}
     }
     
+    /*
+     * Set color 
+     */
     @UpnpAction
     public void setColor(@UpnpInputArgument(name = "LastShelfNo") short shelfNo, @UpnpInputArgument(name = "LastShelfColor") CSVShort shelfColor) {
        	for(Shelf shelf : shelves) {
