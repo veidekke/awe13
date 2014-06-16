@@ -22,8 +22,6 @@ import org.fourthline.cling.model.types.csv.CSVShort;
         serviceType = @UpnpServiceType(value = "MOON62Shelfs", version = 1)
 )
 
-
-
 @UpnpStateVariables(
         {
                 @UpnpStateVariable(	// required by UPnP as it is used as an argument later
@@ -36,20 +34,7 @@ import org.fourthline.cling.model.types.csv.CSVShort;
 )
 public class MoonShelfs {
 
-	// TODO: alle Actions, Events und States implementieren:
 	/*
-	 * Actions:
-	 * -Farbe ändern (In: Fachnummer, Farbe als RGB)
-	 * -Sound abspielen (In: Fachnummer, Sound als String oder URL)
-	 * -Licht an/aus (In: Fachnummer, an/aus)
-	 * 
-	 * Events:
-	 * -Bewegungssensor loest aus (Out: Fachnummer)
-	 * 
-	 * States:
-	 * -Farbe (Fachnummer)
-	 * -Sound der noch läuft (Fachnummer)???
-	 * 
 	 * TODO: andere Services: Schubladen, RFID
 	 */	
 	

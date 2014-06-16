@@ -59,7 +59,7 @@ public class MoonServer implements Runnable {
     Action setColorAction = service.getAction("SetColor");
     ActionInvocation setColorInvocation = new ActionInvocation(setColorAction);
     setColorInvocation.setInput("LastShelfNo", "1");
-    setColorInvocation.setInput("LastShelfColor", "22,44,66");
+    setColorInvocation.setInput("ShelfColor", "22,44,66");
     ActionCallback setColorCallback = new ActionCallback(setColorInvocation) {
 
         @Override
@@ -94,16 +94,11 @@ public class MoonServer implements Runnable {
 
   private boolean validOptions(String methodname, String[] splitResult){
     boolean validOptions = false;
-    switch(methodname){
-      case "showStorage":
+    if(methodname.equals("showStorage"))
         validOptions = splitResult[0].equals("");
-        break;
-      case "help":
+    else if(methodname.equals("help"))
         validOptions = splitResult[0].equals("");
-        break; 
-    }
     
-
     return validOptions;
   }
 
