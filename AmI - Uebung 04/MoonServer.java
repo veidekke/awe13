@@ -24,16 +24,11 @@ public class MoonServer implements Runnable {
 	                                              "Schwarze Socken"};
   
   private static List<Garment> garments;
-
-  /*
-   * A list of all shelves (6 in this model).
-   */
-  private static List<Shelf> shelves = new ArrayList<Shelf>(6);
   
   /*
-   * A list of all drawers (2 in this model).
+   * A list of all shelves and drawers (6 and 2 in this model).
    */
-  private static List<Drawer> drawers = new ArrayList<Drawer>(2);
+  private static List<Storage> storageSpace;
   
   public static void main(String[] args) throws Exception {
   	setGarments(new ArrayList<Garment>(8));
@@ -42,16 +37,14 @@ public class MoonServer implements Runnable {
           getGarments().add(new Garment(""+i, GARMENT_NAMES[i],"http://www.url.to/photo/"+i));
       }
   	
-  	shelves = new ArrayList<Shelf>(6);
+  	storageSpace = new ArrayList<Storage>(8);
   	
   	for(int i = 0; i < 6; i++) {
-		shelves.add(new Shelf(i));
+  		storageSpace.add(new Shelf(i));
 	}
   	
-  	drawers = new ArrayList<Drawer>(2);
-  	
   	for(int i = 0; i < 2; i++) {
-		drawers.add(new Drawer(i));
+  		storageSpace.add(new Drawer(i));
 	}
   	
     Thread serverThread = new Thread(new MoonServer());
@@ -80,7 +73,7 @@ public class MoonServer implements Runnable {
     }
 
     Device device = upnpService.getRegistry().getDevice(UDN.uniqueSystemIdentifier("MOON Wardrobe"), true);
-    Service service = device.findService(new UDAServiceId("MOON-6-2-Shelfs"));
+    Service service = device.findService(new UDAServiceId("MOON-6-2-Shelves"));
     Action setColorAction = service.getAction("SetColor");
     ActionInvocation setColorInvocation = new ActionInvocation(setColorAction);
     setColorInvocation.setInput("LastShelfNo", "1");
@@ -150,7 +143,7 @@ public class MoonServer implements Runnable {
                     "MOON Wardrobe",
                     new ManufacturerDetails("Uni Bremen"),
                     new ModelDetails(
-                            "MOON with 6 shelfs and 2 drawers",
+                            "MOON with 6 shelves and 2 drawers",
                             "A smart wardrobe.",
                             "v1"
                     )
@@ -174,21 +167,8 @@ public class MoonServer implements Runnable {
     return new LocalDevice(identity, type, details, new LocalService[] {moonShelvesService, moonRFIDService});   
    	}
 	
-
-	public static List<Shelf> getShelves() {
-		return shelves;
-	}
-
-	public static void setShelves(List<Shelf> shelves) {
-		MoonServer.shelves = shelves;
-	}
-
-	public static List<Drawer> getDrawers() {
-		return drawers;
-	}
-
-	public static void setDrawers(List<Drawer> drawers) {
-		MoonServer.drawers = drawers;
+	public static List<Storage> getStorageSpaces() {
+		return storageSpace;
 	}
 
 	public static List<Garment> getGarments() {

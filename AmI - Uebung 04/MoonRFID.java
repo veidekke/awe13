@@ -6,11 +6,10 @@ import org.fourthline.cling.binding.annotations.UpnpService;
 import org.fourthline.cling.binding.annotations.UpnpServiceId;
 import org.fourthline.cling.binding.annotations.UpnpServiceType;
 import org.fourthline.cling.binding.annotations.UpnpStateVariable;
-import org.fourthline.cling.binding.annotations.UpnpStateVariables;
 
 /*
  * Service for RFID related actions, states & events
- * in a MOON wardrobe (version with 6 shelfs and 2 drawers).
+ * in a MOON wardrobe (version with 6 shelves and 2 drawers).
  */
 @UpnpService(
     serviceId = @UpnpServiceId("MOON-6-2-RFID"),
@@ -24,6 +23,7 @@ public class MoonRFID {
 	 */
 	private final PropertyChangeSupport propertyChangeSupport;
 	
+	@SuppressWarnings("unused")
 	@UpnpStateVariable(defaultValue = "-1")
     private short lastStorageNo = -1;
 	
@@ -41,35 +41,26 @@ public class MoonRFID {
     }    
 	
 	/**
+	 * Add a piece of clothing to a shelf or drawer.
 	 * 
 	 * @param isShelf
+	 * 					is the storage a shelf (or a drawer)?
 	 * @param storageNo
+	 * 					the number of the shelf/drawer
 	 * @param barcode 
+	 * 					the barcode of the garment
 	 */
     @UpnpAction
     public void addGarment(@UpnpInputArgument(name = "IsShelf") boolean isShelf, @UpnpInputArgument(name = "LastStorageNo") short storageNo, @UpnpInputArgument(name = "LastGarment") String barcode) {
-    	if(isShelf) {
-	    	for(Shelf shelf : MoonServer.getShelves()) {
-	       		if(shelf.getNo() == storageNo) {
-	       			shelf.addGarment(barcode);
-	       			lastGarment = barcode;
-	       			this.isShelf = true;
-	       			getPropertyChangeSupport().firePropertyChange("LastGarment", 0, lastGarment);
-	       			getPropertyChangeSupport().firePropertyChange("IsShelf", 0, this.isShelf);
-	       		}
-	    	}
-    	} else {
-    		for(Drawer drawer : MoonServer.getDrawers()) {
-	       		if(drawer.getNo() == storageNo) {
-	       			drawer.addGarment(barcode);
-	       			lastGarment = barcode;
-	       			this.isShelf = false;
-	       			getPropertyChangeSupport().firePropertyChange("LastGarment", 0, lastGarment);
-	       			getPropertyChangeSupport().firePropertyChange("IsShelf", 0, this.isShelf);	       			
-	       		}
-	    	}
+    	for(Storage storage : MoonServer.getStorageSpaces()) {
+       		if(storage.getNo() == storageNo && ((isShelf && storage instanceof Shelf) || (!isShelf && storage instanceof Drawer))) {
+       			storage.addGarment(barcode);
+       			lastGarment = barcode;
+       			this.isShelf = isShelf;
+       			getPropertyChangeSupport().firePropertyChange("LastGarment", 0, lastGarment);
+       			getPropertyChangeSupport().firePropertyChange("IsShelf", 0, this.isShelf);
+       		}
     	}
-    	
     }
     
     public PropertyChangeSupport getPropertyChangeSupport() {
