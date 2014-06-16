@@ -69,7 +69,6 @@ public class MoonShelves {
        			((Shelf) storage).setColor(shelfColor);
        			
        			this.lastShelfNo = shelfNo;
-       			System.out.println(this.lastShelfNo + " (that's a change!)");
        			getPropertyChangeSupport().firePropertyChange("LastShelfNo", 0, lastShelfNo);
        		}
        	}        
