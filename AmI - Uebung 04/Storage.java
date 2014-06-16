@@ -4,8 +4,8 @@ import java.util.List;
 
 public abstract class Storage {
 
-	private int no;
-	private List<Garment> garments;
+	protected int no;
+	protected List<Garment> garments;
 	
 	public Storage(int no) {
 		this.no = no;

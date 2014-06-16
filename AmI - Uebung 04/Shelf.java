@@ -21,6 +21,7 @@ public class Shelf extends Storage {
 
 	public void setColor(List<Short> color) {
 		this.color = color;
+		System.out.println("Color of shelf " + no + " set to: " + color);
 	}
 	
 	public void movement() {
@@ -28,6 +29,6 @@ public class Shelf extends Storage {
 	}
 	
 	public void playSound(String soundPath) {
-		System.out.println("A sound (" + soundPath + ") has been played from shelf no. " + getNo());
+		System.out.println("A sound (" + soundPath + ") has been played from shelf no. " + no);
 	}
 }
