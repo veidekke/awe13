@@ -9,6 +9,7 @@ import org.fourthline.cling.binding.annotations.UpnpService;
 import org.fourthline.cling.binding.annotations.UpnpServiceId;
 import org.fourthline.cling.binding.annotations.UpnpServiceType;
 import org.fourthline.cling.binding.annotations.UpnpStateVariable;
+import org.fourthline.cling.binding.annotations.UpnpStateVariables;
 import org.fourthline.cling.model.types.csv.CSV;
 import org.fourthline.cling.model.types.csv.CSVShort;
 
@@ -19,6 +20,17 @@ import org.fourthline.cling.model.types.csv.CSVShort;
 @UpnpService(
         serviceId = @UpnpServiceId("MOON62Shelfs"),
         serviceType = @UpnpServiceType(value = "MOON62Shelfs", version = 1)
+)
+
+@UpnpStateVariables(
+        {
+                @UpnpStateVariable(	// required by UPnP as it is used as an argument later
+                        name = "ShelfColor",
+                        datatype = "string",
+                        defaultValue = "255,255,255",
+                        sendEvents = false
+                )
+        }
 )
 public class MoonShelfs {
 
@@ -49,13 +61,13 @@ public class MoonShelfs {
 	 */
     private List<Shelf> shelves = new ArrayList<Shelf>(6);
     
-    @UpnpStateVariable(defaultValue = "0")
-    private short lastShelfNo = 0;
-            
-    @UpnpStateVariable(datatype = "string", defaultValue = "255,255,255", sendEvents = false)
-    private List<Short> lastShelfColor = new ArrayList<Short>(3);
+    @UpnpStateVariable(defaultValue = "-1")
+    private short lastShelfNo = -1;
+
+    @UpnpStateVariable(defaultValue = "no sound has been played yet")
+	private String lastSound = "no sound has been played yet";
         
-    /*
+    /**
      * Constructor. Initializes shelves and propertyChangeSupport.
      */
     public MoonShelfs() {
@@ -66,24 +78,38 @@ public class MoonShelfs {
     	}
     }
     
-    /*
-     * Set color 
-     */
+    /**
+     * Sets color of a shelf to the specified value.
+     * 
+     * @param shelfNo 
+	 * 			number of shelf
+	 * 
+	 * @param shelfColor 
+	 * 			desired color
+	 */
     @UpnpAction
-    public void setColor(@UpnpInputArgument(name = "LastShelfNo") short shelfNo, @UpnpInputArgument(name = "LastShelfColor") CSVShort shelfColor) {
+    public void setColor(@UpnpInputArgument(name = "LastShelfNo") short shelfNo, @UpnpInputArgument(name = "ShelfColor") CSVShort shelfColor) {
        	for(Shelf shelf : shelves) {
        		if(shelf.getNo() == shelfNo) {
        			shelf.setColor(shelfColor);
-       			System.out.println("Color of shelf " + shelfNo + " set to: " + shelfColor);
+       			
        			this.lastShelfNo = shelfNo;
-       			this.lastShelfColor = shelfColor;
        			System.out.println(this.lastShelfNo + " (that's a change!)");
        			getPropertyChangeSupport().firePropertyChange("LastShelfNo", 0, lastShelfNo);
        		}
        	}        
     }
 
-    @UpnpAction(out = @UpnpOutputArgument(name = "LastShelfColor"))
+    /**
+     * Returns color of the specified shelf.
+     * 
+     * @param shelfNo 
+	 * 			number of shelf
+	 * 
+	 * @return 
+	 * 			color of that shelf
+	 */
+    @UpnpAction(out = @UpnpOutputArgument(name = "ShelfColor"))
     public CSV<Short> getColor(@UpnpInputArgument(name = "LastShelfNo") short shelfNo) {
     	CSVShort wrapper = new CSVShort();
         
@@ -95,13 +121,53 @@ public class MoonShelfs {
     	
         return wrapper;
     }
+    
+    /**
+     * Plays given sound from the specified shelf's speaker.
+     * 
+     * @param shelfNo 
+	 * 			number of shelf
+	 * 
+	 * @param soundPath 
+	 * 			path to sound file
+	 */
+    @UpnpAction
+    public void playSound(@UpnpInputArgument(name = "LastShelfNo") short shelfNo, @UpnpInputArgument(name = "LastSound") String soundPath) {
+       	for(Shelf shelf : shelves) {
+       		if(shelf.getNo() == shelfNo) {
+       			shelf.playSound(soundPath);
+       			
+       			this.lastShelfNo = shelfNo;
+       			this.lastSound = soundPath;
+       			getPropertyChangeSupport().firePropertyChange("LastShelfNo", 0, lastShelfNo);
+       			getPropertyChangeSupport().firePropertyChange("LastSound", 0, lastSound);
+       		}
+       	}        
+    }
 
+    /**
+     * Returns number of last (most recently touched) shelf.
+     *  
+	 * @return 
+	 * 			the number
+	 */
     @UpnpAction(out = @UpnpOutputArgument(name = "LastShelfNo"))
 	public short getShelfNo() {
 		return lastShelfNo;
+	}       
+
+    /**
+     * Returns name of last (most recently played) sound.
+     *  
+	 * @return 
+	 * 			the number
+	 */
+    @UpnpAction(out = @UpnpOutputArgument(name = "LastSound"))
+	public String getLastSound() {
+		return lastSound;
 	}
-    
-    public PropertyChangeSupport getPropertyChangeSupport() {
+	
+	public PropertyChangeSupport getPropertyChangeSupport() {
         return propertyChangeSupport;
     }
 }
