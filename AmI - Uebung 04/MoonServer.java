@@ -7,10 +7,24 @@ import org.fourthline.cling.model.meta.*;
 import org.fourthline.cling.model.types.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MoonServer implements Runnable {
 
+	public static List<Garment> garments;
+	
+	public static final String[] GARMENT_NAMES = {"Rotes T-Shirt", "Blaues T-Shirt", "Grünes T-Shirt",
+	                                              "Schwarzer Pullover", "Grauer Pullover", "Weiße Boxershorts", "Rote Boxershorts mit Herzchen",
+	                                              "Schwarze Socken"};
+	
     public static void main(String[] args) throws Exception {
+    	garments = new ArrayList<Garment>(8);
+
+    	for(int i = 0; i < GARMENT_NAMES.length; i++) {
+            garments.add(new Garment(""+i, GARMENT_NAMES[i],"http://www.url.to/photo/"+i));
+        }
+    	
         Thread serverThread = new Thread(new MoonServer());
         serverThread.setDaemon(false);
         serverThread.start();
