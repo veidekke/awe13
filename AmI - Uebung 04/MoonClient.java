@@ -10,10 +10,7 @@ import org.fourthline.cling.controlpoint.ActionCallback;
 import org.fourthline.cling.controlpoint.*;
 import org.fourthline.cling.model.gena.*;
 import org.fourthline.cling.model.state.*;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 public class MoonClient implements Runnable {

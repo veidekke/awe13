@@ -18,32 +18,34 @@ public class MoonServer implements Runnable {
 
   public static final String[] METHODS = { "help", "put", "take", "showStorage",
     "open", "close", "movement"};
-  public static final String[] GARMENT_NAMES = {"Rotes T-Shirt", "Blaues T-Shirt", "Grünes T-Shirt",
+  
+  private static final String[] GARMENT_NAMES = {"Rotes T-Shirt", "Blaues T-Shirt", "Grünes T-Shirt",
 	                                              "Schwarzer Pullover", "Grauer Pullover", "Weiße Boxershorts", "Rote Boxershorts mit Herzchen",
 	                                              "Schwarze Socken"};
-  public static List<Garment> garments;
 
-  /*
-   * A list of all shelves (6 in this model).
-   */
-  private static List<Shelf> shelves = new ArrayList<Shelf>(6);
   
+  private static List<Garment> garments;
+  private final UpnpService upnpService = new UpnpServiceImpl();
   /*
-   * A list of all drawers (2 in this model).
+   * A list of all shelves and drawers (6 and 2 in this model).
    */
-  private static List<Drawer> drawers = new ArrayList<Drawer>(2);
+  private static List<Storage> storageSpace;
   
   public static void main(String[] args) throws Exception {
-  	garments = new ArrayList<Garment>(8);
+  	setGarments(new ArrayList<Garment>(8));
 
   	for(int i = 0; i < GARMENT_NAMES.length; i++) {
-          garments.add(new Garment(""+i, GARMENT_NAMES[i],"http://www.url.to/photo/"+i));
+          getGarments().add(new Garment(""+i, GARMENT_NAMES[i],"http://www.url.to/photo/"+i));
       }
   	
-  	setShelves(new ArrayList<Shelf>(6));
+  	storageSpace = new ArrayList<Storage>(8);
   	
   	for(int i = 0; i < 6; i++) {
-		getShelves().add(new Shelf(i));
+  		storageSpace.add(new Shelf(i));
+	}
+  	
+  	for(int i = 0; i < 2; i++) {
+  		storageSpace.add(new Drawer(i));
 	}
   	
     Thread serverThread = new Thread(new MoonServer());
@@ -52,7 +54,6 @@ public class MoonServer implements Runnable {
   }
 
   public void run() {
-    final UpnpService upnpService = new UpnpServiceImpl();
     try {
       Runtime.getRuntime().addShutdownHook(new Thread() {
           @Override
@@ -72,7 +73,7 @@ public class MoonServer implements Runnable {
     }
 
     Device device = upnpService.getRegistry().getDevice(UDN.uniqueSystemIdentifier("MOON Wardrobe"), true);
-    Service service = device.findService(new UDAServiceId("MOON-6-2-Shelfs"));
+    Service service = device.findService(new UDAServiceId("MOON-6-2-Shelves"));
     Action setColorAction = service.getAction("SetColor");
     ActionInvocation setColorInvocation = new ActionInvocation(setColorAction);
     setColorInvocation.setInput("LastShelfNo", "1");
@@ -108,8 +109,10 @@ public class MoonServer implements Runnable {
   }
 
   private void performAction(String methodname, String[] splitResult){
+    Device device = upnpService.getRegistry().getDevice(UDN.uniqueSystemIdentifier("MOON Wardrobe"), true);
     Service shelfService = device.findService(new UDAServiceId("MOON-6-2-Shelfs"));
     Service rfidService = device.findService(new UDAServiceId("MOON-6-2-RFID"));
+    
     if(methodname.equals("showStorage"))
       printStorage();
     else if(methodname.equals("help"))
@@ -204,45 +207,43 @@ public class MoonServer implements Runnable {
                     "MOON Wardrobe",
                     new ManufacturerDetails("Uni Bremen"),
                     new ModelDetails(
-                            "MOON with 6 shelfs and 2 drawers",
+                            "MOON with 6 shelves and 2 drawers",
                             "A smart wardrobe.",
                             "v1"
                     )
             );
 
-    LocalService<SwitchPower> moonShelvesService =
+    LocalService<MoonShelves> moonShelvesService =
             new AnnotationLocalServiceBinder().read(MoonShelves.class);
     
-    LocalService<SwitchPower> moonRFIDService =
+    LocalService<MoonRFID> moonRFIDService =
             new AnnotationLocalServiceBinder().read(MoonRFID.class);
+    
+    LocalService<MoonDrawers> moonDrawersService =
+            new AnnotationLocalServiceBinder().read(MoonDrawers.class);
 
-    
-    // TODO: Hier alle anderen Services binden und deren Manager setzen
-    
     moonShelvesService.setManager(
             new DefaultServiceManager(moonShelvesService, MoonShelves.class));
             
     moonRFIDService.setManager(
-    		new DefaultServiceManager(moonRFIDService, MoonRFID.class));    
+    		new DefaultServiceManager(moonRFIDService, MoonRFID.class));   
+    
+    moonDrawersService.setManager(
+    		new DefaultServiceManager(moonDrawersService, MoonDrawers.class)); 
 
-    return new LocalDevice(identity, type, details, new LocalService[] {moonShelvesService, moonRFIDService});   
+    return new LocalDevice(identity, type, details, new LocalService[] {moonShelvesService, moonRFIDService, moonDrawersService});   
    	}
 	
-
-	public static List<Shelf> getShelves() {
-		return shelves;
+	public static List<Storage> getStorageSpaces() {
+		return storageSpace;
 	}
 
-	public static void setShelves(List<Shelf> shelves) {
-		MoonServer.shelves = shelves;
+	public static List<Garment> getGarments() {
+		return garments;
 	}
 
-	public static List<Drawer> getDrawers() {
-		return drawers;
-	}
-
-	public static void setDrawers(List<Drawer> drawers) {
-		MoonServer.drawers = drawers;
+	public static void setGarments(List<Garment> garments) {
+		MoonServer.garments = garments;
 	}
 	
 	
