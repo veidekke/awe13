@@ -21,7 +21,6 @@ public class MoonServer implements Runnable {
   public static final String[] GARMENT_NAMES = {"Rotes T-Shirt", "Blaues T-Shirt", "Grünes T-Shirt",
 	                                              "Schwarzer Pullover", "Grauer Pullover", "Weiße Boxershorts", "Rote Boxershorts mit Herzchen",
 	                                              "Schwarze Socken"};
-  
   public static List<Garment> garments;
 
   /*
@@ -79,19 +78,18 @@ public class MoonServer implements Runnable {
     setColorInvocation.setInput("LastShelfNo", "1");
     setColorInvocation.setInput("ShelfColor", "22,44,66");
     ActionCallback setColorCallback = new ActionCallback(setColorInvocation) {
+      @Override
+      public void success(ActionInvocation invocation) {
+          ActionArgumentValue[] output = invocation.getOutput();
+          //assertEquals(output.length, 0);
+      }
 
-        @Override
-        public void success(ActionInvocation invocation) {
-            ActionArgumentValue[] output = invocation.getOutput();
-            //assertEquals(output.length, 0);
-        }
-
-        @Override
-        public void failure(ActionInvocation invocation,
-                            UpnpResponse operation,
-                            String defaultMsg) {
-            System.err.println(defaultMsg);
-        }
+      @Override
+      public void failure(ActionInvocation invocation,
+                          UpnpResponse operation,
+                          String defaultMsg) {
+          System.err.println(defaultMsg);
+      }
     };
 
     upnpService.getControlPoint().execute(setColorCallback);
@@ -101,22 +99,83 @@ public class MoonServer implements Runnable {
       String s = scan.nextLine();
       String[] result = s.split(" ");
       String methodname = result[0].equals("") ? s : result[0];
-      if(isValidMethodName(methodname)){
-        System.out.println("yeah");
-        boolean validOptions = validOptions(methodname, s.split("-"));
+      if(isValidMethodName(methodname) && validOptions(methodname, result)){
+        performAction(methodname, result);
       } else {
-        System.out.println("Unknown method. Type 'help' to get the list of all possible methods");
+        System.out.println("Invalid Input. Type 'help' to get the list of all possible methods");
       }
     }
+  }
+
+  private void performAction(String methodname, String[] splitResult){
+    if(methodname.equals("showStorage"))
+      printStorage();
+    else if(methodname.equals("help"))
+      printHelp();
+    else if(methodname.equals("put"))
+      performPut(splitResult[2], splitResult[4], splitResult[6]);
+    else if(methodname.equals("take"))
+      performTake(splitResult[2]);
+    else if(methodname.equals("open"))
+      performOpen(splitResult[2]);
+    else if(methodname.equals("close"))
+      performClose(splitResult[2]);
+    else if(methodname.equals("movement"))
+      performMovement(splitResult[2]);
+  } 
+
+  private void performPut(String storagetype, String no, String barcode){
+
+  }
+
+  private void performTake(String barcode){
+
+  }
+
+  private void performOpen(String no){
+
+  }
+  private void performClose(String no){
+
+  }
+  private void performMovement(String no){
+
+  }
+
+  private void printStorage(){
+
+  }
+
+  private void printHelp(){
+    System.out.println("Following methods and arguments are valid:");
+    System.out.println("help");
+    System.out.println("showStorage");
+    System.out.println("put -storagetype <storagetype> -no <number of Storage> -barcode <barcode>");
+    System.out.println("take -barcode <barcode>");
+    System.out.println("open -no <number of Drawer>");
+    System.out.println("close -no <number of Drawer>");
+    System.out.println("movement -no <number of Shelf>");
   }
 
   private boolean validOptions(String methodname, String[] splitResult){
     boolean validOptions = false;
     if(methodname.equals("showStorage"))
-        validOptions = splitResult[0].equals("");
+      validOptions = splitResult.length == 1;
     else if(methodname.equals("help"))
-        validOptions = splitResult[0].equals("");
-    
+      validOptions = splitResult.length == 1;
+    else if(methodname.equals("put") && splitResult.length == 7)
+      validOptions = splitResult[1].equals("-storagetype") && 
+        splitResult[3].equals("-no") && 
+        splitResult[5].equals("-barcode");
+    else if(methodname.equals("take") && splitResult.length == 3)
+      validOptions = splitResult[1].equals("-barcode");
+    else if(methodname.equals("open") && splitResult.length == 3)
+      validOptions = splitResult[1].equals("-no");
+    else if(methodname.equals("close") && splitResult.length == 3)
+      validOptions = splitResult[1].equals("-no");
+    else if(methodname.equals("movement") && splitResult.length == 3)
+      validOptions = splitResult[1].equals("-no");
+
     return validOptions;
   }
 
@@ -133,7 +192,7 @@ public class MoonServer implements Runnable {
 	private LocalDevice createDevice() throws ValidationException, LocalServiceBindingException, IOException {
     DeviceIdentity identity =
             new DeviceIdentity(
-                    UDN.uniqueSystemIdentifier("MOON Wardrobe")
+              UDN.uniqueSystemIdentifier("MOON Wardrobe")
             );
     DeviceType type =
             new UDADeviceType("MOONWardrobe-6-2", 1);
