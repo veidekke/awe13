@@ -48,13 +48,11 @@ public class MoonClient implements Runnable {
 
   private RegistryListener createRegistryListener(final UpnpService upnpService) {
     return new DefaultRegistryListener() {
-      ServiceId serviceIdShelf = new UDAServiceId("MOON-6-2-Shelfs");
-
       @Override
       public void remoteDeviceAdded(Registry registry, RemoteDevice device) {
-        Service shelfService;
-        if ((shelfService = device.findService(serviceIdShelf)) != null) {
-          initService(shelfService);
+        Service[] services = device.getServices();
+        for(Service service : services){
+          initService(service);
         }
       }
 
@@ -72,7 +70,7 @@ public class MoonClient implements Runnable {
     System.out.println("Service discovered: " + service.getServiceId());
     Action[] actions = service.getActions();
     ArrayList<Action> outputActions = getOutputActions(actions);
-    System.out.println("StateVariables of Service '" + service.getServiceId() + "' have the following values: ");
+    //System.out.println("StateVariables of Service '" + service.getServiceId() + "' have the following values: ");
     insertStatesIntoJess(outputActions);
     
     SubscriptionCallback callback = getSubscriptionCallback(service);
@@ -96,14 +94,13 @@ public class MoonClient implements Runnable {
     }
   }
 
-
   private ActionCallback getStatusCallback(ActionInvocation invocation){
     return new ActionCallback(invocation) {
       @Override
       public void success(ActionInvocation invocation) {
         ActionArgumentValue[] output  = invocation.getOutput();
         for(ActionArgumentValue out : output){
-          System.out.println(""+out.getArgument().getName() + ": " + out.getValue());
+          //System.out.println(""+out.getArgument().getName() + ": " + out.getValue());
         }
       }
 
@@ -140,7 +137,7 @@ public class MoonClient implements Runnable {
       }
 
       public void eventReceived(GENASubscription sub) {
-          System.out.println("Event: " + sub.getCurrentSequence().getValue());
+          //System.out.println("Event: " + sub.getCurrentSequence().getValue());
           Map<String, StateVariableValue> values = sub.getCurrentValues();
           Object[] variables = values.keySet().toArray();
           for(Object variable : variables){
