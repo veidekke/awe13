@@ -26,46 +26,45 @@ public class MoonServer implements Runnable {
   	for(int i = 0; i < GARMENT_NAMES.length; i++) {
           garments.add(new Garment(""+i, GARMENT_NAMES[i],"http://www.url.to/photo/"+i));
       }
-  	
-      Thread serverThread = new Thread(new MoonServer());
-      serverThread.setDaemon(false);
-      serverThread.start();
+    Thread serverThread = new Thread(new MoonServer());
+    serverThread.setDaemon(false);
+    serverThread.start();
   }
 
   public void run() {
-      try {
-        final UpnpService upnpService = new UpnpServiceImpl();
+    try {
+      final UpnpService upnpService = new UpnpServiceImpl();
 
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                upnpService.shutdown();
-            }
-        });
+      Runtime.getRuntime().addShutdownHook(new Thread() {
+          @Override
+          public void run() {
+              upnpService.shutdown();
+          }
+      });
 
-        // Add the bound local device to the registry
-        upnpService.getRegistry().addDevice(
-                createDevice()
-        );
-      } catch (Exception e) {
-          System.err.println("Exception occured: " + e);
-          e.printStackTrace(System.err);
-          System.exit(1);
+      // Add the bound local device to the registry
+      upnpService.getRegistry().addDevice(
+              createDevice()
+      );
+    } catch (Exception e) {
+        System.err.println("Exception occured: " + e);
+        e.printStackTrace(System.err);
+        System.exit(1);
+    }
+
+    Scanner scan = new Scanner(System.in);
+    while (true) {
+      String s = scan.nextLine();
+      String[] result = s.split(" ");
+      String methodname = result[0].equals("") ? s : result[0];
+      
+      if(isValidMethodName(methodname)){
+        System.out.println("yeah");
+        boolean validOptions = validOptions(methodname, s.split("-"));
+      } else {
+        System.out.println("Unknown method. Type 'help' to get the list of all possible methods");
       }
-
-      Scanner scan = new Scanner(System.in);
-      while (true) {
-        String s = scan.nextLine();
-        String[] result = s.split(" ");
-        String methodname = result[0].equals("") ? s : result[0];
-        
-        if(isValidMethodName(methodname)){
-          System.out.println("yeah");
-          boolean validOptions = validOptions(methodname, s.split("-"));
-        } else {
-          System.out.println("Unknown method. Type 'help' to get the list of all possible methods");
-        }
-      }
+    }
   }
 
   private boolean validOptions(String methodname, String[] splitResult){
