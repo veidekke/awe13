@@ -3,8 +3,11 @@ import org.fourthline.cling.UpnpServiceImpl;
 import org.fourthline.cling.binding.*;
 import org.fourthline.cling.binding.annotations.*;
 import org.fourthline.cling.model.*;
+import org.fourthline.cling.model.message.*;
+import org.fourthline.cling.model.action.*;
 import org.fourthline.cling.model.meta.*;
 import org.fourthline.cling.model.types.*;
+import org.fourthline.cling.controlpoint.ActionCallback;
 import java.util.Scanner;
 
 import java.io.IOException;
@@ -32,9 +35,8 @@ public class MoonServer implements Runnable {
   }
 
   public void run() {
+    final UpnpService upnpService = new UpnpServiceImpl();
     try {
-      final UpnpService upnpService = new UpnpServiceImpl();
-
       Runtime.getRuntime().addShutdownHook(new Thread() {
           @Override
           public void run() {
@@ -52,12 +54,35 @@ public class MoonServer implements Runnable {
         System.exit(1);
     }
 
+    Device device = upnpService.getRegistry().getDevice(UDN.uniqueSystemIdentifier("MOON Wardrobe"), true);
+    Service service = device.findService(new UDAServiceId("MOON62Shelfs"));
+    Action setColorAction = service.getAction("SetColor");
+    ActionInvocation setColorInvocation = new ActionInvocation(setColorAction);
+    setColorInvocation.setInput("LastShelfNo", "1");
+    setColorInvocation.setInput("LastShelfColor", "22,44,66");
+    ActionCallback setColorCallback = new ActionCallback(setColorInvocation) {
+
+        @Override
+        public void success(ActionInvocation invocation) {
+            ActionArgumentValue[] output = invocation.getOutput();
+            //assertEquals(output.length, 0);
+        }
+
+        @Override
+        public void failure(ActionInvocation invocation,
+                            UpnpResponse operation,
+                            String defaultMsg) {
+            System.err.println(defaultMsg);
+        }
+    };
+
+    upnpService.getControlPoint().execute(setColorCallback);
+    
     Scanner scan = new Scanner(System.in);
     while (true) {
       String s = scan.nextLine();
       String[] result = s.split(" ");
       String methodname = result[0].equals("") ? s : result[0];
-      
       if(isValidMethodName(methodname)){
         System.out.println("yeah");
         boolean validOptions = validOptions(methodname, s.split("-"));
@@ -130,5 +155,4 @@ public class MoonServer implements Runnable {
     */
 	    
 	}
-
 }
