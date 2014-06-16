@@ -29,6 +29,11 @@ public class MoonServer implements Runnable {
    */
   private static List<Shelf> shelves = new ArrayList<Shelf>(6);
   
+  /*
+   * A list of all drawers (2 in this model).
+   */
+  private static List<Drawer> drawers = new ArrayList<Drawer>(2);
+  
   public static void main(String[] args) throws Exception {
   	garments = new ArrayList<Garment>(8);
 
@@ -68,7 +73,7 @@ public class MoonServer implements Runnable {
     }
 
     Device device = upnpService.getRegistry().getDevice(UDN.uniqueSystemIdentifier("MOON Wardrobe"), true);
-    Service service = device.findService(new UDAServiceId("MOON62Shelfs"));
+    Service service = device.findService(new UDAServiceId("MOON-6-2-Shelfs"));
     Action setColorAction = service.getAction("SetColor");
     ActionInvocation setColorInvocation = new ActionInvocation(setColorAction);
     setColorInvocation.setInput("LastShelfNo", "1");
@@ -131,7 +136,7 @@ public class MoonServer implements Runnable {
                     UDN.uniqueSystemIdentifier("MOON Wardrobe")
             );
     DeviceType type =
-            new UDADeviceType("MOONWardrobe62", 1);
+            new UDADeviceType("MOONWardrobe-6-2", 1);
 
     DeviceDetails details =
             new DeviceDetails(
@@ -144,26 +149,23 @@ public class MoonServer implements Runnable {
                     )
             );
 
-    LocalService<SwitchPower> moonShelfsService =
-            new AnnotationLocalServiceBinder().read(MoonShelfs.class);
+    LocalService<SwitchPower> moonShelvesService =
+            new AnnotationLocalServiceBinder().read(MoonShelves.class);
+    
+    LocalService<SwitchPower> moonRFIDService =
+            new AnnotationLocalServiceBinder().read(MoonRFID.class);
 
     
     // TODO: Hier alle anderen Services binden und deren Manager setzen
     
-    moonShelfsService.setManager(
-            new DefaultServiceManager(moonShelfsService, MoonShelfs.class)
-    );
+    moonShelvesService.setManager(
+            new DefaultServiceManager(moonShelvesService, MoonShelves.class));
+            
+    moonRFIDService.setManager(
+    		new DefaultServiceManager(moonRFIDService, MoonRFID.class));    
 
-    return new LocalDevice(identity, type, details, moonShelfsService);
-
-    /* Several services can be bound to the same device:
-    return new LocalDevice(
-            identity, type, details, icon,
-            new LocalService[] {switchPowerService, myOtherService}
-    );
-    */
-	    
-	}
+    return new LocalDevice(identity, type, details, new LocalService[] {moonShelvesService, moonRFIDService});   
+   	}
 
 	public static List<Shelf> getShelves() {
 		return shelves;
@@ -172,4 +174,14 @@ public class MoonServer implements Runnable {
 	public static void setShelves(List<Shelf> shelves) {
 		MoonServer.shelves = shelves;
 	}
+
+	public static List<Drawer> getDrawers() {
+		return drawers;
+	}
+
+	public static void setDrawers(List<Drawer> drawers) {
+		MoonServer.drawers = drawers;
+	}
+	
+	
 }

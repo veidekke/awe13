@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.beans.PropertyChangeSupport;
 
 import org.fourthline.cling.binding.annotations.UpnpAction;
@@ -18,21 +16,21 @@ import org.fourthline.cling.model.types.csv.CSVShort;
  * in a MOON wardrobe (version with 6 shelfs and 2 drawers).
  */
 @UpnpService(
-        serviceId = @UpnpServiceId("MOON62Shelfs"),
-        serviceType = @UpnpServiceType(value = "MOON62Shelfs", version = 1)
+	serviceId = @UpnpServiceId("MOON-6-2-Shelfs"),
+	serviceType = @UpnpServiceType(value = "MOON-6-2-Shelfs", version = 1)
 )
 
 @UpnpStateVariables(
-        {
-                @UpnpStateVariable(	// required by UPnP as it is used as an argument later
-                        name = "ShelfColor",
-                        datatype = "string",
-                        defaultValue = "255,255,255",
-                        sendEvents = false
-                )
-        }
+    {
+    	@UpnpStateVariable(	// required by UPnP as it is used as an argument later
+            name = "ShelfColor",
+            datatype = "string",
+            defaultValue = "255,255,255",
+            sendEvents = false
+        )
+    }
 )
-public class MoonShelfs {
+public class MoonShelves {
 
 	/*/* * TODO: andere Services: Schubladen, RFID
 	 */	
@@ -42,11 +40,6 @@ public class MoonShelfs {
 	 */
 	private final PropertyChangeSupport propertyChangeSupport;
 	
-	/*
-	 * A list of all shelves (6 in this model).
-	 */
-    //private List<Shelf> shelves = new ArrayList<Shelf>(6);
-    
     @UpnpStateVariable(defaultValue = "-1")
     private short lastShelfNo = -1;
     
@@ -59,7 +52,7 @@ public class MoonShelfs {
     /**
      * Constructor. Initializes shelves and propertyChangeSupport.
      */
-    public MoonShelfs() {
+    public MoonShelves() {
     	this.propertyChangeSupport = new PropertyChangeSupport(this);
     }
     
@@ -164,6 +157,7 @@ public class MoonShelfs {
 	}
 	
     /**
+     * Simulates a detected movement in the given shelf.
      * 
      * @param shelfNo
      */
@@ -173,6 +167,7 @@ public class MoonShelfs {
        		if(shelf.getNo() == shelfNo) {
        			shelf.movement();
        			movementInShelf = shelfNo;
+       			getPropertyChangeSupport().firePropertyChange("MovementInShelf", 0, movementInShelf);
        		}
     	}
     	
