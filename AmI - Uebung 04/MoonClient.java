@@ -1,9 +1,5 @@
-import org.fourthline.cling.*;
 import org.fourthline.cling.UpnpService;
 import org.fourthline.cling.UpnpServiceImpl;
-import org.fourthline.cling.binding.*;
-import org.fourthline.cling.binding.annotations.*;
-import org.fourthline.cling.model.*;
 import org.fourthline.cling.model.message.*;
 import org.fourthline.cling.model.message.header.*;
 import org.fourthline.cling.model.action.*;
@@ -11,11 +7,7 @@ import org.fourthline.cling.model.meta.*;
 import org.fourthline.cling.model.types.*;
 import org.fourthline.cling.registry.*;
 import org.fourthline.cling.controlpoint.ActionCallback;
-import org.fourthline.cling.controlpoint.*;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class MoonClient implements Runnable {
 
@@ -50,7 +42,7 @@ public class MoonClient implements Runnable {
 
   private RegistryListener createRegistryListener(final UpnpService upnpService) {
     return new DefaultRegistryListener() {
-      ServiceId serviceIdShelf = new UDAServiceId("MOON62Shelfs");
+      ServiceId serviceIdShelf = new UDAServiceId("MOON-6-2-Shelfs");
 
       @Override
       public void remoteDeviceAdded(Registry registry, RemoteDevice device) {
