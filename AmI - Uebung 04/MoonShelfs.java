@@ -30,8 +30,6 @@ public class MoonShelfs {
 	 * -Licht an/aus (In: Fachnummer, an/aus)
 	 * 
 	 * Events:
-	 * -Farbe ändert sich (Out: Fachnummer)?
-	 * -Farbe wird abgespielt (Out: Fachnummer)?
 	 * -Bewegungssensor loest aus (Out: Fachnummer)
 	 * 
 	 * States:
@@ -40,39 +38,59 @@ public class MoonShelfs {
 	 * 
 	 * TODO: andere Services: Schubladen, RFID
 	 */
-	    
-    private List<List<Short>> shelfColors = new ArrayList<List<Short>>(6);
+	
+	private final PropertyChangeSupport propertyChangeSupport;
+	
+    private List<Shelf> shelves = new ArrayList<Shelf>(6);
     
     @UpnpStateVariable(defaultValue = "0")
-    private short shelfNo = 0;
+    private short lastShelfNo = 0;
+            
+    @UpnpStateVariable(datatype = "string", defaultValue = "0,0,0", sendEvents = false)
+    private List<Short> lastShelfColor = new ArrayList<Short>(3);
         
-    @UpnpStateVariable(datatype = "string", defaultValue = "0,0,0")
-    private List<Short> shelfColor = new ArrayList<Short>(3);
-    
     public MoonShelfs() {
-    	ArrayList<Short> defaultColor = new ArrayList<Short>(3);
-    	defaultColor.add((short) 0);
-    	defaultColor.add((short) 0);
-    	defaultColor.add((short) 0);
+    	this.propertyChangeSupport = new PropertyChangeSupport(this);
     	
     	for(int i = 0; i < 6; i++) {
-    		shelfColors.add(defaultColor);
+    		shelves.add(new Shelf(i));
     	}
     }
     
     @UpnpAction
-    public void setColor(@UpnpInputArgument(name = "ShelfNo") short shelfNo, @UpnpInputArgument(name = "ShelfColor") CSVShort shelfColor) {
-    	 shelfColors.set(shelfNo, shelfColor);
-        System.out.println("Color of shelf " + shelfNo + " set to: " + shelfColor);
+    public void setColor(@UpnpInputArgument(name = "LastShelfNo") short shelfNo, @UpnpInputArgument(name = "LastShelfColor") CSVShort shelfColor) {
+       	for(Shelf shelf : shelves) {
+       		if(shelf.getNo() == shelfNo) {
+       			shelf.setColor(shelfColor);
+       			System.out.println("Color of shelf " + shelfNo + " set to: " + shelfColor);
+       			this.lastShelfNo = shelfNo;
+       			this.lastShelfColor = shelfColor;
+       			System.out.println(this.lastShelfNo + " (that's a change!)");
+       			getPropertyChangeSupport().firePropertyChange("LastShelfNo", 0, lastShelfNo);
+       		}
+       	}        
     }
 
-    @UpnpAction(out = @UpnpOutputArgument(name = "ShelfColor"))
-    public CSV<Short> getColor(@UpnpInputArgument(name = "ShelfNo") short shelfNo) {
+    @UpnpAction(out = @UpnpOutputArgument(name = "LastShelfColor"))
+    public CSV<Short> getColor(@UpnpInputArgument(name = "LastShelfNo") short shelfNo) {
     	CSVShort wrapper = new CSVShort();
-        if (shelfColors.get(shelfNo) != null)
-            wrapper.addAll(shelfColors.get(shelfNo));
+        
+    	for(Shelf shelf : shelves) {
+       		if(shelf.getNo() == shelfNo) {
+       			wrapper.addAll(shelf.getColor());
+       		}
+    	}    	
+    	
         return wrapper;
     }
 
+    @UpnpAction(out = @UpnpOutputArgument(name = "LastShelfNo"))
+	public short getShelfNo() {
+		return lastShelfNo;
+	}
+    
+    public PropertyChangeSupport getPropertyChangeSupport() {
+        return propertyChangeSupport;
+    }
 }
 
