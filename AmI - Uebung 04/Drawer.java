@@ -29,6 +29,10 @@ public class Drawer extends Storage {
 
 	public void setOpen(boolean open) {
 		this.open = open;
+		if(open)
+			System.out.println("Drawer " + no + " is now open.");
+		else
+			System.out.println("Drawer " + no + " is now closed.");
 	}	
 	
 }

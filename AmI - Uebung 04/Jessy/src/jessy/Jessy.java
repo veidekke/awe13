@@ -74,8 +74,6 @@ public class Jessy {
                     engine.run();
                     engine.remove(telegram);
                     
-                    // TODO: Fake-Telegram erstellen und added
-
                     // execute the actions that are added by the rules
                     Iterator wmi = engine.getObjects(new Filter.ByClass(ChangeDevice.class));
                     while (wmi.hasNext()) {
