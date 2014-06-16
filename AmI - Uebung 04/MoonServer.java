@@ -59,7 +59,7 @@ public class MoonServer implements Runnable {
     Action setColorAction = service.getAction("SetColor");
     ActionInvocation setColorInvocation = new ActionInvocation(setColorAction);
     setColorInvocation.setInput("LastShelfNo", "1");
-    setColorInvocation.setInput("LastShelfColor", "22,44,66");
+    setColorInvocation.setInput("ShelfColor", "22,44,66");
     ActionCallback setColorCallback = new ActionCallback(setColorInvocation) {
 
         @Override
@@ -152,7 +152,6 @@ public class MoonServer implements Runnable {
             identity, type, details, icon,
             new LocalService[] {switchPowerService, myOtherService}
     );
-    */
-	    
+    */ 
 	}
 }
