@@ -22,8 +22,6 @@ import org.fourthline.cling.model.types.csv.CSVShort;
         serviceType = @UpnpServiceType(value = "MOON62Shelfs", version = 1)
 )
 
-
-
 @UpnpStateVariables(
         {
                 @UpnpStateVariable(	// required by UPnP as it is used as an argument later
@@ -36,21 +34,7 @@ import org.fourthline.cling.model.types.csv.CSVShort;
 )
 public class MoonShelfs {
 
-	// TODO: alle Actions, Events und States implementieren:
-	/*
-	 * Actions:
-	 * -Farbe ändern (In: Fachnummer, Farbe als RGB)
-	 * -Sound abspielen (In: Fachnummer, Sound als String oder URL)
-	 * -Licht an/aus (In: Fachnummer, an/aus)
-	 * 
-	 * Events:
-	 * -Bewegungssensor loest aus (Out: Fachnummer)
-	 * 
-	 * States:
-	 * -Farbe (Fachnummer)
-	 * -Sound der noch läuft (Fachnummer)???
-	 * 
-	 * TODO: andere Services: Schubladen, RFID
+	/*/* * TODO: andere Services: Schubladen, RFID
 	 */	
 	
 	/*
@@ -61,7 +45,7 @@ public class MoonShelfs {
 	/*
 	 * A list of all shelves (6 in this model).
 	 */
-    private List<Shelf> shelves = new ArrayList<Shelf>(6);
+    //private List<Shelf> shelves = new ArrayList<Shelf>(6);
     
     @UpnpStateVariable(defaultValue = "-1")
     private short lastShelfNo = -1;
@@ -77,10 +61,6 @@ public class MoonShelfs {
      */
     public MoonShelfs() {
     	this.propertyChangeSupport = new PropertyChangeSupport(this);
-    	
-    	for(int i = 0; i < 6; i++) {
-    		shelves.add(new Shelf(i));
-    	}
     }
     
     /**
@@ -94,7 +74,7 @@ public class MoonShelfs {
 	 */
     @UpnpAction
     public void setColor(@UpnpInputArgument(name = "LastShelfNo") short shelfNo, @UpnpInputArgument(name = "ShelfColor") CSVShort shelfColor) {
-       	for(Shelf shelf : shelves) {
+       	for(Shelf shelf : MoonServer.getShelves()) {
        		if(shelf.getNo() == shelfNo) {
        			shelf.setColor(shelfColor);
        			
@@ -118,7 +98,7 @@ public class MoonShelfs {
     public CSV<Short> getColor(@UpnpInputArgument(name = "LastShelfNo") short shelfNo) {
     	CSVShort wrapper = new CSVShort();
         
-    	for(Shelf shelf : shelves) {
+    	for(Shelf shelf : MoonServer.getShelves()) {
        		if(shelf.getNo() == shelfNo) {
        			wrapper.addAll(shelf.getColor());
        		}
@@ -138,7 +118,7 @@ public class MoonShelfs {
 	 */
     @UpnpAction
     public void playSound(@UpnpInputArgument(name = "LastShelfNo") short shelfNo, @UpnpInputArgument(name = "LastSound") String soundPath) {
-       	for(Shelf shelf : shelves) {
+       	for(Shelf shelf : MoonServer.getShelves()) {
        		if(shelf.getNo() == shelfNo) {
        			shelf.playSound(soundPath);
        			
@@ -189,7 +169,7 @@ public class MoonShelfs {
      */
     @UpnpAction
     public void simulateMovement(@UpnpInputArgument(name = "LastShelfNo") short shelfNo) {
-    	for(Shelf shelf : shelves) {
+    	for(Shelf shelf : MoonServer.getShelves()) {
        		if(shelf.getNo() == shelfNo) {
        			shelf.movement();
        			movementInShelf = shelfNo;

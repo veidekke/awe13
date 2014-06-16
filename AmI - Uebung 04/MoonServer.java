@@ -18,17 +18,30 @@ public class MoonServer implements Runnable {
 
   public static final String[] METHODS = { "help", "put", "take", "showStorage",
     "open", "close", "movement"};
-	public static final String[] GARMENT_NAMES = {"Rotes T-Shirt", "Blaues T-Shirt", "Grünes T-Shirt",
+  public static final String[] GARMENT_NAMES = {"Rotes T-Shirt", "Blaues T-Shirt", "Grünes T-Shirt",
 	                                              "Schwarzer Pullover", "Grauer Pullover", "Weiße Boxershorts", "Rote Boxershorts mit Herzchen",
 	                                              "Schwarze Socken"};
-	public static List<Garment> garments;
+  
+  public static List<Garment> garments;
 
+  /*
+   * A list of all shelves (6 in this model).
+   */
+  private static List<Shelf> shelves = new ArrayList<Shelf>(6);
+  
   public static void main(String[] args) throws Exception {
   	garments = new ArrayList<Garment>(8);
 
   	for(int i = 0; i < GARMENT_NAMES.length; i++) {
           garments.add(new Garment(""+i, GARMENT_NAMES[i],"http://www.url.to/photo/"+i));
       }
+  	
+  	setShelves(new ArrayList<Shelf>(6));
+  	
+  	for(int i = 0; i < 6; i++) {
+		getShelves().add(new Shelf(i));
+	}
+  	
     Thread serverThread = new Thread(new MoonServer());
     serverThread.setDaemon(false);
     serverThread.start();
@@ -94,16 +107,11 @@ public class MoonServer implements Runnable {
 
   private boolean validOptions(String methodname, String[] splitResult){
     boolean validOptions = false;
-    switch(methodname){
-      case "showStorage":
+    if(methodname.equals("showStorage"))
         validOptions = splitResult[0].equals("");
-        break;
-      case "help":
+    else if(methodname.equals("help"))
         validOptions = splitResult[0].equals("");
-        break; 
-    }
     
-
     return validOptions;
   }
 
@@ -139,6 +147,7 @@ public class MoonServer implements Runnable {
     LocalService<SwitchPower> moonShelfsService =
             new AnnotationLocalServiceBinder().read(MoonShelfs.class);
 
+    
     // TODO: Hier alle anderen Services binden und deren Manager setzen
     
     moonShelfsService.setManager(
@@ -153,5 +162,13 @@ public class MoonServer implements Runnable {
             new LocalService[] {switchPowerService, myOtherService}
     );
     */ 
+	}
+
+	public static List<Shelf> getShelves() {
+		return shelves;
+	}
+
+	public static void setShelves(List<Shelf> shelves) {
+		MoonServer.shelves = shelves;
 	}
 }
