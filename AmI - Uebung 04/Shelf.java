@@ -25,7 +25,7 @@ public class Shelf extends Storage {
 	}
 	
 	public void movement() {
-		// TODO: simulate sensor's movement registration
+		System.out.println("A movement has been detected in shelf number " + no);
 	}
 	
 	public void playSound(String soundPath) {

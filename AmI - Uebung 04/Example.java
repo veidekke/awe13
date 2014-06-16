@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 import org.fourthline.cling.UpnpService;
 import org.fourthline.cling.UpnpServiceImpl;
 import org.fourthline.cling.model.message.header.STAllHeader;

@@ -22,6 +22,8 @@ import org.fourthline.cling.model.types.csv.CSVShort;
         serviceType = @UpnpServiceType(value = "MOON62Shelfs", version = 1)
 )
 
+
+
 @UpnpStateVariables(
         {
                 @UpnpStateVariable(	// required by UPnP as it is used as an argument later
@@ -49,7 +51,7 @@ public class MoonShelfs {
 	 * -Sound der noch läuft (Fachnummer)???
 	 * 
 	 * TODO: andere Services: Schubladen, RFID
-	 */
+	 */	
 	
 	/*
 	 * Used to announce state changes.
@@ -63,6 +65,9 @@ public class MoonShelfs {
     
     @UpnpStateVariable(defaultValue = "-1")
     private short lastShelfNo = -1;
+    
+    @UpnpStateVariable(defaultValue = "-1")
+    private short movementInShelf = -1;
 
     @UpnpStateVariable(defaultValue = "no sound has been played yet")
 	private String lastSound = "no sound has been played yet";
@@ -146,7 +151,7 @@ public class MoonShelfs {
     }
 
     /**
-     * Returns number of last (most recently touched) shelf.
+     * Returns the number of last (most recently touched) shelf.
      *  
 	 * @return 
 	 * 			the number
@@ -156,6 +161,17 @@ public class MoonShelfs {
 		return lastShelfNo;
 	}       
 
+    /**
+     * Returns the number of the shelf where the movement occured.
+     *  
+	 * @return 
+	 * 			the number of the shelf
+	 */
+    @UpnpAction(out = @UpnpOutputArgument(name = "MovementInShelf"))
+	public short getMovementInShelf() {
+		return movementInShelf;
+	}
+    
     /**
      * Returns name of last (most recently played) sound.
      *  
@@ -167,6 +183,21 @@ public class MoonShelfs {
 		return lastSound;
 	}
 	
+    /**
+     * 
+     * @param shelfNo
+     */
+    @UpnpAction
+    public void simulateMovement(@UpnpInputArgument(name = "LastShelfNo") short shelfNo) {
+    	for(Shelf shelf : shelves) {
+       		if(shelf.getNo() == shelfNo) {
+       			shelf.movement();
+       			movementInShelf = shelfNo;
+       		}
+    	}
+    	
+    }
+    
 	public PropertyChangeSupport getPropertyChangeSupport() {
         return propertyChangeSupport;
     }

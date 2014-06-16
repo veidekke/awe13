@@ -1,0 +1,302 @@
+<RoSiIncludeFile xmlns:xi="http://www.w3.org/2003/XInclude">
+  <xi:include href="Sensors/URG04LX.rsi"/>
+  
+  <AppearanceDefinition name="iWalker-metal">
+    <Color r="0.4" g="0.4" b="0.5" a="1.0"/>
+  </AppearanceDefinition>
+  
+  <AppearanceDefinition name="iWalker-wheel">
+    <Color r="0.5" g="0.4" b="0.25" a="1.0"/>
+  </AppearanceDefinition>
+  
+  <AppearanceDefinition name="iWalker-marker">
+    <Color r="0.5" g="0.2" b="0.2" a="1.0"/>
+  </AppearanceDefinition>
+  
+  <AppearanceDefinition name="iWalker-castor">
+    <Color r="0.2" g="0.2" b="0.5" a="1.0"/>
+  </AppearanceDefinition>
+  
+  <MaterialDefinition name="floor">
+    <FrictionCoefficient otherMaterial="wheelrubber" value="1.5"/>
+    <FrictionCoefficient otherMaterial="wheelplastic" value="1.0"/>
+  </MaterialDefinition>
+  <MaterialDefinition name="wheelrubber"/>
+  <MaterialDefinition name="wheelplastic"/>
+  
+  <Macro name="iWalker">
+    <Movable name="iWalker">
+      <Elements>
+        <Box name="xassis" length="0.025" width="0.5" height="0.025">
+          <Translation x="0.55" z="0.265"/>
+          <Rotation y="-10"/>
+          <Appearance ref="iWalker-metal"/>
+          <PhysicalAttributes>
+            <Mass value="1"/>
+          </PhysicalAttributes>
+          <Elements>
+            <Box name="barra1r" length="0.2" width="0.025" height="0.025">
+              <Translation x="-0.0875" y="-0.25"/>
+              <Appearance ref="iWalker-metal"/>
+              <PhysicalAttributes>
+                <Mass value="1"/>
+              </PhysicalAttributes>
+            </Box>
+            <Box name="barra1l" length="0.2" width="0.025" height="0.025">
+              <Translation x="-0.0875" y="0.25"/>
+              <Appearance ref="iWalker-metal"/>
+              <PhysicalAttributes>
+                <Mass value="1"/>
+              </PhysicalAttributes>
+            </Box>
+            <Box name="barra2r" length="0.025" width="0.025" height="0.78">
+              <Translation x="-0.2" y="-0.25" z="0.3775"/>
+              <Appearance ref="iWalker-metal"/>
+              <PhysicalAttributes>
+                <Mass value="1"/>
+              </PhysicalAttributes>
+            </Box>
+            <Box name="barra2l" length="0.025" width="0.025" height="0.78">
+              <Translation x="-0.2" y="0.25" z="0.3775"/>
+              <Appearance ref="iWalker-metal"/>
+              <PhysicalAttributes>
+                <Mass value="1"/>
+              </PhysicalAttributes>
+            </Box>
+            <Box name="barra3" length="0.025" width="0.5" height="0.025">
+              <Translation x="-0.2" z="0.4"/>
+              <Appearance ref="iWalker-metal"/>
+              <PhysicalAttributes>
+                <Mass value="1"/>
+              </PhysicalAttributes>
+            </Box>
+            <Box name="barra4r" length="0.2" width="0.025" height="0.025">
+              <Translation x="-0.2865" y="-0.25" z="0.7865"/>
+              <Rotation y="18"/>
+              <Appearance ref="iWalker-metal"/>
+              <PhysicalAttributes>
+                <Mass value="1"/>
+              </PhysicalAttributes>
+            </Box>
+            <Box name="barra4l" length="0.2" width="0.025" height="0.025">
+              <Translation x="-0.2865" y="0.25" z="0.7865"/>
+              <Rotation y="18"/>
+              <Appearance ref="iWalker-metal"/>
+              <PhysicalAttributes>
+                <Mass value="1"/>
+              </PhysicalAttributes>
+            </Box>
+            <Box name="barra5r" length="0.025" width="0.025" height="0.4">
+              <Translation x="-0.33" y="-0.26" z="0.163"/>
+              <Rotation y="55"/>
+              <Appearance ref="iWalker-metal"/>
+              <PhysicalAttributes>
+                <Mass value="1"/>
+              </PhysicalAttributes>
+              <Elements>
+                <Box name="tapa5r" length="0.1" width="0.05" height="0.01">
+                  <Translation z="-0.2"/>
+                  <Appearance ref="iWalker-metal"/>
+                  <PhysicalAttributes>
+                    <Mass value="1"/>
+                  </PhysicalAttributes>
+                </Box>
+                <Box name="barra6" length="0.025" width="0.52" height="0.025">
+                  <Translation y="0.26" z="0.1"/>
+                  <Appearance ref="iWalker-metal"/>
+                  <PhysicalAttributes>
+                    <Mass value="1"/>
+                  </PhysicalAttributes>
+                </Box>
+              </Elements>
+            </Box>
+            <Box name="barra5l" length="0.025" width="0.025" height="0.4">
+              <Translation x="-0.33" y="0.26" z="0.163"/>
+              <Rotation y="55"/>
+              <Appearance ref="iWalker-metal"/>
+              <PhysicalAttributes>
+                <Mass value="1"/>
+              </PhysicalAttributes>
+              <Elements>
+                <Box name="tapa5r" length="0.1" width="0.05" height="0.01">
+                  <Translation z="-0.2"/>
+                  <Appearance ref="iWalker-metal"/>
+                  <PhysicalAttributes>
+                    <Mass value="1"/>
+                  </PhysicalAttributes>
+                </Box>
+              </Elements>
+            </Box>
+            <Compound name="invertRotation">
+              <Rotation y="10"/>
+              <Elements>
+                <Compound name="invertTranslation">
+                  <Translation x="-0.55" z="-0.165"/>
+                  <Elements>
+                    <Use macroName="URG04LX" instanceName="scanner">
+                      <Translation x="0.53" z="0.247"/>
+                    </Use>
+                    <Hinge name="driveWheelRight">
+                      <AnchorPoint y="-0.25"/>
+                      <Axis x="0" y="1" z="0">
+                        <VelocityMotor name="motor" maxVelocity="5.0" maxForce="10"/>
+                      </Axis>
+                      <Elements>
+                        <Cylinder name="roda_r" height="0.02" radius="0.1">
+                          <Rotation y="-0" x="90"/>
+                          <Appearance ref="iWalker-wheel"/>
+                          <Material name="wheelplastic"/>
+                          <PhysicalAttributes>
+                            <Mass value="5"/>
+                          </PhysicalAttributes>
+                          <Elements>
+                            <Cylinder name="marcador_r" height="0.03" radius="0.01">
+                              <Translation x="0.089"/>
+                              <Appearance ref="iWalker-marker"/>
+                            </Cylinder>
+                          </Elements>
+                        </Cylinder>
+                      </Elements>
+                    </Hinge>
+                    <Hinge name="driveWheelLeft">
+                      <AnchorPoint y="0.25"/>
+                      <Axis x="0" y="-1" z="0">
+                        <VelocityMotor name="force" maxVelocity="5.0" maxForce="10"/>
+                      </Axis>
+                      <Elements>
+                        <Cylinder name="roda_l" height="0.02" radius="0.1">
+                          <Rotation y="-0" x="90"/>
+                          <Appearance ref="iWalker-wheel"/>
+                          <Material name="wheelplastic"/>
+                          <PhysicalAttributes>
+                            <Mass value="5"/>
+                          </PhysicalAttributes>
+                          <Elements>
+                            <Cylinder name="marcador_r" height="0.03" radius="0.01">
+                              <Translation x="0.089"/>
+                              <Appearance ref="iWalker-marker"/>
+                            </Cylinder>
+                          </Elements>
+                        </Cylinder>
+                      </Elements>
+                    </Hinge>
+                    <Hinge name="castorRight">
+                      <AnchorPoint x="0.533" y="-0.1875" z="0.145"/>
+                      <Axis x="0" y="0" z="1"/>
+                      <Elements>
+                        <Cylinder name="castor_d" height="0.07" radius="0.01">
+                          <Appearance ref="iWalker-castor"/>
+                          <PhysicalAttributes>
+                            <Mass value="0.3"/>
+                          </PhysicalAttributes>
+                          <Elements>
+                            <Box name="barra_castor_d" length="0.1" width="0.05" height="0.01">
+                              <Translation x="-0.04" z="-0.03"/>
+                              <Appearance ref="iWalker-castor"/>
+                              <PhysicalAttributes>
+                                <Mass value="0.3"/>
+                              </PhysicalAttributes>
+                            </Box>
+                            <Hinge name="axis">
+                              <AnchorPoint x="-0.055" z="-0.145"/>
+                              <Axis x="0" y="1" z="0"/>
+                              <Elements>
+                                <Cylinder name="roda_d" height="0.05" radius="0.1">
+                                  <Rotation y="-0" x="90"/>
+                                  <Appearance ref="iWalker-wheel"/>
+                                  <Material name="wheelrubber"/>
+                                  <PhysicalAttributes>
+                                    <Mass value="1"/>
+                                  </PhysicalAttributes>
+                                  <Elements>
+                                    <Cylinder name="marcador_d" height="0.06" radius="0.01">
+                                      <Translation x="0.089"/>
+                                      <Appearance ref="iWalker-marker"/>
+                                    </Cylinder>
+                                  </Elements>
+                                </Cylinder>
+                              </Elements>
+                            </Hinge>
+                          </Elements>
+                        </Cylinder>
+                      </Elements>
+                    </Hinge>
+                    <Hinge name="castorLeft">
+                      <AnchorPoint x="0.533" y="0.1875" z="0.145"/>
+                      <Axis x="0" y="0" z="1"/>
+                      <Elements>
+                        <Cylinder name="castor_i" height="0.07" radius="0.01">
+                          <Appearance ref="iWalker-castor"/>
+                          <PhysicalAttributes>
+                            <Mass value="0.3"/>
+                          </PhysicalAttributes>
+                          <Elements>
+                            <Box name="barra_castor_i" length="0.1" width="0.05" height="0.01">
+                              <Translation x="-0.04" z="-0.03"/>
+                              <Appearance ref="iWalker-castor"/>
+                              <PhysicalAttributes>
+                                <Mass value="0.3"/>
+                              </PhysicalAttributes>
+                            </Box>
+                            <Hinge name="axis">
+                              <AnchorPoint x="-0.055" z="-0.145"/>
+                              <Axis x="0" y="1" z="0"/>
+                              <Elements>
+                                <Cylinder name="roda_i" height="0.05" radius="0.1">
+                                  <Rotation y="0" x="90"/>
+                                  <Appearance ref="iWalker-wheel"/>
+                                  <Material name="wheelrubber"/>
+                                  <PhysicalAttributes>
+                                    <Mass value="1"/>
+                                  </PhysicalAttributes>
+                                  <Elements>
+                                    <Cylinder name="marcador_i" height="0.06" radius="0.01">
+                                      <Translation x="0.089"/>
+                                      <Appearance ref="iWalker-marker"/>
+                                    </Cylinder>
+                                  </Elements>
+                                </Cylinder>
+                              </Elements>
+                            </Hinge>
+                          </Elements>
+                        </Cylinder>
+                      </Elements>
+                    </Hinge>
+                    <Hinge name="forceRight">
+                      <AnchorPoint y="-0.25"/>
+                      <Axis x="0" y="1" z="0">
+                        <VelocityMotor name="brake" maxVelocity="5.0" maxForce="10"/>
+                      </Axis>
+                      <Elements>
+                        <Cylinder name="roda_l" height="0.06" radius="0.05">
+                          <Rotation y="-90" z="90"/>
+                          <PhysicalAttributes>
+                            <Mass value="0.001"/>
+                          </PhysicalAttributes>
+                        </Cylinder>
+                      </Elements>
+                    </Hinge>
+                    <Hinge name="forceLeft">
+                      <AnchorPoint y="0.25"/>
+                      <Axis x="0" y="1" z="0">
+                        <VelocityMotor name="force" maxVelocity="5.0" maxForce="10"/>
+                      </Axis>
+                      <Elements>
+                        <Cylinder name="roda_l" height="0.06" radius="0.05">
+                          <Rotation y="-0" x="90"/>
+                          <PhysicalAttributes>
+                            <Mass value="0.001"/>
+                          </PhysicalAttributes>
+                        </Cylinder>
+                      </Elements>
+                    </Hinge>
+                  </Elements>
+                </Compound>
+              </Elements>
+            </Compound>
+          </Elements>
+        </Box>
+      </Elements>
+    </Movable>
+  </Macro>
+</RoSiIncludeFile>

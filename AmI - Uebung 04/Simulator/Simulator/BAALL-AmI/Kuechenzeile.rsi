@@ -1,0 +1,198 @@
+<RoSiIncludeFile>
+
+<AppearanceDefinition name="BOXC158">
+    <Color r="0.5019608" g="0.5019608" b="0.5019608" a="1"/>
+  </AppearanceDefinition>
+ <AppearanceDefinition name="BOXC187"><Color r="0.8039216" g="0.5215687" b="0.2470588" a="1"/> </AppearanceDefinition>
+<AppearanceDefinition name="BOXC161">
+    <Color r="1" g="1" b="1" a="1"/>
+  </AppearanceDefinition>
+<AppearanceDefinition name="BOXC309">
+    <Color r="0.7529412" g="0.7529412" b="0.7529412" a="1"/>
+  </AppearanceDefinition>
+
+<!-- Anfang der "Kuechenzeile" -->
+<Macro name="Kueche">
+
+<Box name="Kuechenzeile" length="0" width="0" height="0">
+  <Translation x="0" y="0" z="0"/>
+  <Rotation z="90"/>
+  <Appearance ref="BOXC187" />
+  <PhysicalAttributes><Mass value="10"/></PhysicalAttributes>
+  <Elements>
+    <Slider name="Ganze_Kuechenzeile">
+      <Axis z="1.0"> <Deflection min="-0.10" max="0.35"/>
+         <AngularMotor name ="MixMotor" maxVelocity="10.0" maxForce="300.0">
+         <PController pControlFactor="10.0" stopBias="0.01"/></AngularMotor>
+      </Axis>
+      <Elements>
+        <Box name="Ganze_Kuechenzeile" length="1.70" width="0.05" height="1.60">
+           <Translation x="0.0" y="0" z="1.25"/>
+		   <!-- Translation x="9.0" y="6.95" z="1.25"/-->
+           <Appearance ref="BOXC158" />
+           <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+           <Elements> 
+               <Box name="Kuechenplatz" length="1.70" width="0.50" height="0.10">
+                   <Translation x="0" y="-0.25" z="-0.35"/>
+                   <Appearance ref="BOXC158" />
+                   <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+               </Box>
+              
+                       <Slider name="Ganze_Schrank">
+                        <Axis y="0.5" z="1.0"> <Deflection min="0.05" max="0.30"/>
+                        <AngularMotor name ="MixMotor" maxVelocity="10.0" maxForce="300.0">
+                        <PController pControlFactor="10.0" stopBias="0.01"/></AngularMotor>
+                       </Axis>
+                           <Elements>
+                               <Box name="Schrank" length="1.65" width="0.05" height="0.75">
+                               <Translation x="0" y="-0.20" z="0.10"/>
+                               <Appearance ref="BOXC161" />
+                               <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                               </Box>
+                               <Box name="Schrank" length="0.025" width="0.35" height="0.75">
+                               <Translation x="-0.830" y="-0.35" z="0.10"/>
+                               <Appearance ref="BOXC161" />
+                               <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                               </Box>
+
+                               <Box name="Schranktuerunten" length="0.025" width="0.35" height="0.75">
+                               <Translation x="0.825" y="-0.35" z="0.10"/>
+                               <Appearance ref="BOXC161" />
+                               <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                               <Elements>
+
+                                <Cylinder name="Schranktuer" radius="0.01" height="0.1">
+                                 <Translation x="0.0" y="-0.2" z="-0.1"/>
+                                 <Rotation z="90"/>
+                                 <PhysicalAttributes>
+                                 <Mass value="1"/>
+                                 </PhysicalAttributes>
+                                     <Elements>
+                                        <Hinge name="hinge">
+                                           <AnchorPoint x="0.0" y="0.0" z="0.0" />
+                                           <Axis z="-1.0">
+                                           <Deflection min="0.0" max="90.0"/>
+                                           <AngularMotor name ="td2motor" maxVelocity="5.0" maxForce="1000.0">
+                                           <PController pControlFactor="10" stopBias="0.0"/>
+                                           </AngularMotor>
+                                           </Axis>
+                                         <Elements>
+                                              <Box name="Tuererechtsunten" length="0.50" width="0.025" height="0.52">
+                                                   <Translation x="-0.26" y="0" z="-0.01"/>
+                                                   <Appearance ref="BOXC309" />
+                                                   <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                                              </Box>  
+
+                                              <Box name="Schrank" length="0.02" width="0.020" height="0.10">
+                                                   <Translation x="-0.4" y="-0.02" z="0.05"/>
+                                                   <Appearance ref="BOXC158" />
+                                                   <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                                              </Box>
+                                         </Elements>
+                                        </Hinge>
+                                    </Elements>
+                               </Cylinder>
+
+                               </Elements>
+                              </Box>
+
+
+                               <Box name="Schrank" length="0.025" width="0.35" height="0.75">
+                               <Translation x="-0.2583" y="-0.35" z="0.10"/>
+                               <Appearance ref="BOXC161" />
+                               <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                               </Box>
+                               <Box name="Schrank" length="0.025" width="0.35" height="0.75">
+                               <Translation x="-0.2333" y="-0.35" z="0.10"/>
+                               <Appearance ref="BOXC161" />
+                               <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                               </Box>
+                               <Box name="Schrank" length="0.025" width="0.35" height="0.75">
+                               <Translation x="0.3083" y="-0.35" z="0.10"/>
+                               <Appearance ref="BOXC161" />
+                               <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                               </Box>
+                               <Box name="Schrank" length="0.025" width="0.35" height="0.75">
+                               <Translation x="0.3333" y="-0.35" z="0.10"/>
+                               <Appearance ref="BOXC161" />
+                               <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                               </Box>
+                               <Box name="Schrank" length="1.680" width="0.35" height="0.025">
+                               <Translation x="-0.002" y="-0.35" z="0.4640"/>
+                               <Appearance ref="BOXC161" />
+                               <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                               </Box>
+                               <Box name="Schrank" length="1.680" width="0.35" height="0.025">
+                               <Translation x="-0.002" y="-0.35" z="-0.28"/>
+                               <Appearance ref="BOXC161" />
+                               <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                               </Box>
+                               <Box name="Schrank" length="1.15" width="0.30" height="0.025">
+                               <Translation x="-0.25" y="-0.35" z="0.09225"/>
+                               <Appearance ref="BOXC161" />
+                               <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                               </Box>
+
+                               <Box name="Schubladen" length="0.52" width="0.30" height="0.025">
+                               <Translation x="0.57" y="-0.35" z="0.25"/>
+                               <Appearance ref="BOXC161" />
+                               <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                              
+                                 <Elements>
+                                    <Box name="Tuerleiste" length="0.52" width="0.025" height="0.020">
+                                      <Translation x="0.01" y="-0.20" z="0.22"/>
+                                      <Appearance ref="BOXC161" />
+                                      <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                                   </Box>
+                                    <Slider name="Schubladen">
+                                      <Axis y="1"> <Deflection min="-0.40" max="-0.20"/>
+                                      <AngularMotor name ="MixMotor" maxVelocity="10.0" maxForce="300.0">
+                                      <PController pControlFactor="10.0" stopBias="0.01"/></AngularMotor>
+                                      </Axis>
+                                         <Elements>
+                                            <Box name="Tuerrechtoben" length="0.52" width="0.025" height="0.20">
+                                                <Translation x="0.01" y="0" z="0.11"/>
+                                                <Appearance ref="BOXC161" />
+                                                <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                                             </Box>
+                                              <Box name="Schublade1" length="0.015" width="0.22" height="0.18">
+                                                <Translation x="-0.22" y="0.11" z="0.11"/>
+                                                <Appearance ref="BOXC161" />
+                                                <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                                             </Box>
+                                              <Box name="Schublade2" length="0.015" width="0.22" height="0.18">
+                                                <Translation x="0.24" y="0.11" z="0.11"/>
+                                                <Appearance ref="BOXC161" />
+                                                <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                                             </Box>
+                                             <Box name="Schubladeboden" length="0.46" width="0.25" height="0.015">
+                                                <Translation x="0.015" y="0.11" z="0.022"/>
+                                                <Appearance ref="BOXC161" />
+                                                <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                                             </Box>
+                                              <Box name="Schrank" length="0.10" width="0.010" height="0.02">
+                                                <Translation x="0.01" y="-0.02" z="0.11"/>
+                                                <Appearance ref="BOXC158" />
+                                                <PhysicalAttributes><Mass value="1"/></PhysicalAttributes>
+                                              </Box>
+                                          
+                                        </Elements>
+                                     </Slider>
+                                  </Elements>
+                                 </Box>
+
+                            </Elements>
+                        </Slider>
+             </Elements>
+        </Box>
+      </Elements>
+    </Slider>
+
+
+  </Elements>
+</Box>
+
+</Macro>
+
+<!-- Ende der "Kuechenzeile" -->
+</RoSiIncludeFile>

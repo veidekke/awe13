@@ -1,0 +1,267 @@
+<RoSiIncludeFile xmlns:xi="http://www.w3.org/2003/XInclude">
+  <xi:include href="Sensors/S300.rsi"/>
+  
+  <AppearanceDefinition name="rolland-black">
+    <Color r="0.15" g="0.15" b="0.15" a="1.0"/>
+  </AppearanceDefinition>
+  
+  <AppearanceDefinition name="rolland-grey">
+    <Color r="0.4" g="0.4" b="0.4" a="1.0"/>
+  </AppearanceDefinition>
+  
+  <AppearanceDefinition name="rolland-metall">
+    <Color r="0.4" g="0.4" b="0.4" a="1.0"/>
+    <Shininess value="10.0"/>
+  </AppearanceDefinition>
+  
+  <AppearanceDefinition name="rolland-glas">
+    <Color r="0.4" g="0.4" b="0.4" a="0.5"/>
+  </AppearanceDefinition>
+  
+  <AppearanceDefinition name="rolland-blinker">
+    <Color r="0.4" g="0.2" b="0.1" a="0.9"/>
+  </AppearanceDefinition>
+  
+  <MaterialDefinition name="floor">
+    <FrictionCoefficient otherMaterial="wheelrubber" value="1.5"/>
+  </MaterialDefinition>
+  <MaterialDefinition name="wheelrubber"/>
+
+  <Macro name="Hinterrad">
+    <Hinge name="Hinterrad">
+      <AnchorPoint x="0" y="0" z="0"/>
+      <Axis x="0" y="1" z="0">
+        <VelocityMotor name="motor" maxVelocity="20.0" maxForce="15"/>
+      </Axis>
+      <Elements>
+	<Cylinder name="Wheel" radius="0.175" height="0.075">
+	  <Rotation x="90" />
+	  <Appearance ref="rolland-black"/>
+          <Material name="wheelrubber"/>
+	  <PhysicalAttributes>
+	    <Mass value="1"/>
+	  </PhysicalAttributes>
+	</Cylinder>
+      </Elements>
+    </Hinge>
+  </Macro>
+
+  <Macro name="Vorderrad">
+    <Hinge name="Vorderrad">
+      <AnchorPoint x="0" y="0" z="0"/>
+      <Axis x="0" y="1" z="0"/>
+      <Elements>
+	<Cylinder name="Wheel" radius="0.11" height="0.065">
+	  <Rotation x="90" />
+	  <Appearance ref="rolland-black"/>
+          <Material name="wheelrubber"/>
+	  <PhysicalAttributes>
+	    <Mass value="1"/>
+	  </PhysicalAttributes>
+	</Cylinder>
+      </Elements>
+    </Hinge>
+  </Macro>
+  
+  
+  <Macro name="FrontwheelUConnector">
+    <Cylinder name="gelenk" radius="0.035" height="0.085">
+      <Translation z="0.0425"/>
+      <Appearance ref="rolland-metall"/>
+      <PhysicalAttributes>
+	<Mass value="1"/>
+      </PhysicalAttributes>
+      <Elements>
+	<Hinge name="Radgelenk">
+	  <AnchorPoint x="0" y="0" z="-0.0425"/>
+	  <Axis x="0" y="0" z="1">
+	    <VelocityMotor name="motor" maxVelocity="2" maxForce="40"/>
+	    <!--<AngularMotor name="AX12Motor" maxVelocity="90.0" maxForce="20">
+	      <PController pControlFactor="20"/>
+	    </AngularMotor>-->
+	  </Axis>
+	  <Elements>
+	    <Compound>
+	      <Elements>
+		<Box name="Bottom" width="0.069" height="0.01" length="0.07">
+		  <Appearance ref="rolland-metall"/>
+		</Box>
+		<Box name="Side1" width="0.01" height="0.19" length="0.07">
+		  <Translation y="0.035" z="-0.095"/>
+		  <Appearance ref="rolland-metall"/>
+		  <PhysicalAttributes>
+		    <Mass value="1"/>
+		  </PhysicalAttributes>
+		  <Elements>
+		    <Use macroName="Vorderrad">
+		      <Translation y="-0.0325" z="-0.065"/>
+		    </Use>
+		  </Elements>
+		</Box>
+		<Box name="Side2" width="0.01" height="0.19" length="0.07">
+		  <Translation y="-0.035" z="-0.095"/>
+		  <Appearance ref="rolland-metall"/>
+		</Box>
+		
+	      </Elements>
+	    </Compound>
+	  </Elements>
+	</Hinge>
+      </Elements>
+    </Cylinder>
+  </Macro>
+  
+  <Macro name="Seitenstange">
+    <Box name="Stange" length="0.67" height="0.06" width="0.03">
+      <Rotation y="12.29"/>
+      <Appearance ref="rolland-metall"/>
+    </Box>
+  </Macro>
+
+
+<!-- Sitz -->
+
+  <Macro name="Armlehne">
+    <Compound name="Armlehne">
+	<Elements>
+	  <Box name="Armlehne" length="0.26" width="0.08" height="0.05">
+	    <Appearance ref="rolland-black"/>
+	  </Box>
+	  <Box name="Stuetze" length="0.05" width="0.05" height="0.15">
+	    <Translation z="-0.07"/>
+	  </Box>
+	</Elements>
+    </Compound>
+  </Macro>
+
+
+  <Macro name="Fussraste">
+    <Compound name="Fussraste">
+	<Elements>
+	  <Box name="Fussraste" length="0.16" width="0.23" height="0.02">
+	    <Appearance ref="rolland-black"/>
+	  </Box>
+	</Elements>
+    </Compound>
+  </Macro>
+
+  <Macro name="Sitz">
+    <Compound name="Sitz">
+	<Elements>
+	  <Box name="Sitzflaeche" length="0.44" width="0.44" height="0.04">
+	    <Appearance ref="rolland-black"/>
+	  </Box>
+	  <Box name="chassisstange" length="0.63" width="0.03" height="0.04">
+	    <Translation x="0.1" y="-0.235" z="-0.02" />
+	  </Box>
+	  <Box name="chassisstange" length="0.63" width="0.03" height="0.04">
+	    <Translation x="0.1" y="0.235" z="-0.02" />
+	  </Box>
+	  <Box name="Lehne" length="0.04" width="0.44" height="0.5">
+	    <Translation x="-0.26" z="0.25"/>
+	    <Rotation y="-8"/> 
+	  </Box>
+	  <Box name="Rastenstange" length="0.04" width="0.03" height="0.39">
+	    <Translation x="0.48" y="-0.235" z="-0.195"/>
+	    <Rotation y="-12"/>
+	    <Elements>
+	      <Use macroName="Fussraste">
+		<Translation z="-0.195" y="0.1" x="0.08"/>
+	      </Use>
+	    </Elements>
+	  </Box>
+	  <Box name="Rastenstange" length="0.04" width="0.03" height="0.39">
+	    <Translation x="0.48" y="0.235" z="-0.195"/>
+	    <Rotation y="-12"/>
+	    <Elements>
+	      <Use macroName="Fussraste">
+		<Translation z="-0.195" y="-0.1" x="0.08"/>
+	      </Use>
+	    </Elements>
+	  </Box>
+	  <Use macroName="Armlehne">
+	    <Translation x="0.05" y="-0.24" z="0.15"/>
+	  </Use>
+	  <Use macroName="Armlehne">
+	    <Translation x="0.05" y="0.24" z="0.15"/>
+	  </Use>
+	</Elements>
+    </Compound>
+  </Macro>
+
+  <Macro name="Rollstuhl">
+    <Box name="centralMass" length="0.001" width="0.001" height="0.001">
+
+      <Elements>
+	<Box name="Batteriekasten" length="0.4" width="0.45" height="0.25">
+	  <Translation x="0.1"/>
+	  <Elements>
+	    <Box name="Blechhalter" height="0.15" width="0.17" length="0.5">
+	      <Translation x="0.2"/>
+	      <Appearance ref="rolland-metall"/>
+              <PhysicalAttributes>
+                <Mass value="70"/>
+              </PhysicalAttributes>  
+	    </Box>
+	  </Elements>
+	</Box>
+	
+	<!-- Correction in y-rotation of laserscanners by 0.5 deg. Somehow they are not aligned totally horizontal. -->
+	<Use macroName="S300" instanceName="scanner 1">
+	  <Translation x="0.67" z="-0.07"/>
+	  <Rotation y="0.5"/>
+	</Use>
+	<Use macroName="S300" instanceName="scanner 2">
+	  <Rotation z="180" y ="-0.5"/>
+	  <Translation x="-0.17" z="-0.07"/>
+	</Use>
+
+	<Use macroName="Hinterrad" instanceName="wheel1">
+	  <Translation y="-0.275"/>
+	</Use>
+	<Use macroName="Hinterrad" instanceName="wheel2">
+	  <Translation y="0.275"/>
+          <Rotation z="180"/>
+	</Use> 
+	
+	<!--<Use macroName="Vorderrad">
+	  <Translation x="0.61" y="-0.275" z="-0.065"/>
+	</Use> -->
+	
+	<Use macroName="Sitz">
+	  <Translation x="0.235" z="0.355"/>
+	</Use>
+
+	<Use macroName="FrontwheelUConnector" instanceName="Stuetzradgelenk 1">
+	  <Translation x="0.610" y="-0.275" z="0.09"/>
+	</Use>
+
+	<Use macroName="FrontwheelUConnector" instanceName="Stuetzradgelenk 2">
+	  <Translation x="0.610" y="0.275" z="0.09"/>
+	</Use>
+
+	<Use macroName="Seitenstange">
+	  <Translation x="0.250" y="0.275" z="0.19"/>
+	</Use>
+
+	<Use macroName="Seitenstange">
+	  <Translation x="0.250" y="-0.275" z="0.19"/>
+	</Use>
+
+      </Elements>
+    </Box>
+
+
+</Macro>
+
+  <Macro name="SimpleXeno">
+    <Movable name="dummy">
+      <Elements>
+        <Use macroName="Rollstuhl" instanceName="Xeno">
+          <Translation x="0.0" y="0" z="0.18"/>
+        </Use>
+      </Elements>
+    </Movable>
+  </Macro>
+  
+</RoSiIncludeFile>

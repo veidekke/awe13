@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Model name="NewModel" rootURL="" rootObject="" xShiftAsSubModel="0" yShiftAsSubModel="0" scaleAsSubModel="1" rotationAsSubModel="0">
+  <Resource>
+    <RoSiInclude file="ImacMacro.rsi" />
+    <RoSiInclude file="CheesecakeMacro.rsi" />
+    <RoSiInclude file="SimpleXenoBlue.rsi" />
+    <RoSiInclude file="iWalker.rsi" />
+    <RoSiInclude file="MarioBrothers.rsi" />
+    <Material name="bath" texture="bath.png" xsize="64" ysize="64" />
+    <Material name="parkett" texture="eiche.png" xsize="64" ysize="64" />
+  </Resource>
+  <Scale x1="340" y1="361" x2="1779" y2="361" realLength="10,605" />
+  <Avatar x="1944,319" y="1177,95" z="0" pitch="0" diameter="67,84536" viewingAngle="60" height="230,6742" rotation="13,38959" bluetoothID="" personalID="" layerPosition="0" image="" />
+  <Coord id="ID0" ref="model" x="270" y="527" z="0" />
+  <Coord id="ID1" ref="model" x="384" y="527" z="0" />
+  <Coord id="ID66" ref="model" x="384" y="545" z="0" />
+  <Coord id="ID121" ref="model" x="384" y="564" z="0" />
+  <Coord id="ID120" ref="model" x="340" y="564" z="0" />
+  <Coord id="ID136" ref="model" x="340" y="999" z="0" />
+  <Coord id="ID153" ref="model" x="315" y="999" z="0" />
+  <Coord id="ID152" ref="model" x="315" y="564" z="0" />
+  <Coord id="ID151" ref="model" x="270" y="564" z="0" />
+  <Coord id="ID9" ref="model" x="1000" y="527" z="0" />
+  <Coord id="ID10" ref="model" x="1118" y="527" z="0" />
+  <Coord id="ID71" ref="model" x="1118" y="545" z="0" />
+  <Coord id="ID90" ref="model" x="1118" y="564" z="0" />
+  <Coord id="ID89" ref="model" x="1000" y="564" z="0" />
+  <Coord id="ID67" ref="model" x="1000" y="545" z="0" />
+  <Coord id="ID15" ref="model" x="1734" y="527" z="0" />
+  <Coord id="ID16" ref="model" x="1847" y="527" z="0" />
+  <Coord id="ID160" ref="model" x="1847" y="564" z="0" />
+  <Coord id="ID159" ref="model" x="1803" y="564" z="0" />
+  <Coord id="ID167" ref="model" x="1803" y="1119" z="0" />
+  <Coord id="ID140" ref="model" x="1778" y="1119" z="0" />
+  <Coord id="ID139" ref="model" x="1778" y="564" z="0" />
+  <Coord id="ID138" ref="model" x="1734" y="564" z="0" />
+  <Coord id="ID72" ref="model" x="1734" y="545" z="0" />
+  <Coord id="ID155" ref="model" x="315" y="1205" z="0" />
+  <Coord id="ID132" ref="model" x="340" y="1205" z="0" />
+  <Coord id="ID131" ref="model" x="340" y="1356" z="0" />
+  <Coord id="ID130" ref="model" x="847" y="1356" z="0" />
+  <Coord id="ID86" ref="model" x="950" y="1356" z="0" />
+  <Coord id="ID83" ref="model" x="973" y="1356" z="0" />
+  <Coord id="ID82" ref="model" x="1272" y="1356" z="0" />
+  <Coord id="ID145" ref="model" x="1292" y="1356" z="0" />
+  <Coord id="ID144" ref="model" x="1778" y="1356" z="0" />
+  <Coord id="ID143" ref="model" x="1778" y="1325" z="0" />
+  <Coord id="ID166" ref="model" x="1803" y="1325" z="0" />
+  <Coord id="ID165" ref="model" x="1803" y="1356" z="0" />
+  <Coord id="ID164" ref="model" x="1907" y="1356" z="0" />
+  <Coord id="ID163" ref="model" x="1907" y="1392" z="0" />
+  <Coord id="ID38" ref="model" x="211" y="1392" z="0" />
+  <Coord id="ID157" ref="model" x="211" y="1356" z="0" />
+  <Coord id="ID156" ref="model" x="315" y="1356" z="0" />
+  <Coord id="ID85" ref="model" x="950" y="1085" z="0" />
+  <Coord id="ID129" ref="model" x="847" y="1085" z="0" />
+  <Coord id="ID128" ref="model" x="847" y="1065" z="0" />
+  <Coord id="ID127" ref="model" x="950" y="1065" z="0" />
+  <Coord id="ID102" ref="model" x="973" y="1065" z="0" />
+  <Coord id="ID101" ref="model" x="1000" y="1065" z="0" />
+  <Coord id="ID77" ref="model" x="1000" y="1085" z="0" />
+  <Coord id="ID76" ref="model" x="973" y="1085" z="0" />
+  <Coord id="ID81" ref="model" x="1272" y="1085" z="0" />
+  <Coord id="ID80" ref="model" x="1272" y="1065" z="0" />
+  <Coord id="ID100" ref="model" x="1264" y="1065" z="0" />
+  <Coord id="ID99" ref="model" x="1264" y="1048" z="0" />
+  <Coord id="ID146" ref="model" x="1292" y="1048" z="0" />
+  <Coord id="ID115" ref="model" x="1275" y="748" z="0" />
+  <Coord id="ID148" ref="model" x="1292" y="748" z="0" />
+  <Coord id="ID147" ref="model" x="1292" y="912" z="0" />
+  <Coord id="ID116" ref="model" x="1275" y="912" z="0" />
+  <Coord id="ID125" ref="model" x="954" y="748" z="0" />
+  <Coord id="ID118" ref="model" x="971" y="748" z="0" />
+  <Coord id="ID117" ref="model" x="971" y="912" z="0" />
+  <Coord id="ID126" ref="model" x="954" y="912" z="0" />
+  <Coord id="ID122" ref="model" x="954" y="564" z="0" />
+  <Coord id="ID137" ref="model" x="1292" y="564" z="0" />
+  <Coord id="ID150" ref="model" x="1292" y="590" z="0" />
+  <Coord id="ID123" ref="model" x="954" y="590" z="0" />
+  <Coord id="ID149" ref="model" x="1292" y="605" z="0" />
+  <Coord id="ID112" ref="model" x="1275" y="605" z="0" />
+  <Coord id="ID111" ref="model" x="971" y="605" z="0" />
+  <Coord id="ID124" ref="model" x="954" y="605" z="0" />
+  <Coord id="ID154" ref="model" x="315" y="1152" z="0" />
+  <Coord id="ID158" ref="model" x="211" y="564" z="0" />
+  <Coord id="ID161" ref="model" x="2031" y="564" z="0" />
+  <Coord id="ID162" ref="model" x="2031" y="1392" z="0" />
+  <Connection label="" a="ID0" b="ID1" passability="None" attributes="Wall" />
+  <Connection label="" a="ID1" b="ID66" passability="None" attributes="Wall" />
+  <Connection label="" a="ID66" b="ID121" passability="None" attributes="Wall" />
+  <Connection label="" a="ID121" b="ID120" passability="None" attributes="Wall" />
+  <Connection label="" a="ID120" b="ID136" passability="None" attributes="Wall" />
+  <Connection label="" a="ID136" b="ID153" passability="None" attributes="Wall" />
+  <Connection label="" a="ID153" b="ID152" passability="None" attributes="Wall" />
+  <Connection label="" a="ID152" b="ID151" passability="None" attributes="Wall" />
+  <Connection label="" a="ID151" b="ID0" passability="None" attributes="Wall" />
+  <Connection label="" a="ID9" b="ID10" passability="None" attributes="Wall" />
+  <Connection label="" a="ID10" b="ID71" passability="None" attributes="Wall" />
+  <Connection label="" a="ID71" b="ID90" passability="None" attributes="Wall" />
+  <Connection label="" a="ID90" b="ID89" passability="None" attributes="Wall" />
+  <Connection label="" a="ID89" b="ID67" passability="None" attributes="Wall" />
+  <Connection label="" a="ID67" b="ID9" passability="None" attributes="Wall" />
+  <Connection label="" a="ID15" b="ID16" passability="None" attributes="Wall" />
+  <Connection label="" a="ID16" b="ID160" passability="None" attributes="Wall" />
+  <Connection label="" a="ID160" b="ID159" passability="None" attributes="Wall" />
+  <Connection label="" a="ID159" b="ID167" passability="None" attributes="Wall" />
+  <Connection label="" a="ID167" b="ID140" passability="None" attributes="Wall" />
+  <Connection label="" a="ID140" b="ID139" passability="None" attributes="Wall" />
+  <Connection label="" a="ID139" b="ID138" passability="None" attributes="Wall" />
+  <Connection label="" a="ID138" b="ID72" passability="None" attributes="Wall" />
+  <Connection label="" a="ID72" b="ID15" passability="None" attributes="Wall" />
+  <Connection label="" a="ID155" b="ID132" passability="None" attributes="Wall" />
+  <Connection label="" a="ID132" b="ID131" passability="None" attributes="Wall" />
+  <Connection label="" a="ID131" b="ID130" passability="None" attributes="Wall" />
+  <Connection label="" a="ID130" b="ID86" passability="None" attributes="Wall" />
+  <Connection label="" a="ID86" b="ID83" passability="None" attributes="Wall" />
+  <Connection label="" a="ID83" b="ID82" passability="None" attributes="Wall" />
+  <Connection label="" a="ID82" b="ID145" passability="None" attributes="Open" />
+  <Connection label="" a="ID145" b="ID144" passability="None" attributes="Wall" />
+  <Connection label="" a="ID144" b="ID143" passability="None" attributes="Wall" />
+  <Connection label="" a="ID143" b="ID166" passability="None" attributes="Wall" />
+  <Connection label="" a="ID166" b="ID165" passability="None" attributes="Wall" />
+  <Connection label="" a="ID165" b="ID164" passability="None" attributes="Wall" />
+  <Connection label="" a="ID164" b="ID163" passability="None" attributes="Wall" />
+  <Connection label="" a="ID163" b="ID38" passability="None" attributes="Wall" />
+  <Connection label="" a="ID38" b="ID157" passability="None" attributes="Wall" />
+  <Connection label="" a="ID157" b="ID156" passability="None" attributes="Wall" />
+  <Connection label="" a="ID156" b="ID155" passability="None" attributes="Wall" />
+  <Connection label="" a="ID86" b="ID85" passability="None" attributes="Wall" />
+  <Connection label="" a="ID85" b="ID129" passability="None" attributes="Wall" />
+  <Connection label="" a="ID129" b="ID128" passability="None" attributes="Wall" />
+  <Connection label="" a="ID128" b="ID127" passability="None" attributes="Wall" />
+  <Connection label="" a="ID127" b="ID102" passability="None" attributes="Wall" />
+  <Connection label="" a="ID102" b="ID101" passability="None" attributes="Wall" />
+  <Connection label="" a="ID101" b="ID77" passability="None" attributes="Wall" />
+  <Connection label="" a="ID77" b="ID76" passability="None" attributes="Wall" />
+  <Connection label="" a="ID76" b="ID83" passability="None" attributes="Wall" />
+  <Connection label="" a="ID82" b="ID81" passability="None" attributes="Wall" />
+  <Connection label="" a="ID81" b="ID80" passability="None" attributes="Wall" />
+  <Connection label="" a="ID80" b="ID100" passability="None" attributes="Wall" />
+  <Connection label="" a="ID100" b="ID99" passability="None" attributes="Wall" />
+  <Connection label="" a="ID99" b="ID146" passability="None" attributes="Wall" />
+  <Connection label="" a="ID146" b="ID145" passability="None" attributes="Wall" />
+  <Connection label="" a="ID148" b="ID115" passability="None" attributes="Wall" />
+  <Connection label="" a="ID148" b="ID147" passability="None" attributes="Wall" />
+  <Connection label="" a="ID147" b="ID116" passability="None" attributes="Wall" />
+  <Connection label="" a="ID116" b="ID115" passability="None" attributes="Wall" />
+  <Connection label="" a="ID118" b="ID125" passability="None" attributes="Wall" />
+  <Connection label="" a="ID118" b="ID117" passability="None" attributes="Wall" />
+  <Connection label="" a="ID117" b="ID126" passability="None" attributes="Wall" />
+  <Connection label="" a="ID126" b="ID125" passability="None" attributes="Wall" />
+  <Connection label="" a="ID66" b="ID67" passability="None" attributes="Window, i=60, j=240" />
+  <Connection label="" a="ID89" b="ID122" passability="None" attributes="Open" />
+  <Connection label="" a="ID122" b="ID121" passability="None" attributes="Open" />
+  <Connection label="" a="ID71" b="ID72" passability="None" attributes="Window, i=60, j=240" />
+  <Connection label="" a="ID138" b="ID137" passability="None" attributes="Open" />
+  <Connection label="" a="ID137" b="ID90" passability="None" attributes="Open" />
+  <Connection label="" a="ID101" b="ID100" passability="Both" attributes="Open, l=15, frameColor=#CD853F" />
+  <Connection label="" a="ID130" b="ID129" passability="None" attributes="Open" />
+  <Connection label="" a="ID137" b="ID150" passability="None" attributes="Open" />
+  <Connection label="" a="ID123" b="ID150" passability="None" attributes="Wall" />
+  <Connection label="" a="ID123" b="ID122" passability="None" attributes="Open" />
+  <Connection label="" a="ID116" b="ID117" passability="Both" attributes="Open" />
+  <Connection label="" a="ID146" b="ID147" passability="Both" attributes="Open" />
+  <Connection label="" a="ID126" b="ID127" passability="Both" attributes="Open" />
+  <Connection label="" a="ID150" b="ID149" passability="None" attributes="Wall" />
+  <Connection label="" a="ID149" b="ID112" passability="None" attributes="Wall" />
+  <Connection label="" a="ID112" b="ID111" passability="None" attributes="Wall" />
+  <Connection label="" a="ID111" b="ID124" passability="None" attributes="Wall" />
+  <Connection label="" a="ID124" b="ID123" passability="None" attributes="Wall" />
+  <Connection label="" a="ID149" b="ID148" passability="Both" attributes="Open" />
+  <Connection label="" a="ID125" b="ID124" passability="Both" attributes="Open" />
+  <Connection label="door2" a="ID155" b="ID154" passability="Both" attributes="Door, l=5, frameColor=#CD853F" />
+  <Connection label="door1" a="ID154" b="ID153" passability="Both" attributes="Door, l=5, frameColor=#CD853F" />
+  <Connection label="door3" a="ID167" b="ID166" passability="Both" attributes="Door, l=10, frameColor=#CD853F" />
+  <Connection label="" a="ID157" b="ID158" passability="None" attributes="Open" />
+  <Connection label="" a="ID158" b="ID151" passability="None" attributes="Open" />
+  <Connection label="" a="ID160" b="ID161" passability="None" attributes="Open" />
+  <Connection label="" a="ID161" b="ID162" passability="None" attributes="Open" />
+  <Connection label="" a="ID162" b="ID163" passability="None" attributes="Open" />
+  <Layer layerid="0" layername="0" xOrigin="0" yOrigin="0" zOrigin="0" width="2048" height="2048" style="opaque" wallHeight="250" doorHeight="200" muralHeight="100" floorDepth="0">
+    <Image URL=".\baall2-tex.png" x="0" y="0" />
+    <Object name="Polygon: 05.01.2009 14:58:17" type="indoor" surfacetype="Wall" accessability="Pedestrian" material="parkett">
+      <CoordIndex>0#1#66#121#120#136#153#152#151</CoordIndex>
+      <Triangle a="ID1" b="ID151" c="ID0" />
+      <Triangle a="ID151" b="ID1" c="ID152" />
+      <Triangle a="ID152" b="ID1" c="ID120" />
+      <Triangle a="ID152" b="ID120" c="ID153" />
+      <Triangle a="ID120" b="ID1" c="ID121" />
+      <Triangle a="ID121" b="ID1" c="ID66" />
+      <Triangle a="ID136" b="ID153" c="ID120" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 05.01.2009 15:01:58" type="indoor" surfacetype="Wall" accessability="Pedestrian">
+      <CoordIndex>9#10#71#90#89#67</CoordIndex>
+      <Triangle a="ID10" b="ID67" c="ID9" />
+      <Triangle a="ID67" b="ID10" c="ID89" />
+      <Triangle a="ID89" b="ID10" c="ID90" />
+      <Triangle a="ID90" b="ID10" c="ID71" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 05.01.2009 15:02:50" type="indoor" surfacetype="Wall" accessability="Pedestrian">
+      <CoordIndex>15#16#160#159#167#140#139#138#72</CoordIndex>
+      <Triangle a="ID16" b="ID72" c="ID15" />
+      <Triangle a="ID72" b="ID16" c="ID138" />
+      <Triangle a="ID138" b="ID16" c="ID139" />
+      <Triangle a="ID139" b="ID16" c="ID159" />
+      <Triangle a="ID139" b="ID159" c="ID140" />
+      <Triangle a="ID159" b="ID16" c="ID160" />
+      <Triangle a="ID167" b="ID140" c="ID159" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 05.01.2009 15:27:59" type="indoor" surfacetype="Wall" accessability="Pedestrian">
+      <CoordIndex>155#132#131#130#86#83#82#145#144#143#166#165#164#163#38#157#156</CoordIndex>
+      <Triangle a="ID132" b="ID156" c="ID155" />
+      <Triangle a="ID166" b="ID144" c="ID143" />
+      <Triangle a="ID156" b="ID38" c="ID157" />
+      <Triangle a="ID38" b="ID156" c="ID163" />
+      <Triangle a="ID163" b="ID156" c="ID131" />
+      <Triangle a="ID131" b="ID156" c="ID132" />
+      <Triangle a="ID163" b="ID131" c="ID130" />
+      <Triangle a="ID163" b="ID130" c="ID86" />
+      <Triangle a="ID163" b="ID86" c="ID83" />
+      <Triangle a="ID163" b="ID83" c="ID82" />
+      <Triangle a="ID163" b="ID82" c="ID145" />
+      <Triangle a="ID163" b="ID145" c="ID144" />
+      <Triangle a="ID163" b="ID144" c="ID165" />
+      <Triangle a="ID165" b="ID144" c="ID166" />
+      <Triangle a="ID163" b="ID165" c="ID164" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 05.01.2009 15:47:20" type="indoor" surfacetype="Wall" accessability="Pedestrian">
+      <CoordIndex>86#85#129#128#127#102#101#77#76#83</CoordIndex>
+      <Triangle a="ID101" b="ID76" c="ID102" />
+      <Triangle a="ID76" b="ID101" c="ID77" />
+      <Triangle a="ID127" b="ID129" c="ID128" />
+      <Triangle a="ID129" b="ID127" c="ID85" />
+      <Triangle a="ID85" b="ID127" c="ID102" />
+      <Triangle a="ID85" b="ID102" c="ID86" />
+      <Triangle a="ID86" b="ID102" c="ID83" />
+      <Triangle a="ID83" b="ID102" c="ID76" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 05.01.2009 15:57:08" type="indoor" surfacetype="Wall" accessability="Pedestrian">
+      <CoordIndex>82#81#80#100#99#146#145</CoordIndex>
+      <Triangle a="ID146" b="ID100" c="ID99" />
+      <Triangle a="ID100" b="ID146" c="ID80" />
+      <Triangle a="ID80" b="ID146" c="ID81" />
+      <Triangle a="ID81" b="ID146" c="ID82" />
+      <Triangle a="ID82" b="ID146" c="ID145" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 05.01.2009 16:18:26" type="indoor" surfacetype="Wall" accessability="Pedestrian">
+      <CoordIndex>115#148#147#116</CoordIndex>
+      <Triangle a="ID148" b="ID116" c="ID115" />
+      <Triangle a="ID116" b="ID148" c="ID147" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 05.01.2009 16:19:11" type="indoor" surfacetype="Wall" accessability="Pedestrian">
+      <CoordIndex>125#118#117#126</CoordIndex>
+      <Triangle a="ID118" b="ID126" c="ID125" />
+      <Triangle a="ID126" b="ID118" c="ID117" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 05.01.2009 16:22:11" type="indoor" surfacetype="Unknown" accessability="NotPassable" material="parkett">
+      <CoordIndex>66#67#89#122#121</CoordIndex>
+      <Triangle a="ID67" b="ID121" c="ID66" />
+      <Triangle a="ID121" b="ID67" c="ID89" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 05.01.2009 16:23:35" type="indoor" surfacetype="Unknown" accessability="NotPassable" material="parkett">
+      <CoordIndex>71#72#138#137#90</CoordIndex>
+      <Triangle a="ID72" b="ID90" c="ID71" />
+      <Triangle a="ID90" b="ID72" c="ID138" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="bathroom" type="outdoor" surfacetype="Unknown" accessability="Pedestrian" material="bath" spcl="2130">
+      <CoordIndex>76#77#101#100#80#81#82#83</CoordIndex>
+      <Triangle a="ID100" b="ID77" c="ID101" />
+      <Triangle a="ID77" b="ID83" c="ID76" />
+      <Triangle a="ID83" b="ID77" c="ID82" />
+      <Triangle a="ID82" b="ID77" c="ID100" />
+      <Triangle a="ID82" b="ID100" c="ID80" />
+      <Triangle a="ID82" b="ID80" c="ID81" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 05.01.2009 16:27:04" type="outdoor" surfacetype="Unknown" accessability="Wheelchair" material="parkett">
+      <CoordIndex>129#85#86#130</CoordIndex>
+      <Triangle a="ID85" b="ID130" c="ID129" />
+      <Triangle a="ID130" b="ID85" c="ID86" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 05.01.2009 16:29:42" type="outdoor" surfacetype="Unknown" accessability="NotPassable" material="parkett">
+      <CoordIndex>122#89#90#137#150#123</CoordIndex>
+      <Triangle a="ID89" b="ID123" c="ID122" />
+      <Triangle a="ID123" b="ID89" c="ID150" />
+      <Triangle a="ID150" b="ID89" c="ID90" />
+      <Triangle a="ID150" b="ID90" c="ID137" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="corridorbath" type="outdoor" surfacetype="Unknown" accessability="Pedestrian" material="parkett">
+      <CoordIndex>126#117#116#147#146#99#100#101#102#127</CoordIndex>
+      <Triangle a="ID126" b="ID102" c="ID127" />
+      <Triangle a="ID102" b="ID126" c="ID117" />
+      <Triangle a="ID102" b="ID117" c="ID116" />
+      <Triangle a="ID102" b="ID116" c="ID101" />
+      <Triangle a="ID101" b="ID116" c="ID99" />
+      <Triangle a="ID99" b="ID116" c="ID146" />
+      <Triangle a="ID146" b="ID116" c="ID147" />
+      <Triangle a="ID100" b="ID101" c="ID99" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 13.01.2009 19:03:47" type="indoor" surfacetype="Wall" accessability="Pedestrian">
+      <CoordIndex>123#150#149#112#111#124</CoordIndex>
+      <Triangle a="ID150" b="ID124" c="ID123" />
+      <Triangle a="ID124" b="ID150" c="ID111" />
+      <Triangle a="ID111" b="ID150" c="ID112" />
+      <Triangle a="ID112" b="ID150" c="ID149" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="corridor" type="outdoor" surfacetype="Room" accessability="Pedestrian" material="parkett">
+      <CoordIndex>124#111#112#149#148#115#116#117#118#125</CoordIndex>
+      <Triangle a="ID149" b="ID115" c="ID112" />
+      <Triangle a="ID115" b="ID149" c="ID148" />
+      <Triangle a="ID111" b="ID125" c="ID124" />
+      <Triangle a="ID125" b="ID111" c="ID118" />
+      <Triangle a="ID118" b="ID111" c="ID112" />
+      <Triangle a="ID118" b="ID112" c="ID117" />
+      <Triangle a="ID117" b="ID112" c="ID116" />
+      <Triangle a="ID116" b="ID112" c="ID115" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="livingroom" type="outdoor" surfacetype="Room" accessability="Pedestrian" material="parkett" spcl="4230">
+      <CoordIndex>120#121#122#123#124#125#126#127#128#129#130#131#132#155#154#153#136</CoordIndex>
+      <Triangle a="ID122" b="ID128" c="ID121" />
+      <Triangle a="ID128" b="ID122" c="ID127" />
+      <Triangle a="ID127" b="ID122" c="ID126" />
+      <Triangle a="ID126" b="ID122" c="ID123" />
+      <Triangle a="ID126" b="ID123" c="ID124" />
+      <Triangle a="ID126" b="ID124" c="ID125" />
+      <Triangle a="ID121" b="ID136" c="ID120" />
+      <Triangle a="ID136" b="ID121" c="ID132" />
+      <Triangle a="ID132" b="ID121" c="ID131" />
+      <Triangle a="ID131" b="ID121" c="ID130" />
+      <Triangle a="ID130" b="ID121" c="ID128" />
+      <Triangle a="ID130" b="ID128" c="ID129" />
+      <Triangle a="ID136" b="ID154" c="ID153" />
+      <Triangle a="ID154" b="ID136" c="ID155" />
+      <Triangle a="ID155" b="ID136" c="ID132" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="bedroom" type="outdoor" surfacetype="Room" accessability="Pedestrian" material="parkett">
+      <CoordIndex>137#138#139#140#167#166#143#144#145#146#147#148#149#150</CoordIndex>
+      <Triangle a="ID167" b="ID143" c="ID140" />
+      <Triangle a="ID143" b="ID167" c="ID166" />
+      <Triangle a="ID138" b="ID150" c="ID137" />
+      <Triangle a="ID150" b="ID138" c="ID149" />
+      <Triangle a="ID149" b="ID138" c="ID148" />
+      <Triangle a="ID148" b="ID138" c="ID147" />
+      <Triangle a="ID147" b="ID138" c="ID146" />
+      <Triangle a="ID146" b="ID138" c="ID145" />
+      <Triangle a="ID145" b="ID138" c="ID144" />
+      <Triangle a="ID144" b="ID138" c="ID139" />
+      <Triangle a="ID144" b="ID139" c="ID140" />
+      <Triangle a="ID144" b="ID140" c="ID143" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 14.01.2009 22:08:22" type="outdoor" surfacetype="Unknown" accessability="Pedestrian">
+      <CoordIndex>151#152#153#154#155#156#157#158</CoordIndex>
+      <Triangle a="ID151" b="ID157" c="ID158" />
+      <Triangle a="ID157" b="ID151" c="ID156" />
+      <Triangle a="ID156" b="ID151" c="ID152" />
+      <Triangle a="ID156" b="ID152" c="ID153" />
+      <Triangle a="ID156" b="ID153" c="ID154" />
+      <Triangle a="ID156" b="ID154" c="ID155" />
+      <SubModel URL="" />
+    </Object>
+    <Object name="Polygon: 14.01.2009 22:09:37" type="outdoor" surfacetype="Unknown" accessability="Pedestrian">
+      <CoordIndex>159#160#161#162#163#164#165#166#167</CoordIndex>
+      <Triangle a="ID160" b="ID167" c="ID159" />
+      <Triangle a="ID167" b="ID160" c="ID166" />
+      <Triangle a="ID166" b="ID160" c="ID165" />
+      <Triangle a="ID165" b="ID160" c="ID164" />
+      <Triangle a="ID164" b="ID160" c="ID161" />
+      <Triangle a="ID164" b="ID161" c="ID163" />
+      <Triangle a="ID163" b="ID161" c="ID162" />
+      <SubModel URL="" />
+    </Object>
+    <Item type="camera" name="livingroom-cam" info="enter info">
+      <Sector ref="model" x="342,8587" y="917,2594" z="250" vx="79,89844" vy="33,84259" vz="-20" angle="60" />
+    </Item>
+    <Display name="Samsung TV" server="134.102.204.139" port="5900" password="baall" staticURL="" pointable="False" x="1296,255" y="822,7373" z="162,8289" orientation="270" pitch="90" size="141,1183" landscape="True" aspect="_16to9">
+      <Function name="Next Channel" url="http://134.102.204.139:40510/button-ch-plus" />
+      <Function name="Previous Channel" url="http://134.102.204.139:40510/button-ch-minus" />
+      <Function name="Switch ON" url="http://134.102.204.139:40510/goto livetv" />
+      <Function name="Swtich OFF" url="http://134.102.204.139:40510/playrate%20stop" />
+      <Function name="UCH Next Channel" url="http://134.102.204.139:1235/UCHProxy/NEXT_CHANNEL" />
+      <Function name="UCH Previous Channel" url="http://134.102.204.139:1235/UCHProxy/PREVIOUS_CHANNEL" />
+      <Function name="UCH Switch ON" url="http://134.102.204.139:1235/UCHProxy/SWITCH_TV_ON" />
+      <Function name="UCH Swtich OFF" url="http://134.102.204.139:1235/UCHProxy/SWITCH_TV_OFF" />
+    </Display>
+    <Box name="Esstisch" type="Table, t=5 cm" x="497,7529 " y="1244,792 " z="0 " orientation="90" width="160 cm" height="84 cm" depth="80 cm" color="#E0E0E0" textureFront="" textureTop="" />
+    <Box name="lowerRightDoor" type="SlidingDoor, t=8 cm" x="1270,944 " y="905,8507 " z="0 " orientation="90" width="210 cm" height="250 cm" depth="5 cm" color="#CD853F" textureFront="" textureTop="">
+      <Function name="Open Door" url="lowerRightDoor&amp;value=1" />
+      <Function name="Close Door" url="lowerRightDoor&amp;value=0" />
+    </Box>
+    <Box name="upperRightDoor" type="SlidingDoor, t=8 cm" x="1263 " y="752 " z="0 " orientation="270" width="216 cm" height="250 cm" depth="5 cm" color="#CD853F" textureFront="" textureTop="">
+      <Function name="Open Door" url="upperRightDoor&amp;value=1" />
+      <Function name="Close Door" url="upperRightDoor&amp;value=0" />
+    </Box>
+    <Box name="Bett" type="Group" x="1193,45 cm" y="847,9604 " z="0 " orientation="90" width="200 cm" height="100 cm" depth="220 cm" color="#FFFFFF" textureFront="" textureTop="">
+      <Box name="Bettkorpus" type="Box" x="0 cm" y="8 cm" z="10 cm" orientation="0" width="188 cm" height="28 cm" depth="204 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      <Box name="Kopfende" type="Box" x="0 cm" y="-102 cm" z="10 cm" orientation="0" width="195 cm" height="90 cm" depth="16 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      <Box name="Matratze" type="Box" x="0 cm" y="6 cm" z="38 cm" orientation="0" width="180 cm" height="15 cm" depth="200 cm" color="#191970" textureFront="" textureTop="" />
+      <Box name="Kasten" type="Box" x="0 cm" y="0 cm" z="0 cm" orientation="0" width="168 cm" height="10 cm" depth="200 cm" color="#808080" textureFront="" textureTop="" />
+    </Box>
+    <Box name="Regalwand" type="Group" x="1074,18 cm" y="1335,293 " z="0 " orientation="0" width="240 cm" height="200 cm" depth="28 cm" color="#FFFFFF" textureFront="" textureTop="">
+      <Box name="Schrankgruppe1" type="Group" x="100 cm" y="0 cm" z="0 cm" orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="Korpus1" type="Storage, t=2 cm" x="0 " y="0 " z="0 " orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden1-1" type="Box" x="0 " y="0,5 cm" z="38 cm" orientation="0" width="36 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden1-2" type="Box" x="0 " y="0,5 cm" z="77 cm" orientation="0" width="36 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden1-3" type="Box" x="0 " y="0,5 cm" z="116 cm" orientation="0" width="36 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden1-4" type="Box" x="0 " y="0,5 cm" z="154 cm" orientation="0" width="36 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+      <Box name="Schrankgruppe2" type="Group" x="50 cm" y="0 cm" z="0 cm" orientation="0" width="60 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="Schrank" type="Box" x="0 " y="0 " z="0 " orientation="0" width="60 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+      <Box name="Schrankgruppe3" type="Group" x="-20 cm" y="0 cm" z="0 cm" orientation="0" width="80 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="Korpus1" type="Storage, t=2 cm" x="0 " y="0 " z="0 " orientation="0" width="80 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden3-1" type="Box" x="0 " y="0,5 cm" z="38 cm" orientation="0" width="76 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden3-2" type="Box" x="0 " y="-31 cm" z="84 cm" orientation="0" width="76 cm" height="2 cm" depth="87 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden3-3" type="Box" x="0 " y="0,5 cm" z="150 cm" orientation="0" width="76 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden3-4" type="Box" x="0 " y="0,5 cm" z="170 cm" orientation="0" width="76 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+      <Box name="Schrankgruppe4" type="Group" x="-80 cm" y="0 cm" z="0 cm" orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="Korpus1" type="Storage, t=2 cm" x="0 " y="0 " z="0 " orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden4-1" type="Box" x="0 " y="0,5 cm" z="38 cm" orientation="0" width="36 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden4-2" type="Box" x="0 " y="0,5 cm" z="77 cm" orientation="0" width="36 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden4-3" type="Box" x="0 " y="0,5 cm" z="116 cm" orientation="0" width="36 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden4-4" type="Box" x="0 " y="0,5 cm" z="154 cm" orientation="0" width="36 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+      <Box name="Schrankgruppe5" type="Group" x="-110 cm" y="0 cm" z="0 cm" orientation="0" width="20 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="Korpus1" type="Storage, t=2 cm" x="0 " y="0 " z="0 " orientation="0" width="20 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden5-1" type="Box" x="0 " y="0,5 cm" z="38 cm" orientation="0" width="16 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden5-2" type="Box" x="0 " y="0,5 cm" z="77 cm" orientation="0" width="16 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden5-3" type="Box" x="0 " y="0,5 cm" z="116 cm" orientation="0" width="16 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="Boden5-4" type="Box" x="0 " y="0,5 cm" z="154 cm" orientation="0" width="16 cm" height="2 cm" depth="27 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+    </Box>
+    <Box name="lowerLeftDoor" type="SlidingDoor, t=8 cm" x="975 " y="914 " z="0 " orientation="90" width="210 cm" height="250 cm" depth="5 cm" color="#CD853F" textureFront="" textureTop="">
+      <Function name="Open Door" url="lowerLeftDoor&amp;value=1" />
+      <Function name="Close Door" url="lowerLeftDoor&amp;value=0" />
+    </Box>
+    <Box name="upperLeftDoor" type="SlidingDoor, t=8 cm" x="983 " y="752 " z="0 " orientation="270" width="216 cm" height="250 cm" depth="5 cm" color="#CD853F" textureFront="" textureTop="">
+      <Function name="Open Door" url="upperLeftDoor&amp;value=1" />
+      <Function name="Close Door" url="upperLeftDoor&amp;value=0" />
+    </Box>
+    <Box name="KabelkanalWohnzimmer" type="Box" x="344 " y="733,5 " z="0 " orientation="90" width="339 " height="22 cm" depth="8 " color="#E0E0E0" textureFront="" textureTop="" />
+    <Box name="KabelkanalSchlafzimmer" type="Box" x="1774 " y="834 " z="0 " orientation="90" width="540 " height="22 cm" depth="8 " color="#E0E0E0" textureFront="" textureTop="" />
+    <Box name="RaumplusMitte" type="Group" x="1122,656 " y="873 " z="0 " orientation="0" width="200 cm" height="250 cm" depth="60 cm" color="#FFFFFF" textureFront="" textureTop="">
+      <Box name="Saeule1" type="Box" x="-98,25 cm" y="0 cm" z="0 cm" orientation="0" width="35 mm" height="250 cm" depth="35 mm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="Saeule2" type="Box" x="-44,75 cm" y="0 cm" z="0 cm" orientation="0" width="35 mm" height="250 cm" depth="35 mm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="Saeule3" type="Box" x="44,75 cm" y="0 cm" z="0 cm" orientation="0" width="35 mm" height="250 cm" depth="35 mm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="Saeule4" type="Box" x="98,25 cm" y="0 cm" z="0 cm" orientation="0" width="35 mm" height="250 cm" depth="35 mm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="SchrankgruppeL" type="Group" x="-71,5 cm" y="0 cm" z="0 cm" orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="KastenL" type="Box, t=2 cm" x="0 " y="0 " z="168 mm" orientation="0" width="50 cm" height="60 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachL1" type="Box, t=2 cm" x="0 " y="0 " z="1134 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachL2" type="Box, t=2 cm" x="0 " y="0 " z="1492 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachL3" type="Box, t=2 cm" x="0 " y="0 " z="1835 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachL4" type="Box, t=2 cm" x="0 " y="0 " z="2208 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+      <Box name="SchrankgruppeR" type="Group" x="71,5 cm" y="0 cm" z="0 cm" orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="KastenR" type="Box, t=2 cm" x="0 " y="0 " z="168 mm" orientation="0" width="50 cm" height="60 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachR1" type="Box, t=2 cm" x="0 " y="0 " z="1134 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachR2" type="Box, t=2 cm" x="0 " y="0 " z="1492 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachR3" type="Box, t=2 cm" x="0 " y="0 " z="1835 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachR4" type="Box, t=2 cm" x="0 " y="0 " z="2208 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+      <Box name="SchrankgruppeM" type="Group" x="0 cm" y="0 cm" z="0 cm" orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="FachM4" type="Box, t=2 cm" x="0 " y="0 " z="2208 mm" orientation="0" width="86 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+    </Box>
+    <Box name="RaumplusFenster" type="Group" x="1122,656 " y="787 " z="0 " orientation="0" width="200 cm" height="250 cm" depth="60 cm" color="#FFFFFF" textureFront="" textureTop="">
+      <Box name="Saeule1" type="Box" x="-98,25 cm" y="0 cm" z="0 cm" orientation="0" width="35 mm" height="250 cm" depth="35 mm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="Saeule2" type="Box" x="-44,75 cm" y="0 cm" z="0 cm" orientation="0" width="35 mm" height="250 cm" depth="35 mm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="Saeule3" type="Box" x="44,75 cm" y="0 cm" z="0 cm" orientation="0" width="35 mm" height="250 cm" depth="35 mm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="Saeule4" type="Box" x="98,25 cm" y="0 cm" z="0 cm" orientation="0" width="35 mm" height="250 cm" depth="35 mm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="SchrankgruppeL" type="Group" x="-71,5 cm" y="0 cm" z="0 cm" orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="KastenL" type="Box, t=2 cm" x="0 " y="0 " z="168 mm" orientation="0" width="50 cm" height="60 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachL1" type="Box, t=2 cm" x="0 " y="0 " z="1134 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachL2" type="Box, t=2 cm" x="0 " y="0 " z="1492 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachL3" type="Box, t=2 cm" x="0 " y="0 " z="1835 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachL4" type="Box, t=2 cm" x="0 " y="0 " z="2208 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+      <Box name="SchrankgruppeR" type="Group" x="71,5 cm" y="0 cm" z="0 cm" orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="KastenR" type="Box, t=2 cm" x="0 " y="0 " z="168 mm" orientation="0" width="50 cm" height="60 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachR1" type="Box, t=2 cm" x="0 " y="0 " z="1134 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachR2" type="Box, t=2 cm" x="0 " y="0 " z="1492 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachR3" type="Box, t=2 cm" x="0 " y="0 " z="1835 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+        <Box name="FachR4" type="Box, t=2 cm" x="0 " y="0 " z="2208 mm" orientation="0" width="50 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+      <Box name="SchrankgruppeM" type="Group" x="0 cm" y="0 cm" z="0 cm" orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="FachM4" type="Box, t=2 cm" x="0 " y="0 " z="2208 mm" orientation="0" width="86 cm" height="2 cm" depth="60 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+    </Box>
+    <Box name="Raumplus-Teiler" type="Group" x="1122,656 " y="830 " z="0 " orientation="0" width="200 cm" height="250 cm" depth="2 cm" color="#FFFFFF" textureFront="" textureTop="">
+      <Box name="Saeule1" type="Box" x="-98,25 cm" y="0 cm" z="0 cm" orientation="0" width="35 mm" height="250 cm" depth="35 mm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="Saeule2" type="Box" x="-44,75 cm" y="0 cm" z="0 cm" orientation="0" width="35 mm" height="250 cm" depth="35 mm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="Saeule3" type="Box" x="44,75 cm" y="0 cm" z="0 cm" orientation="0" width="35 mm" height="250 cm" depth="35 mm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="Saeule4" type="Box" x="98,25 cm" y="0 cm" z="0 cm" orientation="0" width="35 mm" height="250 cm" depth="35 mm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="SchrankgruppeL" type="Group" x="-71,5 cm" y="0 cm" z="0 cm" orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="WandL" type="Box, t=2 cm" x="0 " y="0 " z="168 mm" orientation="0" width="50 cm" height="230 cm" depth="2 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+      <Box name="SchrankgruppeR" type="Group" x="71,5 cm" y="0 cm" z="0 cm" orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="WandR" type="Box, t=2 cm" x="0 " y="0 " z="168 mm" orientation="0" width="50 cm" height="230 cm" depth="2 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+      <Box name="SchrankgruppeM" type="Group" x="0 cm" y="0 cm" z="0 cm" orientation="0" width="40 cm" height="200 cm" depth="28 cm" color="#FFDEAD" textureFront="" textureTop="">
+        <Box name="WandM" type="Box, t=2 cm" x="0 " y="0 " z="168 mm" orientation="0" width="86 cm" height="230 cm" depth="2 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      </Box>
+    </Box>
+    <Box name="bathroomDoor" type="SlidingDoor, t=8 cm" x="990 " y="1060,936 " z="0 " orientation="0" width="210 cm" height="250 cm" depth="5 cm" color="#CD853F" textureFront="" textureTop="">
+      <Function name="Open Door" url="bathroomdoor&amp;value=1" />
+      <Function name="Close Door" url="bathroomdoor&amp;value=0" />
+    </Box>
+    <Box name="_Sofa" type="Group" x="700,9734 " y="697,5889 " z="0 " orientation="230" width="170 cm" height="100 cm" depth="90 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Box name="_seat" type="Box" x="0 " y="0 " z="0 " orientation="0" width="120 cm" height="45 cm" depth="80 cm" color="#404040" textureFront="" textureTop="" />
+      <Box name="_left" type="Box" x="-72,5 cm" y="0 " z="0 " orientation="0" width="25 cm" height="60 cm" depth="90 cm" color="#404040" textureFront="" textureTop="" />
+      <Box name="_right" type="Box" x="72,5 cm" y="0 " z="0 " orientation="0" width="25 cm" height="60 cm" depth="90 cm" color="#404040" textureFront="" textureTop="" />
+      <Box name="_rear" type="Box" x="0 " y="32,5 cm" z="45 cm" orientation="0" width="120 cm" height="45 cm" depth="25 cm" color="#404040" textureFront="" textureTop="" />
+    </Box>
+    <Box name="NachttischRechts" type="Group" x="1735,818 " y="685,8981 " z="0 " orientation="90" width="40 cm" height="56 cm" depth="48 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Box name="Korpus" type="Box" x="0 " y="-1 cm" z="0 " orientation="0" width="40 cm" height="54 cm" depth="46 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      <Box name="Top" type="Box" x="0 " y="0 cm" z="54 cm" orientation="0" width="40 cm" height="2 cm" depth="48 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      <Box name="Schublade1" type="Box" x="0 " y="23 cm" z="6 cm" orientation="0" width="40 cm" height="22 cm" depth="2 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      <Box name="Schublade2" type="Box" x="0 " y="23 cm" z="30 cm" orientation="0" width="40 cm" height="22 cm" depth="2 cm" color="#FFDEAD" textureFront="" textureTop="" />
+    </Box>
+    <Box name="NachttischLinks" type="Group" x="1735,636 " y="1009,194 " z="0 " orientation="90" width="40 cm" height="56 cm" depth="48 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Box name="Korpus" type="Box" x="0 " y="-1 cm" z="0 " orientation="0" width="40 cm" height="54 cm" depth="46 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      <Box name="Top" type="Box" x="0 " y="0 cm" z="54 cm" orientation="0" width="40 cm" height="2 cm" depth="48 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      <Box name="Schublade1" type="Box" x="0 " y="23 cm" z="6 cm" orientation="0" width="40 cm" height="22 cm" depth="2 cm" color="#FFDEAD" textureFront="" textureTop="" />
+      <Box name="Schublade2" type="Box" x="0 " y="23 cm" z="30 cm" orientation="0" width="40 cm" height="22 cm" depth="2 cm" color="#FFDEAD" textureFront="" textureTop="" />
+    </Box>
+    <Box name="Kuehlschrank" type="Group" x="615,2977 " y="1311,221 " z="0 " orientation="180" width="75 cm" height="200 cm" depth="63 cm" color="#C0C0C0" textureFront="" textureTop="">
+      <Box name="Korpus" type="Box" x="0 " y="-3 cm" z="0 " orientation="0" width="75 cm" height="200 cm" depth="57 cm" color="#C0C0C0" textureFront="" textureTop="" />
+      <Box name="TuerUnten" type="Box" x="0 " y="28,5 cm" z="7 cm" orientation="0" width="74 cm" height="72,5 cm" depth="6 cm" color="#C0C0C0" textureFront="" textureTop="">
+        <Box name="GriffUnten" type="Box" x="-25 cm" y="4 cm" z="60 cm" orientation="0" width="25 cm" height="5 cm" depth="2 cm" color="#C0C0C0" textureFront="" textureTop="" />
+      </Box>
+      <Box name="TuerOben" type="Box" x="0 " y="28,5 cm" z="82 cm" orientation="0" width="74 cm" height="118 cm" depth="6 cm" color="#C0C0C0" textureFront="" textureTop="">
+        <Box name="GriffOben" type="Box" x="-25 cm" y="4 cm" z="7,5 cm" orientation="0" width="25 cm" height="5 cm" depth="2 cm" color="#C0C0C0" textureFront="" textureTop="" />
+      </Box>
+    </Box>
+    <Box name="Kommode" type="Box" x="370,2725 " y="830,4486 " z="20 cm" orientation="90" width="155 cm" height="48 cm" depth="40 cm" color="#FFDEAD" textureFront="" textureTop="" />
+    <Box name="Box" type="Box" x="391,5829 " y="933,0971 " z="0 " orientation="0" width="5 cm" height="20 cm" depth="5 cm" color="#FFDEAD" textureFront="" textureTop="" />
+    <Box name="Box" type="Box" x="391,6072 " y="729,775 " z="0 " orientation="0" width="5 cm" height="20 cm" depth="5 cm" color="#FFDEAD" textureFront="" textureTop="" />
+    <Box name="Bild" type="Box" x="1776,606 " y="844,5917 " z="115 cm" orientation="90" width="110 cm" height="90 cm" depth="2 cm" color="#9370DB" textureFront="" textureTop="" />
+    <Box name="Box" type="RoSiML" x="1433,089 " y="1316,229 " z="110 cm" orientation="0" width="0,5475398 m" height="0,4293865 m" depth="0,03001486 m" color="#FAEBD7" textureFront="" textureTop="" rosiMacro="iMac" />
+    <Box name="Box" type="RoSiML" x="343,627 " y="832,787 " z="90 cm" orientation="90" width="0,373396 m" height="0,056475 m" depth="0,373396 m" color="#FAEBD7" textureFront="" textureTop="" rosiMacro="iMac" />
+    <Box name="Box" type="RoSiML" x="498,0646 " y="1170,997 " z="90 cm" orientation="0" width="20 " height="20 " depth="20 " color="#FAEBD7" textureFront="" textureTop="" rosiMacro="Cheesecake" />
+    <Box name="bedroomJack2" type="Spotlight" x="1742,711 " y="1009,923 " z="56,1 cm" orientation="0" width="20 cm" height="50 cm" depth="20 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Function name="Turn light ON" url="bedroomJack2&amp;value=1" />
+      <Function name="Turn light OFF" url="bedroomJack2&amp;value=0" />
+    </Box>
+    <Box name="bedroomJack1" type="Spotlight" x="1740,733 " y="619,8625 " z="0,5 cm" orientation="0" width="50 cm" height="120 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Function name="Turn light ON" url="bedroomJack1&amp;value=1" />
+      <Function name="Turn light OFF" url="bedroomJack1&amp;value=0" />
+    </Box>
+    <Box name="bedroomLight2" type="Spotlight" x="1431,682 " y="1272,673 " z="100 cm" orientation="0" width="50 cm" height="150 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Function name="Turn light ON" url="bedroomLight2&amp;value=1" />
+      <Function name="Turn light OFF" url="bedroomLight2&amp;value=0" />
+    </Box>
+    <Box name="bedroomLight1" type="Spotlight" x="1624,397 " y="1125,949 " z="100 cm" orientation="0" width="50 cm" height="150 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Function name="Turn light ON" url="bedroomLight1&amp;value=1" />
+      <Function name="Turn light OFF" url="bedroomLight1&amp;value=0" />
+    </Box>
+    <Box name="bedroomLight1" type="Spotlight" x="1423,146 " y="796,377 " z="100 cm" orientation="0" width="50 cm" height="150 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Function name="Turn light ON" url="bedroomLight1&amp;value=on" />
+      <Function name="Turn light OFF" url="bedroomLight1&amp;value=off" />
+    </Box>
+    <Box name="corridorLight" type="Spotlight" x="1122,983 " y="981,8516 " z="100 cm" orientation="0" width="50 cm" height="150 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Function name="Turn light ON" url="corridorLight&amp;value=1" />
+      <Function name="Turn light OFF" url="corridorLight&amp;value=0" />
+    </Box>
+    <Box name="bathroomLight" type="Spotlight" x="1112,657 " y="1200,191 " z="100 cm" orientation="0" width="50 cm" height="150 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Function name="Turn light ON" url="bathroomLight&amp;value=1" />
+      <Function name="Turn light OFF" url="bathroomLight&amp;value=0" />
+    </Box>
+    <Box name="corridorLight" type="Spotlight" x="1128,474 " y="676,0355 " z="100 cm" orientation="0" width="50 cm" height="150 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Function name="Turn light ON" url="corridorLight&amp;value=1" />
+      <Function name="Turn light OFF" url="corridorLight&amp;value=0" />
+    </Box>
+    <Box name="livingLight3" type="DimmableLight" x="579,124 " y="744,2416 " z="100 cm" orientation="0" width="50 cm" height="150 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Function name="Turn light ON" url="livingLight1&amp;value=1" />
+      <Function name="Turn light OFF" url="livingLight1&amp;value=0" />
+    </Box>
+    <Box name="livingLight1" type="Spotlight" x="475,1654 " y="1165,588 " z="100 cm" orientation="0" width="50 cm" height="150 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Function name="Turn light ON" url="livingLight1&amp;value=1" />
+      <Function name="Turn light OFF" url="livingLight1&amp;value=0" />
+    </Box>
+    <Box name="livingLight2" type="Spotlight" x="857,9639 " y="802,5386 " z="100 cm" orientation="0" width="50 cm" height="150 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Function name="Turn light ON" url="livingLight2&amp;value=1" />
+      <Function name="Turn light OFF" url="livingLight2&amp;value=0" />
+    </Box>
+    <Box name="livingJack1" type="Spotlight" x="591,4587 " y="596,0873 " z="0,5 cm" orientation="0" width="50 cm" height="150 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Function name="Turn light ON" url="livingJack1&amp;value=1" />
+      <Function name="Turn light OFF" url="livingJack1&amp;value=0" />
+    </Box>
+    <Box name="KitchenGroup" type="Group" x="950 " y="1220 " z="69 cm" orientation="-90" width="186 cm" height="127 cm" depth="76 cm" color="#FAEBD7" textureFront="" textureTop="">
+      <Box name="kitchenet" type="Slider" x="0 " y="0 " z="30 cm" orientation="0" width="1 cm" height="1 cm" depth="1 cm" color="#FAEBD7" textureFront="" textureTop="">
+        <Box name="rear" type="Box" x="0 cm" y="-8,5 cm" z="7 cm" orientation="0" width="186 cm" height="120 cm" depth="17 cm" color="#A0A0E0" textureFront="" textureTop="" />
+        <Box name="counter" type="Box" x="0 cm" y="-38 cm" z="7 cm" orientation="0" width="186 cm" height="7 cm" depth="76 cm" color="#A0A0E0" textureFront="" textureTop="" />
+        <Box name="Middle" type="Storage" x="0 cm" y="-33 cm" z="49 cm" orientation="0" width="60 cm" height="61 cm" depth="32 cm" color="#FFFFFF" textureFront="" textureTop="" />
+        <Box name="cupboard" type="Slider" x="0 " y="22 cm" z="42 cm" orientation="0" width="1 cm" height="1 cm" depth="1 cm" color="#FAEBD7" textureFront="" textureTop="">
+          <Box name="CupboardBox" type="Storage" x="60,5 cm" y="-55 cm" z="7 cm" orientation="0" width="60 cm" height="61 cm" depth="32 cm" color="#FFFFFF" textureFront="" textureTop="" />
+        </Box>
+        <Box name="microwaveBoard" type="Slider" x="0 " y="0 " z="42 cm" orientation="0" width="1 cm" height="1 cm" depth="1 cm" color="#FAEBD7" textureFront="" textureTop="">
+          <Box name="Microwave" type="Box" x="-60,5 cm" y="-33 cm" z="7 cm" orientation="0" width="60 cm" height="38 cm" depth="32 cm" color="#FFFFFF" textureFront=".\bosch-hmt85mr53.png" textureTop="" />
+          <Box name="Microwave" type="Storage" x="-60,5 cm" y="-33 cm" z="45 cm" orientation="0" width="60 cm" height="23 cm" depth="32 cm" color="#FFFFFF" textureFront="" textureTop="" />
+        </Box>
+      </Box>
+    </Box>
+    <Box name="Rolland" type="RoSiML" x="3,716 m" y="8,024 m" z="0 m" orientation="-90" width="600 mm" height="1000 mm" depth="600 mm" color="#FF0000" textureFront="" textureTop="" rosiMacro="SimpleXenoBlue" />
+    <Box name="Rolland2" type="RoSiML" x="12,147 m" y="4,932 m" z="0 m" orientation="0" width="600 mm" height="1000 mm" depth="600 mm" color="#FF0000" textureFront="" textureTop="" rosiMacro="SimpleXenoRed" />
+    <Box name="Eve" type="RoSiML" x="11,97 m" y="5,78 m" z="0 m" orientation="90" width="20 " height="20 " depth="20 " color="#FF0000" textureFront="" textureTop="" rosiMacro="Mario" />
+    <Box name="Paul" type="RoSiML" x="3,716 m" y="8,024 m" z="0 m" orientation="-90" width="20 " height="20 " depth="20 " color="#FF0000" textureFront="" textureTop="" rosiMacro="Luigi" />
+    <Box name="WashingBasinGroup" type="Group" x="1272 " y="1356 " z="0 cm" orientation="0" width="65 cm" height="50 cm" depth="40 cm" color="#000000" textureFront="" textureTop="">
+      <Box name="base" type="Box" x="-33,5 cm" y="-8,75 cm" z="0 " orientation="0" width="67 cm" height="43 cm" depth="17,5 cm" color="#FFFFFF" textureFront="" textureTop="" />
+      <Box name="slidebox" type="Box" x="-46 cm" y="-6 cm" z="43 cm" orientation="0" width="22 cm" height="58 cm" depth="12 cm" color="#A0A0A0" textureFront="" textureTop="" />
+      <Box name="basin" type="Slider" x="0 " y="0 " z="30 cm" orientation="0" width="50 cm" height="50 cm" depth="40 cm" color="#000000" textureFront="" textureTop="">
+        <Box name="WashingBasin" type="Box" x="-46 cm" y="-39,5 cm" z="80 cm" orientation="0" width="60 cm" height="19 cm" depth="47 cm" color="#D0D0D0" textureFront="" textureTop="" />
+        <Box name="Mirror" type="Box" x="-46 cm" y="-13 cm" z="80 cm" orientation="0" width="65 cm" height="99 cm" depth="6 cm" color="#A0A0A0" textureFront="" textureTop="" />
+      </Box>
+    </Box>
+    <Box name="WCGroup" type="Group" x="973 " y="1085 " z="0 " orientation="90" width="64 cm" height="175 cm" depth="20 cm" color="#E0E0E0" textureFront="" textureTop="">
+      <Box name="WCKasten" type="Box" x="32 cm" y="-10 cm" z="0 cm" orientation="0" width="64 cm" height="175 cm" depth="20 cm" color="#E0E0E0" textureFront="" textureTop="" />
+      <Box name="bathroomToiletHeight" type="Slider" x="0 cm" y="0 cm" z="30 cm" orientation="0" width="40 cm" height="42 cm" depth="62 cm" color="#E0E0E0" textureFront="" textureTop="">
+        <Box name="toilet" type="Box" x="32 cm" y="-41 cm" z="6 cm" orientation="0" width="40 cm" height="42 cm" depth="62 cm" color="#E0E0E0" textureFront="" textureTop="" />
+      </Box>
+    </Box>
+    <Box name="upperLeft" type="Group" x="878,6864 " y="650,709 " z="0 " orientation="0" width="100 " height="10 " depth="200 " color="#FAEBD7" textureFront="" textureTop="">
+      <Box name="upperLeftSwitch&gt;livingLight3" type="Switch" x="-25 " y="-75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\livingroomlight.png" />
+      <Box name="upperLeftSwitch&gt;livingLight2" type="Switch" x="25 " y="-75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\livingroomlight.png" />
+      <Box name="upperLeftSwitch&gt;livingJack1" type="Switch" x="-25 " y="-25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\livingjack.png" />
+      <Box name="upperLeftSwitch&gt;livingJack1" type="Switch" x="25 " y="-25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\livingjack.png" />
+      <Box name="upperLeftSwitch&gt;upperRightDoor" type="Switch" x="-25 " y="25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomdoor2.png" />
+      <Box name="upperLeftSwitch&gt;corridorLight" type="Switch" x="25 " y="25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\corridorlight.png" />
+      <Box name="upperLeftSwitch&gt;upperLeftDoor" type="Switch" x="-25 " y="75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\livingroomdoor.png" />
+      <Box name="upperLeftSwitch&gt;lowerLeftDoor" type="Switch" x="25 " y="75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\kitchendoor.png" />
+    </Box>
+    <Box name="upperRight" type="Group" x="1380 " y="650,709 " z="0 " orientation="0" width="100 " height="10 " depth="200 " color="#FAEBD7" textureFront="" textureTop="">
+      <Box name="upperRightSwitch&gt;bedroomLight2" type="Switch" x="-25 " y="-75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomlight.png" />
+      <Box name="upperRightSwitch&gt;bedroomLight1" type="Switch" x="25 " y="-75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomlight.png" />
+      <Box name="upperRightSwitch&gt;bedroomJack2" type="Switch" x="-25 " y="-25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomjack.png" />
+      <Box name="upperRightSwitch&gt;bedroomJack1" type="Switch" x="25 " y="-25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomjack.png" />
+      <Box name="upperRightSwitch&gt;corridorLight" type="Switch" x="-25 " y="25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\corridorlight.png" />
+      <Box name="upperRightSwitch&gt;upperLeftDoor" type="Switch" x="25 " y="25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\livingroomdoor.png" />
+      <Box name="upperRightSwitch&gt;lowerRightDoor" type="Switch" x="-25 " y="75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomdoor2.png" />
+      <Box name="upperRightSwitch&gt;upperRightDoor" type="Switch" x="25 " y="75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomdoor2.png" />
+    </Box>
+    <Box name="lowerRight" type="Group" x="1380 " y="948 " z="0 " orientation="0" width="100 " height="10 " depth="200 " color="#FAEBD7" textureFront="" textureTop="">
+      <Box name="lowerRightSwitch&gt;bedroomLight2" type="Switch" x="-25 " y="-75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomlight.png" />
+      <Box name="lowerRightSwitch&gt;bedroomLight1" type="Switch" x="25 " y="-75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomlight.png" />
+      <Box name="lowerRightSwitch&gt;bathroomDoor" type="Switch" x="-25 " y="-25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bathroomdoor.png" />
+      <Box name="lowerRightSwitch&gt;bedroomJack2" type="Switch" x="25 " y="-25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomjack.png" />
+      <Box name="lowerRightSwitch&gt;lowerLeftDoor" type="Switch" x="-25 " y="25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\kitchendoor.png" />
+      <Box name="lowerRightSwitch&gt;corridorLight" type="Switch" x="25 " y="25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\corridorlight.png" />
+      <Box name="lowerRightSwitch&gt;lowerRightDoor" type="Switch" x="-25 " y="75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomdoor2.png" />
+      <Box name="lowerRightSwitch&gt;upperRightDoor" type="Switch" x="25 " y="75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomdoor2.png" />
+    </Box>
+    <Box name="lowerLeft" type="Group" x="878,6864 " y="948,7682 " z="0 " orientation="0" width="100 " height="10 " depth="200 " color="#FAEBD7" textureFront="" textureTop="">
+      <Box name="lowerLeftSwitch&gt;livingLight2" type="Switch" x="-25 " y="-75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\kitchenlight.png" />
+      <Box name="lowerLeftSwitch&gt;livingLight1" type="Switch" x="25 " y="-75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\kitchenlight.png" />
+      <Box name="lowerLeftSwitch&gt;kitchenLight" type="Switch" x="-25 " y="-25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\kitchenlight2.png" />
+      <Box name="lowerLeftSwitch&gt;bathroomDoor" type="Switch" x="25 " y="-25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bathroomdoor.png" />
+      <Box name="lowerLeftSwitch&gt;corridorLight" type="Switch" x="-25 " y="25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\corridorlight.png" />
+      <Box name="lowerLeftSwitch&gt;lowerRightDoor" type="Switch" x="25 " y="25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bedroomdoor2.png" />
+      <Box name="lowerLeftSwitch&gt;upperLeftDoor" type="Switch" x="-25 " y="75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\livingroomdoor.png" />
+      <Box name="lowerLeftSwitch&gt;lowerLeftDoor" type="Switch" x="25 " y="75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\kitchendoor.png" />
+    </Box>
+    <Box name="bathroom" type="Group" x="1214,757 " y="1170,997 " z="0 " orientation="0" width="100 " height="10 " depth="200 " color="#FAEBD7" textureFront="" textureTop="">
+      <Box name="bathroomSwitch&gt;bathroomLight" type="Switch" x="-25 " y="-75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bathroomlight.png" />
+      <Box name="bathroomSwitch&gt;bathroomMirrorLight" type="Switch" x="25 " y="-75 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bathroomlight.png" />
+      <Box name="bathroomSwitch&gt;corridorLight" type="Switch" x="-25 " y="-25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\corridorlight.png" />
+      <Box name="bathroomSwitch&gt;bathroomDoor" type="Switch" x="25 " y="-25 " z="0 " orientation="180" width="50 " height="10 " depth="50 " color="#FAEBD7" textureFront="" textureTop=".\schalter\bathroomdoor.png" />
+    </Box>
+    <Box name="bathroomMirrorLight" type="Spotlight" x="1206,474 " y="1302,38 " z="100 cm" orientation="0" width="50 cm" height="150 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="" />
+    <Box name="kitchenLight" type="Spotlight" x="804,1014 " y="1220 " z="100 cm" orientation="0" width="50 cm" height="150 cm" depth="50 cm" color="#FAEBD7" textureFront="" textureTop="" />
+  </Layer>
+</Model>

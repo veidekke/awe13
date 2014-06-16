@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path=""/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="libs/cling-core-2.0-alpha3.jar"/>
-	<classpathentry kind="lib" path="libs/seamless-http-1.0-alpha3.jar"/>
-	<classpathentry kind="lib" path="libs/teleal-common-1.0.14.jar"/>
-	<classpathentry kind="lib" path="libs/seamless-util-1.0-alpha3.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/cling-core-2.0-alpha3.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/seamless-http-1.0-alpha3.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/teleal-common-1.0.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/seamless-util-1.0-alpha3.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
