@@ -21,9 +21,9 @@ public abstract class Storage {
 			if(g.getBarcode().equals(barcode)) {
 				garments.add(g);
 				System.out.println("Garment (" + g.getName() + ") has been added to storage " + no);
-			} else {
-				System.out.println("Garment with the barcode " + barcode + " does not exist."); 
+				return;
 			}
+			System.out.println("Garment with the barcode " + barcode + " does not exist.");
 		}
 	}
 	
@@ -34,9 +34,9 @@ public abstract class Storage {
 					System.out.println("Garment (" + g.getName() + ") has been removed from storage " + no);
 				else
 					System.out.println("Garment (" + g.getName() + ") is not in storage " + no);
-			} else {
-				System.out.println("Garment with the barcode " + barcode + " does not exist.");
+				return;
 			}
+			System.out.println("Garment with the barcode " + barcode + " does not exist.");			
 		}		
 	}
 	
