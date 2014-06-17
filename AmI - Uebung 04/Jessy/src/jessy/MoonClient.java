@@ -17,6 +17,7 @@ import java.util.Map;
 import jess.JessException;
 import jess.Rete;
 
+// TODO: 2 public Methoden bereitstellen zum Ein-/Ausschalten der Schranklichter über UPnP
 public class MoonClient implements Runnable {
 
   private UpnpService upnpService;
