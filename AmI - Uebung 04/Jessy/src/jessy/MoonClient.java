@@ -24,7 +24,7 @@ public class MoonClient implements Runnable {
   private Rete engine;
 
   public MoonClient(Rete engine) {
-	this.engine = engine;
+	 this.engine = engine;
   }
 
   public void run() {
@@ -142,7 +142,9 @@ public class MoonClient implements Runnable {
           Object[] variables = values.keySet().toArray();
           for(Object variable : variables){
             System.out.println(variable.toString() +": " + values.get(variable.toString()));
-          }               
+          }
+
+
           // TODO: Geänderte Variablen herausfinden
           
           // Fake telegram, triggering rule uebung03aufg31:
@@ -155,14 +157,14 @@ public class MoonClient implements Runnable {
           
           System.out.println("UPnP event, fake telegram: \n* "+telegram.source+"->"+telegram.dest+"="+telegram.value);
           
-          try {
-			engine.add(telegram);
-			engine.run();
-            engine.remove(telegram);
-		} catch (JessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        try {
+    			engine.add(telegram);
+    			engine.run();
+          engine.remove(telegram);
+    		} catch (JessException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
       }
 
       public void eventsMissed(GENASubscription sub, int numberOfMissedEvents) {
