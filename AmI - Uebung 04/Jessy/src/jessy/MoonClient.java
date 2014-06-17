@@ -12,22 +12,38 @@ import org.fourthline.cling.controlpoint.*;
 import org.fourthline.cling.model.gena.*;
 import org.fourthline.cling.model.state.*;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+import jess.Filter;
 import jess.JessException;
 import jess.Rete;
 
-// TODO: 2 public Methoden bereitstellen zum Ein-/Ausschalten der Schranklichter über UPnP
+// TODO: 2 Methoden bereitstellen zum Ein-/Ausschalten der Schranklichter über UPnP
 public class MoonClient implements Runnable {
 
   private UpnpService upnpService;
   private Rete engine;
+  
+  List<ShelfLight> shelfLights;
 
   public MoonClient(Rete engine) {
 	 this.engine = engine;
   }
 
   public void run() {
+	  
+	/*
+	 * Get all ShelfLights from engine that are defined in lights.clp 
+	 */
+    Iterator wmi0 = engine.getObjects(new Filter.ByClass(ShelfLight.class));
+    shelfLights = new ArrayList<ShelfLight>();
+    while (wmi0.hasNext()) {
+      ShelfLight sl = (ShelfLight) (wmi0.next());
+      shelfLights.add(sl);
+    }
+	  
     upnpService = new UpnpServiceImpl();
       try {
           // Add a listener for device registration events
@@ -142,11 +158,17 @@ public class MoonClient implements Runnable {
           Object[] variables = values.keySet().toArray();
           for(Object variable : variables){
             System.out.println(variable.toString() +": " + values.get(variable.toString()));
+          }            
+          // TODO: Geänderte Variablen herausfinden. Insb. shelfLights
+          
+          // TODO: Java-Objekt updaten (ShelfLight). Sind in shelfLights.
+          // UPnp: MoonShelves.getColor(shelfNo) gibt die Farbe. Wenn 0,0,0 ist shelfLight aus.
+          
+          // Update the working memory facts after changing the Java object
+          for (Object sl : shelfLights) {
+              engine.updateObject((ShelfLight) sl);
           }
 
-
-          // TODO: Geänderte Variablen herausfinden
-          
           // Fake telegram, triggering rule uebung03aufg31:
           Telegram telegram = new Telegram();
           telegram.source	= "wardrobe";
