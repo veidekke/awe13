@@ -38,7 +38,7 @@ public class MoonClient implements Runnable {
           // Broadcast a search message for all devices
           upnpService.getControlPoint().search(
             new UDNHeader(UDN.uniqueSystemIdentifier("MOON Wardrobe"))
-          );
+          ); // TODO: verhindern, dass fremde Devices/Events kommen?
 
       } catch (Exception ex) {
           System.err.println("Exception occured: " + ex);
@@ -143,6 +143,7 @@ public class MoonClient implements Runnable {
           for(Object variable : variables){
             System.out.println(variable.toString() +": " + values.get(variable.toString()));
           }               
+          // TODO: Geänderte Variablen herausfinden
           
           // Fake telegram, triggering rule uebung03aufg31:
           Telegram telegram = new Telegram();
@@ -150,7 +151,7 @@ public class MoonClient implements Runnable {
           telegram.dest		= "lowerLeftDoor";
           telegram.value	= 0;
           
-          // TODO: add some real facts to engine
+          // TODO: Echte Fakten einfügen
           
           System.out.println("UPnP event, fake telegram: \n* "+telegram.source+"->"+telegram.dest+"="+telegram.value);
           
