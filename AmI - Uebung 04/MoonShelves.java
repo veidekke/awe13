@@ -169,6 +169,16 @@ public class MoonShelves {
     	
     }
     
+    // TODO: auch von irgendwo mal aufrufen wa
+    /**
+     * Simulates a state of no movement in any shelf.
+     */
+    @UpnpAction
+    public void noMovement() {
+    	movementInShelf = -1;
+		getPropertyChangeSupport().firePropertyChange("MovementInShelf", 0, movementInShelf);
+    }    
+    
 	public PropertyChangeSupport getPropertyChangeSupport() {
         return propertyChangeSupport;
     }
