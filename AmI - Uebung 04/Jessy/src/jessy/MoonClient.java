@@ -11,6 +11,7 @@ import org.fourthline.cling.registry.*;
 import org.fourthline.cling.controlpoint.*;
 import org.fourthline.cling.model.gena.*;
 import org.fourthline.cling.model.state.*;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,7 +21,6 @@ import jess.Filter;
 import jess.JessException;
 import jess.Rete;
 
-// TODO: 2 Methoden bereitstellen zum Ein-/Ausschalten der Schranklichter über UPnP
 public class MoonClient implements Runnable {
 
   private UpnpService upnpService;
@@ -43,19 +43,24 @@ public class MoonClient implements Runnable {
       ShelfLight sl = (ShelfLight) (wmi0.next());
       shelfLights.add(sl);
     }
-	  
+	
+    System.out.println("1");
+    
     upnpService = new UpnpServiceImpl();
       try {
           // Add a listener for device registration events
           upnpService.getRegistry().addListener(
                   createRegistryListener(upnpService)
           );
+          
+          System.out.println("2");
 
           // Broadcast a search message for all devices
           upnpService.getControlPoint().search(
             new UDNHeader(UDN.uniqueSystemIdentifier("MOON Wardrobe"))
           ); // TODO: verhindern, dass fremde Devices/Events kommen?
 
+          System.out.println("3");
       } catch (Exception ex) {
           System.err.println("Exception occured: " + ex);
           System.exit(1);
@@ -156,39 +161,57 @@ public class MoonClient implements Runnable {
           //System.out.println("Event: " + sub.getCurrentSequence().getValue());
           Map<String, StateVariableValue> values = sub.getCurrentValues();
           Object[] variables = values.keySet().toArray();
+          
+          System.out.println("Some event received");
+          
           for(Object variable : variables){
             System.out.println(variable.toString() +": " + values.get(variable.toString()));
-          }            
-          // TODO: Geänderte Variablen herausfinden. Insb. shelfLights
-          
-          // TODO: Java-Objekt updaten (ShelfLight). Sind in shelfLights.
-          // UPnp: MoonShelves.getColor(shelfNo) gibt die Farbe. Wenn 0,0,0 ist shelfLight aus.
-          
-          // Update the working memory facts after changing the Java object
-          for (Object sl : shelfLights) {
-              engine.updateObject((ShelfLight) sl);
-          }
+            
+            // Movement in a shelf
+            if(variable.toString().equals("MovementInShelf")) {            	
+            	
+            	for(ShelfLight sl : shelfLights) {
+            		sl.updateShelfLight(service, upnpService);
+            		
+            		// Update the working memory facts after changing the Java object:
+            		try {
+	                	engine.updateObject((ShelfLight) sl);
+	                } catch (JessException e) {
+	                	e.printStackTrace();
+	                }
+            	}
+            	
+            	// Fake telegram, triggering rule uebung03aufg31:
+                Telegram telegram 	= new Telegram();
+                telegram.source		= "wardrobe";
+                telegram.dest		= "movement";
+                telegram.value		= new Integer(values.get(variable.toString()).toString());
+	            
+                try {
+        			engine.add(telegram);
+        			engine.run();
+        			engine.remove(telegram);
+        		} catch (JessException e) {
+        			e.printStackTrace();
+        		}
+                
+                // ShelfLights schalten
+                Iterator wmi1 = engine.getObjects(new Filter.ByClass(ChangeShelfLight.class));
+                while (wmi1.hasNext()) {
+                	ChangeShelfLight csl = (ChangeShelfLight) (wmi1.next());
+                	// TODO: schalten ueber UPnP
+                    System.out.println("--> Change light in shelf: " + csl.getShelfNo() + " to (" + csl.getR() + "," + csl.getG() + "," + csl.getB() + ")");
+                    try {
+						engine.remove(csl);
+					} catch (JessException e) {
+						e.printStackTrace();
+					}
+                }
+            }
+          }                             
 
-          // Fake telegram, triggering rule uebung03aufg31:
-          Telegram telegram = new Telegram();
-          telegram.source	= "wardrobe";
-          telegram.dest		= "lowerLeftDoor";
-          telegram.value	= 0;
-          
-          // TODO: Echte Fakten einfügen
-          
-          System.out.println("UPnP event, fake telegram: \n* "+telegram.source+"->"+telegram.dest+"="+telegram.value);
-          
-        try {
-    			engine.add(telegram);
-    			engine.run();
-          engine.remove(telegram);
-    		} catch (JessException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
-      }
-
+      }           
+      
       public void eventsMissed(GENASubscription sub, int numberOfMissedEvents) {
           System.out.println("Missed events: " + numberOfMissedEvents);
       }
