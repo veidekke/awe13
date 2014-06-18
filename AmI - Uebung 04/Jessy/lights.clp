@@ -94,9 +94,9 @@
 	?shelfLightOn <- (ShelfLight {shelfNo == ?shelfNo})
 	?shelfLightOff <- (ShelfLight {shelfNo != ?shelfNo})
 	=>
-	(add (new ChangeShelfLight ?shelfLightOn.shelfNo 255 255 255))  ; Fachlicht einschalten
+	(add (new ChangeShelfLight ?shelfLightOn.shelfNo 100 100 100))  ; Fachlicht einschalten
 	(add (new ChangeShelfLight ?shelfLightOff.shelfNo 0 0 0))  ; Fachlicht einschalten
-	(printout t "Uebung 4. Bewegung erkannt. SANGRIA" crlf))
+	(printout t "Uebung 4. Bewegung erkannt in Fach Nr. " ?shelfNo crlf))
 
 /*
 (defrule uebung03aufg31
