@@ -87,7 +87,7 @@ public class MoonServer implements Runnable {
 
   private void performAction(String methodname, String[] splitResult){
     Device device = upnpService.getRegistry().getDevice(UDN.uniqueSystemIdentifier("MOON Wardrobe"), true);
-    Service shelfService = device.findService(new UDAServiceId("MOON-6-2-Shelfs"));
+    Service shelfService = device.findService(new UDAServiceId("MOON-6-2-Shelves"));
     Service rfidService = device.findService(new UDAServiceId("MOON-6-2-RFID"));
     Service drawerService = device.findService(new UDAServiceId("MOON-6-2-Drawer"));
     

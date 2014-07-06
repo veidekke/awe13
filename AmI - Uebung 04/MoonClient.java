@@ -47,9 +47,11 @@ public class MoonClient implements Runnable {
     return new DefaultRegistryListener() {
       @Override
       public void remoteDeviceAdded(Registry registry, RemoteDevice device) {
-        Service[] services = device.getServices();
-        for(Service service : services){
-          initService(service);
+        if (device.getIdentity().getUdn == UDN.uniqueSystemIdentifier("MOON Wardrobe")){
+          Service[] services = device.getServices();
+          for(Service service : services){
+            initService(service);
+          }
         }
       }
 
