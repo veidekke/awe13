@@ -8,6 +8,7 @@
 (deftemplate ChangeDevice (declare (from-class ChangeDevice)))
 (deftemplate PlaySound   (declare (from-class PlaySound)))
 (deftemplate Telegram    (declare (from-class Telegram)))
+(deftemplate ShelfLight    (declare (from-class ShelfLight)))
 (deftemplate Device (slot name) (slot room))
 (deftemplate Switch (slot name) (slot room))
 
@@ -44,9 +45,6 @@
 (deffacts data (Switch (name "lowerLeft") (room "livingroom")))
 (deffacts data (Switch (name "bathroom") (room "bathroom")))
 
-; Der MOON-Schrank wird wie ein Schalter behandelt, der geschaltet wird, wenn der Nutzer in beliebiger Weise mit dem Schrank interagiert
-(deffacts data (Switch (name "wardrobe") (room "corridor")))
-
 ;; Add devices with label and groupaddress
 
 ;; Lights and DimLights have optional type
@@ -76,13 +74,31 @@
 (add (new Door "upperRightDoor" "3/0/0"));
 (add (new Door "bathroomDoor" "3/2/0"));
 
+;; ShelfLights
+(add (new ShelfLight 0));
+(add (new ShelfLight 1));
+(add (new ShelfLight 2));
+(add (new ShelfLight 3));
+(add (new ShelfLight 4));
+(add (new ShelfLight 5));
+
 (reset)
 
 (defglobal ?*last_room* = "livingroom")
 
 ;; Now define the rules.
 
+(defrule uebung04movement1
+	"Bei einer Bewegung in einem Fach wird das entsprechende Fachlicht ein- und alle anderen ausgeschaltet."
+	(Telegram {value > -1 && dest == "movement" && source == "wardrobe"} (value ?shelfNo))	; Bewegung in einem Fach
+	?shelfLightOn <- (ShelfLight {shelfNo == ?shelfNo})
+	?shelfLightOff <- (ShelfLight {shelfNo != ?shelfNo})
+	=>
+	(add (new ChangeShelfLight ?shelfLightOn.shelfNo 100 100 100))  ; Fachlicht einschalten
+	(add (new ChangeShelfLight ?shelfLightOff.shelfNo 0 0 0))  ; Fachlicht einschalten
+	(printout t "Uebung 4. Bewegung erkannt in Fach Nr. " ?shelfNo crlf))
 
+/*
 (defrule uebung03aufg31
     "Wenn per Schalter in einem Raum eine beliebige Tür
     geschlossen wird, mache alle Lichter in anderen Räumen
@@ -96,8 +112,8 @@
 	(add (new ChangeDevice ?light.label 0))  ; Lichter/Dimmlichter ausschalten
 	;TODO: Schranklicht schalten
   (printout t "Aufgabe 3.1" crlf))
-  
- /* 
+ 
+ 
 (defrule uebung03aufg32
     "Wird in einem Raum ein Lichtschalter gedrückt, gehen in
      allen anderen Räumen die Lichter aus (außer das gerade eingeschaltete)."
