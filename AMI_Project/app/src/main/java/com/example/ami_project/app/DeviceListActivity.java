@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,7 +45,9 @@ public class DeviceListActivity extends ActionBarActivity
     private boolean mTwoPane;
     private AndroidUpnpService upnpService;
     private BrowseRegistryListener registryListener;
+    private static String TAG = DeviceListActivity.class.getSimpleName();
     private ServiceConnection serviceConnection = new ServiceConnection() {
+
 
         public void onServiceConnected(ComponentName className, IBinder service) {
             upnpService = (AndroidUpnpService) service;
@@ -108,25 +112,11 @@ public class DeviceListActivity extends ActionBarActivity
      */
     @Override
     public void onItemSelected(int device_id) {
-        if (mTwoPane) {
-            // In two-pane mode, show the detail view in this activity by
-            // adding or replacing the detail fragment using a
-            // fragment transaction.
-            Bundle arguments = new Bundle();
-            arguments.putLong(DeviceDetailFragment.ARG_ITEM_ID, device_id);
-            DeviceDetailFragment fragment = new DeviceDetailFragment();
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.device_detail_container, fragment)
-                    .commit();
-
-        } else {
-            // In single-pane mode, simply start the detail activity
-            // for the selected item ID.
-            Intent detailIntent = new Intent(this, DeviceDetailActivity.class);
-            detailIntent.putExtra(DeviceDetailFragment.ARG_ITEM_ID, device_id);
-            startActivity(detailIntent);
-        }
+        // In single-pane mode, simply start the detail activity
+        // for the selected item ID.
+        Intent intent = new Intent(this, ServiceListActivity.class);
+        ServiceListFragment.DEVICE_ID = device_id;
+        startActivity(intent);
     }
 
     @Override

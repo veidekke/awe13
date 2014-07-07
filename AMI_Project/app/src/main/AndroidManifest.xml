@@ -31,7 +31,6 @@
             </intent-filter>
         </activity>
 
-
         <service android:name="com.example.ami_project.app.BrowserUpnpService" />
 
         <activity
@@ -39,12 +38,16 @@
             android:label="@string/title_device_list" >
         </activity>
         <activity
-            android:name="com.example.ami_project.app.DeviceDetailActivity"
-            android:label="@string/title_device_detail"
-            android:parentActivityName="com.example.ami_project.app.DeviceListActivity" >
+            android:name="com.example.ami_project.app.ServiceListActivity"
+            android:label="@string/title_service_list" >
+        </activity>
+        <activity
+            android:name="com.example.ami_project.app.ServiceDetailActivity"
+            android:label="@string/title_service_detail"
+            android:parentActivityName="com.example.ami_project.app.ServiceListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.ami_project.app.DeviceListActivity" />
+                android:value="com.example.ami_project.app.ServiceListActivity" />
         </activity>
     </application>
 

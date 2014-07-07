@@ -38,22 +38,4 @@ class DeviceDisplay {
         return device.isFullyHydrated() ? device.getDisplayString() : device.getDisplayString() + " *";
     }
 
-    private void services(){
-        Service[] services = device.getServices();
-        for(Service service : services){
-            getActions(service);
-        }
-    }
-
-    private String getActions(Service service){
-        String actionString = "";
-        Action[] actions = service.getActions();
-        for(int i = 0; i < actions.length; i++){
-            if(i != 0)
-                actionString += ", ";
-            actionString += actions[i].getName();
-        }
-
-        return actionString;
-    }
 }
