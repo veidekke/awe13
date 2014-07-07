@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.device_list:
-                intent = new Intent().setClass(this, BrowseActivity.class);
+                intent = new Intent().setClass(this, DeviceListActivity.class);
                 startActivity(intent);
                 finish();
                 return true;

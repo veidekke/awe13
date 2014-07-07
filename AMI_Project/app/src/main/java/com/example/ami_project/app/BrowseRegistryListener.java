@@ -1,5 +1,6 @@
 package com.example.ami_project.app;
 
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -17,11 +18,11 @@ class BrowseRegistryListener extends DefaultRegistryListener {
     private static String TAG = BrowseRegistryListener.class.getSimpleName();
 
     private ArrayAdapter<DeviceDisplay> listAdapter;
-    private BrowseActivity browseActivity;
+    private FragmentActivity deviceListActivity;
 
-    public BrowseRegistryListener(BrowseActivity browseActivity, ArrayAdapter<DeviceDisplay> listAdapter){
+    public BrowseRegistryListener(FragmentActivity deviceListActivity, ArrayAdapter<DeviceDisplay> listAdapter){
         this.listAdapter = listAdapter;
-        this.browseActivity = browseActivity;
+        this.deviceListActivity = deviceListActivity;
     }
 
     @Override
@@ -31,10 +32,10 @@ class BrowseRegistryListener extends DefaultRegistryListener {
 
     @Override
     public void remoteDeviceDiscoveryFailed(Registry registry, final RemoteDevice device, final Exception ex) {
-        browseActivity.runOnUiThread(new Runnable() {
+        deviceListActivity.runOnUiThread(new Runnable() {
             public void run() {
                 Toast.makeText(
-                        browseActivity,
+                        deviceListActivity,
                         "Discovery failed of '" + device.getDisplayString() + "': " +
                                 (ex != null ? ex.toString() : "Couldn't retrieve device/service descriptors"),
                         Toast.LENGTH_LONG
@@ -65,7 +66,7 @@ class BrowseRegistryListener extends DefaultRegistryListener {
     }
 
     public void deviceAdded(final Device device) {
-        browseActivity.runOnUiThread(new Runnable() {
+        deviceListActivity.runOnUiThread(new Runnable() {
             public void run() {
                 DeviceDisplay d = new DeviceDisplay(device);
                 int position = listAdapter.getPosition(d);
@@ -81,7 +82,7 @@ class BrowseRegistryListener extends DefaultRegistryListener {
     }
 
     public void deviceRemoved(final Device device) {
-        browseActivity.runOnUiThread(new Runnable() {
+        deviceListActivity.runOnUiThread(new Runnable() {
             public void run() {
                 listAdapter.remove(new DeviceDisplay(device));
             }

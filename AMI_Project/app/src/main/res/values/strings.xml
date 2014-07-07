@@ -10,5 +10,7 @@
     <string name="title_activity_browse">BrowseActivity</string>
     <string name="actionbar_background">#ff7920</string>
     <string name="title_activity_tag">TagActivity</string>
+    <string name="title_device_list">Devices</string>
+    <string name="title_device_detail">Device Detail</string>
 
 </resources>

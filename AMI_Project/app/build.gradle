@@ -24,4 +24,5 @@ dependencies {
     compile files('libs/cling-core-1.0.5.jar')
     compile files('libs/teleal-common-1.0.13.jar')
     compile 'com.android.support:appcompat-v7:19.+'
+    compile 'com.android.support:support-v4:19.+'
 }
