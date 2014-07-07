@@ -12,5 +12,7 @@
     <string name="title_activity_tag">TagActivity</string>
     <string name="title_device_list">Devices</string>
     <string name="title_device_detail">Device Detail</string>
+    <string name="title_service_list">Services</string>
+    <string name="title_service_detail">Service Detail</string>
 
 </resources>
