@@ -5,19 +5,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import java.util.List;
-
-import org.ndeftools.Message;
 import org.ndeftools.Record;
 import org.ndeftools.externaltype.AndroidApplicationRecord;
-
-import android.app.Activity;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
+import android.app.PendingIntent;
+import android.view.MenuInflater;
+import android.content.Context;
 import android.content.IntentFilter;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
-import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.Vibrator;
 import android.util.Log;
@@ -36,9 +32,37 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         // initialize NFC
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         nfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, this.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.device_list:
+                intent = new Intent().setClass(this, BrowseActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+            case R.id.scan_tag:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
     @Override
@@ -107,6 +131,7 @@ public class MainActivity extends ActionBarActivity {
         IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED); // filter for tags
         IntentFilter[] writeTagFilters = new IntentFilter[] {tagDetected};
         nfcAdapter.enableForegroundDispatch(this, nfcPendingIntent, writeTagFilters, null);
+        Log.d(TAG, "enableForegroundMode - ende");
     }
 
     public void disableForegroundMode() {

@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/scan_tag"
+        android:icon="@drawable/ic_action_picture"
+        android:title="@string/scan_tag"
+        android:showAsAction="ifRoom"
+        app:showAsAction="always"  />
+
+    <item android:id="@+id/device_list"
+        android:icon="@drawable/ic_action_view_as_list"
+        android:title="@string/device_list"
+        android:showAsAction="ifRoom"
+        app:showAsAction="always"  />
+
+</menu>
