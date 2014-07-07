@@ -143,6 +143,7 @@ public class DeviceListActivity extends ActionBarActivity
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.device_list:
+                searchNetwork();
                 return true;
             case R.id.scan_tag:
                 intent = new Intent().setClass(this, MainActivity.class);

@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.ami_project.app.BrowseActivity"
+            android:name="com.example.ami_project.app.DeviceListActivity"
             android:label="@string/app_name" >
         </activity>
 
