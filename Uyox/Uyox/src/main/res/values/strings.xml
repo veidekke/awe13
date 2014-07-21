@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Uyox</string>
+    <string name="introduction">Scan a Uyox-Tag!</string>
+    <string name="action_settings">Settings</string>
+    <string name="write_tag">Write Tag</string>
+    <string name="title_activity_write_tag">WriteTag</string>
+
+</resources>
