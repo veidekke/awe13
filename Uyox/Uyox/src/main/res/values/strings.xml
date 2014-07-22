@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="write_tag">Write Tag</string>
     <string name="title_activity_write_tag">WriteTag</string>
-
+    <string name="content_directory">ContentDirectory</string>
+    <string name="play_devices">Play Devices</string>
 </resources>

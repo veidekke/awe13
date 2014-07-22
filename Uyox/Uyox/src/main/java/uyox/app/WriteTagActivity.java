@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -15,6 +16,7 @@ import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,7 +47,6 @@ public class WriteTagActivity extends Activity {
         // initialize NFC
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         nfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, this.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
-
 
         Intent i = getIntent();
         contentDirectoryBrowser = (ContentDirectoryBrowser)i.getSerializableExtra("contentDirectoryBrowser");
@@ -231,11 +232,13 @@ public class WriteTagActivity extends Activity {
 
     public void searchBtnClicked(View view){
         String url = null;
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String contentDirectoryDevice = sharedPref.getString("content_directory", "");
         try {
             if (audioIsChecked) {
-                url = getAudioUrl();
+                url = getAudioUrl(contentDirectoryDevice);
             } else {
-                url = getVideoUrl();
+                url = getVideoUrl(contentDirectoryDevice);
             }
             showUrl(url);
         } catch (NoContentDirectoryException e) {
@@ -253,16 +256,16 @@ public class WriteTagActivity extends Activity {
         }
     }
 
-    private String getVideoUrl() throws NoContentDirectoryException {
+    private String getVideoUrl(String contentDirectoryDevice) throws NoContentDirectoryException {
         String title = ((EditText) findViewById(R.id.title)).getText().toString();
-        return contentDirectoryBrowser.searchVideo(title);
+        return contentDirectoryBrowser.searchVideo(contentDirectoryDevice, title);
     }
 
-    private String getAudioUrl() throws NoContentDirectoryException {
+    private String getAudioUrl(String contentDirectoryDevice) throws NoContentDirectoryException {
         String title = ((EditText) findViewById(R.id.title)).getText().toString();
         String album = ((EditText) findViewById(R.id.album)).getText().toString();
         String artist = ((EditText) findViewById(R.id.artist)).getText().toString();
-        return contentDirectoryBrowser.searchAudio(title, album, artist);
+        return contentDirectoryBrowser.searchAudio(contentDirectoryDevice, title, album, artist);
     }
 
     private void showAudioForm(){

@@ -94,7 +94,7 @@ public class MainActivity extends Activity {
                 startActivity(myIntent);
                 return true;
             case R.id.action_settings:
-                //openSettings();
+                startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

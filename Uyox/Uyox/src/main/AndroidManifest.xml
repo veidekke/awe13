@@ -40,6 +40,14 @@
             android:screenOrientation="portrait"
             android:label="@string/title_activity_write_tag" >
         </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName="uyox.app.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:label="@string/action_settings" >
+        </activity>
     </application>
 
 </manifest>

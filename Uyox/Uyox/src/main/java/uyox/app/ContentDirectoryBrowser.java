@@ -28,8 +28,8 @@ public class ContentDirectoryBrowser implements Serializable{
         this.upnpService = upnpService;
     }
 
-    public static String searchAudio(String title, String artist, String album) throws NoContentDirectoryException {
-        Service service = getService();
+    public static String searchAudio(String contentDirectoryDevice, String title, String artist, String album) throws NoContentDirectoryException {
+        Service service = getService(contentDirectoryDevice);
         if(service != null){
             String searchCriteria = genSearchCriteria(title, null, null, "object.item.audioItem");
             sendSearchRequest(service, searchCriteria);
@@ -38,8 +38,8 @@ public class ContentDirectoryBrowser implements Serializable{
         return lastUrl;
     }
 
-    public static String searchVideo(String title) throws NoContentDirectoryException {
-        Service service = getService();
+    public static String searchVideo(String contentDirectoryDevice, String title) throws NoContentDirectoryException {
+        Service service = getService(contentDirectoryDevice);
         if(service != null){
             String searchCriteria = genSearchCriteria(title, null, null, "object.item.videoItem");
             Log.d(TAG, "generated searchCriteria: " + searchCriteria);
@@ -49,21 +49,14 @@ public class ContentDirectoryBrowser implements Serializable{
         return lastUrl;
     }
 
-    public static Service getService() throws NoContentDirectoryException {
+    public static Service getService(String contentDirectoryDevice) throws NoContentDirectoryException {
         ArrayList<Device> properDevices = getProperDevices("ContentDirectory");
-
-        if(properDevices.size() > 0) {
-            Log.d(TAG, "Found " + properDevices.size() + " Devices with Service ContentDirectory");
-            for(Device device : properDevices){
-                if(device.getDisplayString().equals("PacketVideo TwonkyServer 7.3")){
-                    return device.findService(new UDAServiceType("ContentDirectory"));
-                }
+        for(Device device : properDevices){
+            if(device.getDisplayString().equals(contentDirectoryDevice)){
+                return device.findService(new UDAServiceType("ContentDirectory"));
             }
-            Log.d(TAG, "Eikes Twonky Server wurde nicht gefunden :(");
-            return null;
-        } else {
-            throw new NoContentDirectoryException();
         }
+        throw new NoContentDirectoryException();
     }
 
     private static ActionCallback getSearchCallback(ActionInvocation SearchInvocation){
@@ -101,7 +94,7 @@ public class ContentDirectoryBrowser implements Serializable{
         upnpService.getControlPoint().execute(searchCallback);
     }
 
-    private static ArrayList<Device> getProperDevices(String serviceType){
+    public static ArrayList<Device> getProperDevices(String serviceType){
         Collection<Device> devices = upnpService.getRegistry().getDevices();
         ArrayList<Device> properDevices = new ArrayList<Device>();
         for(Device dev : devices){
