@@ -34,7 +34,8 @@ public class WriteTagActivity extends Activity {
     private boolean readyForWriting = false;
     protected NfcAdapter nfcAdapter;
     protected PendingIntent nfcPendingIntent;
-    AlertDialog dialog;
+    SimpleAlertDialog simpleAlertDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,19 +73,13 @@ public class WriteTagActivity extends Activity {
 
     public void writeTagClicked(View view){
         readyForWriting = true;
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Ready for writing!")
-                .setTitle("Write Tag")
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        readyForWriting = false;
-                        dialog.cancel();
-                    }
-                });;
-
-        // 3. Get the AlertDialog from create()
-        dialog = builder.create();
-        dialog.show();
+        simpleAlertDialog = new SimpleAlertDialog(this, "Cancel", "Ready for writing!", "Write Tag",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            readyForWriting = false;
+                            dialog.cancel();
+                        }
+                    });
     }
 
     @Override
@@ -177,29 +172,24 @@ public class WriteTagActivity extends Activity {
 
                 // Make sure the tag is writable
                 if(!ndef.isWritable()) {
-                    Log.d(TAG, "not writeable");
+                    new SimpleAlertDialog(this, "Ok", "The Tag is not writeable", "Error");
                     return false;
                 }
 
                 try {
                     // Write the data to the tag
                     ndef.writeNdefMessage(message);
-                    dialog.cancel();
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setMessage("Uyox Tag is ready to Role!")
-                            .setTitle("Success!")
-                            .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                    simpleAlertDialog.getDialog().cancel();
+                    simpleAlertDialog = new SimpleAlertDialog(this, "Ok", "Uyox Tag is ready to Role!", "Success!",
+                            new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     readyForWriting = false;
                                     dialog.cancel();
                                 }
                             });
-                    dialog = builder.create();
-                    dialog.show();
                     return true;
                 } catch (Exception e){
-                    Log.d(TAG, "Exception");
+                    new SimpleAlertDialog(this, "Ok", "Writing failed", "Error");
                 }
                 // If the tag is not formatted, format it with the message
             } else {
@@ -208,7 +198,6 @@ public class WriteTagActivity extends Activity {
                     try {
                         format.connect();
                         format.format(message);
-                        Log.d(TAG, "successfully formatted");
                         return true;
                     } catch (Exception e) {
                         Log.d(TAG, "Exception during formatting");
@@ -246,23 +235,38 @@ public class WriteTagActivity extends Activity {
 
     public void searchBtnClicked(View view){
         String url = null;
-        if(audioIsChecked){
-            String title = ((EditText) findViewById(R.id.title)).getText().toString();
-            String album = ((EditText) findViewById(R.id.album)).getText().toString();
-            String artist = ((EditText) findViewById(R.id.artist)).getText().toString();
-            url = contentDirectoryBrowser.searchAudio("All that she wants", null, null);
-        } else {
-            String title = ((EditText) findViewById(R.id.title)).getText().toString();
-            url = contentDirectoryBrowser.searchVideo(title);
+        try {
+            if (audioIsChecked) {
+                url = getAudioUrl();
+            } else {
+                url = getVideoUrl();
+            }
+            showUrl(url);
+        } catch (NoContentDirectoryException e) {
+            new SimpleAlertDialog(this, "Ok", "No Device with Servive \"ContentDirectory\" found", "Error");
         }
+    }
 
+    private void showUrl(String url){
         TextView urlTextView = (TextView) findViewById(R.id.url_found);
 
-        if(url != null){
+        if (url != null) {
             urlTextView.setText(url);
         } else {
             urlTextView.setHint("No URL found");
         }
+    }
+
+    private String getVideoUrl() throws NoContentDirectoryException {
+        String title = ((EditText) findViewById(R.id.title)).getText().toString();
+        return contentDirectoryBrowser.searchVideo(title);
+    }
+
+    private String getAudioUrl() throws NoContentDirectoryException {
+        String title = ((EditText) findViewById(R.id.title)).getText().toString();
+        String album = ((EditText) findViewById(R.id.album)).getText().toString();
+        String artist = ((EditText) findViewById(R.id.artist)).getText().toString();
+        return contentDirectoryBrowser.searchAudio(title, album, artist);
     }
 
     private void showAudioForm(){

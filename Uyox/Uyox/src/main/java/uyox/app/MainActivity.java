@@ -206,27 +206,6 @@ public class MainActivity extends Activity {
                     mediaInfos.put(type, nfcData);
                     updateView(mediaInfos);
                 }
-
-/*
-                for (int i = 0; i < messages.length; i++) {
-                    try {
-                        List<Record> records = new org.ndeftools.Message((NdefMessage)messages[i]);
-                        for(int k = 0; k < records.size(); k++) {
-                            Record record = records.get(k);
-                            Log.d(TAG, record.getNdefRecord().getType().toString());
-                            Log.d(TAG, record.getKey().toString());
-                            Log.d(TAG, record.getNdefRecord().getPayload().toString());
-                            if(record instanceof TextRecord){
-                                TextRecord textRecord = (TextRecord) record;
-                                String searchCriteria = textRecord.getText();
-                                textView.setText("Found searchCriteria: " + searchCriteria);
-                                return searchCriteria;
-                            }
-                        }
-                    } catch (Exception e) {
-                        textView.setText("Problem parsing message");
-                    }
-                }*/
             }
         }
         return null;

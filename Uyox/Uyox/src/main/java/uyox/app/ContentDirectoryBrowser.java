@@ -28,7 +28,7 @@ public class ContentDirectoryBrowser implements Serializable{
         this.upnpService = upnpService;
     }
 
-    public static String searchAudio(String title, String artist, String album){
+    public static String searchAudio(String title, String artist, String album) throws NoContentDirectoryException {
         Service service = getService();
         if(service != null){
             String searchCriteria = genSearchCriteria(title, null, null, "object.item.audioItem");
@@ -38,7 +38,7 @@ public class ContentDirectoryBrowser implements Serializable{
         return lastUrl;
     }
 
-    public static String searchVideo(String title){
+    public static String searchVideo(String title) throws NoContentDirectoryException {
         Service service = getService();
         if(service != null){
             String searchCriteria = genSearchCriteria(title, null, null, "object.item.videoItem");
@@ -49,10 +49,10 @@ public class ContentDirectoryBrowser implements Serializable{
         return lastUrl;
     }
 
-    public static Service getService(){
+    public static Service getService() throws NoContentDirectoryException {
         ArrayList<Device> properDevices = getProperDevices("ContentDirectory");
 
-        if(properDevices.size() > 0) {
+        if(properDevices.size() < 0) {
             Log.d(TAG, "Found " + properDevices.size() + " Devices with Service ContentDirectory");
             for(Device device : properDevices){
                 if(device.getDisplayString().equals("PacketVideo TwonkyServer 7.3")){
@@ -62,8 +62,7 @@ public class ContentDirectoryBrowser implements Serializable{
             Log.d(TAG, "Eikes Twonky Server wurde nicht gefunden :(");
             return null;
         } else {
-            Log.d(TAG, "No Device with Service ContentDirectory found");
-            return null;
+            throw new NoContentDirectoryException();
         }
     }
 
