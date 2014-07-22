@@ -1,8 +1,10 @@
 package uyox.app;
 
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 
 import org.teleal.cling.model.meta.Device;
@@ -16,13 +18,34 @@ public class SettingsFragment extends PreferenceFragment {
 
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences);
+        initContentDirectoryPref();
+        initPlayDevicesPref();
+    }
 
-        ListPreference listPref = (ListPreference) findPreference("content_directory");
-        ArrayList<Device> properDevices = ContentDirectoryBrowser.getProperDevices("ContentDirectory");
+    private CharSequence[] getEntries(String serviceType){
+        ArrayList<Device> properDevices = ContentDirectoryBrowser.getProperDevices(serviceType);
         CharSequence[] entries = new CharSequence[properDevices.size()];
         for(int i = 0; i < properDevices.size(); i++){
             entries[i] = properDevices.get(i).getDisplayString();
         }
+        return entries;
+    }
+
+    private void initPlayDevicesPref(){
+        PreferenceCategory preferenceCategory = (PreferenceCategory) findPreference("play_devices");
+        CharSequence[] entries = getEntries("AVTransport");
+        for(CharSequence entry : entries){
+            CheckBoxPreference pref = new CheckBoxPreference(getActivity());
+            pref.setTitle(entry);
+            pref.setKey(entry.toString());
+            pref.setDefaultValue(false);
+            preferenceCategory.addPreference(pref);
+        }
+    }
+
+    private void initContentDirectoryPref(){
+        ListPreference listPref = (ListPreference) findPreference("content_directory");
+        CharSequence[] entries = getEntries("ContentDirectory");
         listPref.setEntries(entries);
         listPref.setEntryValues(entries);
         listPref.setDefaultValue(entries[0]);

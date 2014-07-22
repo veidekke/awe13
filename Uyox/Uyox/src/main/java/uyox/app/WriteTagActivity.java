@@ -26,6 +26,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import org.teleal.cling.model.meta.Device;
+
 import java.nio.charset.Charset;
 
 

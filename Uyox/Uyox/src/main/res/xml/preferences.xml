@@ -4,10 +4,9 @@
         android:key="content_directory"
         android:title="@string/content_directory" />
 
-    <PreferenceScreen
+    <PreferenceCategory
         android:key="play_devices"
-        android:title="@string/play_devices"
-        android:persistent="false">
-    </PreferenceScreen>
+        android:title="@string/play_devices">
+    </PreferenceCategory>
 
 </PreferenceScreen>

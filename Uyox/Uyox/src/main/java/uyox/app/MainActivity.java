@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -14,10 +15,12 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcelable;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.ndeftools.Record;
@@ -118,15 +121,8 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public void onNewIntent(Intent intent) { //
-
-        String searchCriteria = readNFCTag(intent);
-        if(searchCriteria != null){
-            sendSearchRequest(searchCriteria);
-        } else{
-            //TextView textView = (TextView) findViewById(R.id.title);
-            //textView.setText("Error reading url on nfc tag");
-        }
+    public void onNewIntent(Intent intent) {
+        readNFCTag(intent);
     }
 
     @Override
@@ -138,8 +134,7 @@ public class MainActivity extends Activity {
     public void enableForegroundMode() {
         Log.d(TAG, "enableForegroundMode");
 
-        // foreground mode gives the current active application priority for reading scanned tags
-        IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED); // filter for tags
+        IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
         IntentFilter[] writeTagFilters = new IntentFilter[] {tagDetected};
         nfcAdapter.enableForegroundDispatch(this, nfcPendingIntent, writeTagFilters, null);
     }
@@ -151,8 +146,6 @@ public class MainActivity extends Activity {
     }
 
     private void vibrate() {
-        Log.d(TAG, "vibrate");
-
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE) ;
         vibe.vibrate(500);
     }
@@ -204,71 +197,12 @@ public class MainActivity extends Activity {
                     String type = new String(record.getType());
                     String nfcData = new String(record.getPayload());
                     mediaInfos.put(type, nfcData);
-                    updateView(mediaInfos);
                 }
+                updateView(mediaInfos);
+                playMedia(mediaInfos);
             }
         }
         return null;
-    }
-
-    //******** SearchAction ********
-
-    private ActionCallback getSearchActionCallback(ActionInvocation SetSearchActionInvocation){
-        return new ActionCallback(SetSearchActionInvocation) {
-
-            @Override
-            public void success(ActionInvocation invocation) {
-                Log.d(TAG, "Successfully called action");
-                ActionArgumentValue actionArgumentValue = invocation.getOutput("Result");
-                ArrayList<String> urls = XMLParser.readOutput(actionArgumentValue.toString());
-                if(!urls.isEmpty()){
-                    for(String url : urls){
-                        playMedia(url);
-                    }
-                } else {
-                    Log.d(TAG, "No Url for Media found");
-                }
-            }
-
-            @Override
-            public void failure(ActionInvocation invocation,
-                                UpnpResponse operation,
-                                String defaultMsg) {
-                Log.d(TAG, "failure on execute");
-            }
-        };
-    }
-
-    class SetSearchActionInvocation extends ActionInvocation {
-
-        SetSearchActionInvocation(Service service, String searchCriteria) {
-            super(service.getAction("Search"));
-            try {
-                setInput("ContainerID", "0");
-                setInput("SearchCriteria", searchCriteria);
-                //setInput("SearchCriteria", "dc:title contains \"All that she wants\"");
-                setInput("Filter", "*");
-                setInput("StartingIndex", "0");
-                setInput("RequestedCount", "0");
-                setInput("SortCriteria", null);
-            } catch (InvalidValueException ex) {
-                Log.d(TAG, "error calling action");
-            }
-        }
-    }
-
-    private void sendSearchRequest(String searchCriteria){
-        ArrayList<Device> properDevices = getProperDevices("ContentDirectory");
-        if(properDevices.size() > 0) {
-            Log.d(TAG, "Found " + properDevices.size() + " Devices with Service ContentDirectory");
-            for(Device properDevice : properDevices) {
-                Service browseService = properDevice.findService(new UDAServiceType("ContentDirectory"));
-                ActionInvocation SetSearchActionInvocation = new SetSearchActionInvocation(browseService, searchCriteria);
-                upnpService.getControlPoint().execute(getSearchActionCallback(SetSearchActionInvocation));
-            }
-        } else {
-            Log.d(TAG, "No Device with Service ContentDirectory found");
-        }
     }
 
     private ArrayList<Device> getProperDevices(String serviceType){
@@ -282,17 +216,45 @@ public class MainActivity extends Activity {
         return properDevices;
     }
 
-    private void playMedia(String url){
-        ArrayList<Device> properDevices = getProperDevices("AVTransport");
-        if(properDevices.size() > 0) {
+    private void playMedia(Map<String, String> mediaInfos){
+        String url = mediaInfos.get("URL");
+        if(url != null){
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            ArrayList<Device> properDevices = getProperDevices("AVTransport");
             for(Device properDevice : properDevices) {
-                Service browseService = properDevice.findService(new UDAServiceType("AVTransport"));
-                ActionInvocation SetAVTransportActionInvocation = new SetAVTransportActionInvocation(browseService, url);
-                upnpService.getControlPoint().execute(getAVTransportActionCallback(SetAVTransportActionInvocation));
+                Boolean isChecked = sharedPref.getBoolean(properDevice.getDisplayString(), true);
+                Log.d("Bool: ", isChecked.toString());
+                if(isChecked) {
+                    Service browseService = properDevice.findService(new UDAServiceType("AVTransport"));
+                    ActionInvocation SetAVTransportActionInvocation = new SetAVTransportActionInvocation(browseService, url);
+                    upnpService.getControlPoint().execute(getAVTransportActionCallback(SetAVTransportActionInvocation));
+                }
             }
         } else {
-            Log.d(TAG, "No Device with Service AVTransport found");
+            url = getUrl(mediaInfos);
+            if (url != null){
+                mediaInfos.put("URL", url);
+                playMedia(mediaInfos);
+            }
         }
+    }
+
+    private String getUrl(Map<String, String> mediaInfos){
+        String url = null;
+        String type = mediaInfos.get("Type");
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String contentDirectoryDevice = sharedPref.getString("content_directory", "");
+        try {
+            if (type.equals("Audio")) {
+                return contentDirectoryBrowser.searchAudio(contentDirectoryDevice, mediaInfos.get("Title"), mediaInfos.get("Album"), mediaInfos.get("Artist"));
+            } else {
+                return contentDirectoryBrowser.searchVideo(contentDirectoryDevice, mediaInfos.get("Title"));
+            }
+        }
+        catch (NoContentDirectoryException e) {
+            new SimpleAlertDialog(this, "Ok", "No Device with Servive \"ContentDirectory\" found", "Error");
+        }
+        return url;
     }
 
     //******** AVTransportAction ********
