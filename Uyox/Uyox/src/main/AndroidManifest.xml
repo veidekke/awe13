@@ -35,6 +35,7 @@
 
         <activity
             android:name=".WriteTagActivity"
+            android:parentActivityName="uyox.app.MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_write_tag" >
