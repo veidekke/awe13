@@ -1,7 +1,7 @@
 package uyox.app;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,10 +23,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
-import org.teleal.cling.model.meta.Device;
 
 import java.nio.charset.Charset;
 
@@ -39,6 +38,7 @@ public class WriteTagActivity extends Activity {
     protected NfcAdapter nfcAdapter;
     protected PendingIntent nfcPendingIntent;
     SimpleAlertDialog simpleAlertDialog;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,8 @@ public class WriteTagActivity extends Activity {
 
         Intent i = getIntent();
         contentDirectoryBrowser = (ContentDirectoryBrowser)i.getSerializableExtra("contentDirectoryBrowser");
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBarWriteTag);
     }
 
 
@@ -140,7 +142,7 @@ public class WriteTagActivity extends Activity {
         } else if(type.equals("URL")){
             TextView urlTextView = (TextView) findViewById(R.id.url_found);
             String url = (String) urlTextView.getText();
-            payload = (url == null || url.equals(""))? "None" : url;
+            payload = (url == null || url.equals("")) ? "None" : url;
         }
         return new NdefRecord(
                 NdefRecord.TNF_MIME_MEDIA ,
@@ -171,7 +173,7 @@ public class WriteTagActivity extends Activity {
 
                 // Make sure the tag is writable
                 if(!ndef.isWritable()) {
-                    new SimpleAlertDialog(this, "Ok", "The Tag is not writeable", "Error");
+                    new SimpleAlertDialog(this, "Ok", "The tag is not writable", "Error");
                     return false;
                 }
 
@@ -179,7 +181,7 @@ public class WriteTagActivity extends Activity {
                     // Write the data to the tag
                     ndef.writeNdefMessage(message);
                     simpleAlertDialog.getDialog().cancel();
-                    simpleAlertDialog = new SimpleAlertDialog(this, "Ok", "Uyox Tag is ready to Role!", "Success!",
+                    simpleAlertDialog = new SimpleAlertDialog(this, "Ok", "Uyox tag is ready to roll!", "Success!",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     readyForWriting = false;
@@ -203,7 +205,7 @@ public class WriteTagActivity extends Activity {
                         return false;
                     }
                 } else {
-                    Log.d(TAG, "format ist null");
+                    Log.d(TAG, "Format is null");
                     return false;
                 }
             }
@@ -226,48 +228,44 @@ public class WriteTagActivity extends Activity {
             case R.id.video:
                 if (checked) {
                     audioIsChecked = false;
-                    showVideoform();
+                    showVideoForm();
                     break;
                 }
         }
     }
 
     public void searchBtnClicked(View view){
-        String url = null;
+        String[] urls = null;
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String contentDirectoryDevice = sharedPref.getString("content_directory", "");
         try {
             if (audioIsChecked) {
-                url = getAudioUrl(contentDirectoryDevice);
+                getAudioUrl(contentDirectoryDevice);
             } else {
-                url = getVideoUrl(contentDirectoryDevice);
+                getVideoUrl(contentDirectoryDevice);
             }
-            showUrl(url);
+
         } catch (NoContentDirectoryException e) {
             new SimpleAlertDialog(this, "Ok", "No Device with Servive \"ContentDirectory\" found", "Error");
         }
     }
 
-    private void showUrl(String url){
+    public void showUrl(String url){
         TextView urlTextView = (TextView) findViewById(R.id.url_found);
 
-        if (url != null) {
-            urlTextView.setText(url);
-        } else {
-            urlTextView.setHint("No URL found");
-        }
+        urlTextView.setText(url);
     }
 
-    private String getVideoUrl(String contentDirectoryDevice) throws NoContentDirectoryException {
+    private void getVideoUrl(String contentDirectoryDevice) throws NoContentDirectoryException {
         String title = ((EditText) findViewById(R.id.title)).getText().toString();
-        return contentDirectoryBrowser.searchVideo(contentDirectoryDevice, title);
+        contentDirectoryBrowser.searchVideo(contentDirectoryDevice, title, this);
     }
 
-    private String getAudioUrl(String contentDirectoryDevice) throws NoContentDirectoryException {
+    private void getAudioUrl(String contentDirectoryDevice) throws NoContentDirectoryException {
         String title = ((EditText) findViewById(R.id.title)).getText().toString();
         String album = ((EditText) findViewById(R.id.album)).getText().toString();
         String artist = ((EditText) findViewById(R.id.artist)).getText().toString();
-        return contentDirectoryBrowser.searchAudio(contentDirectoryDevice, title, album, artist);
+        contentDirectoryBrowser.searchAudio(contentDirectoryDevice, title, artist, album, this);
     }
 
     private void showAudioForm(){
@@ -282,9 +280,14 @@ public class WriteTagActivity extends Activity {
         showButtons();
     }
 
-    private void showVideoform(){
+    private void showVideoForm(){
         EditText title = (EditText) findViewById(R.id.title);
+        EditText album = (EditText) findViewById(R.id.album);
+        EditText artist = (EditText) findViewById(R.id.artist);
+
         title.setVisibility(View.VISIBLE);
+        album.setVisibility(View.INVISIBLE);
+        artist.setVisibility(View.INVISIBLE);
 
         showButtons();
     }
@@ -297,5 +300,9 @@ public class WriteTagActivity extends Activity {
         writeBtn.setVisibility(View.VISIBLE);
         urlTextView.setVisibility(View.VISIBLE);
         searchBtn.setVisibility(View.VISIBLE);
+    }
+
+    public ProgressBar getProgressBar() {
+        return progressBar;
     }
 }

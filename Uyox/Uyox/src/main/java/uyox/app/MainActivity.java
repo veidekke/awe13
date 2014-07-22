@@ -1,6 +1,7 @@
 package uyox.app;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
@@ -21,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.ndeftools.Record;
@@ -47,6 +49,7 @@ public class MainActivity extends Activity {
     private ContentDirectoryBrowser contentDirectoryBrowser;
     protected NfcAdapter nfcAdapter;
     protected PendingIntent nfcPendingIntent;
+    private ProgressBar progressBar;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
 
@@ -66,6 +69,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBarMain);
 
         // initialize NFC
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -205,6 +210,10 @@ public class MainActivity extends Activity {
         return null;
     }
 
+    public ProgressBar getProgressBar() {
+        return progressBar;
+    }
+
     private ArrayList<Device> getProperDevices(String serviceType){
         Collection<Device> devices = upnpService.getRegistry().getDevices();
         ArrayList<Device> properDevices = new ArrayList<Device>();
@@ -216,9 +225,10 @@ public class MainActivity extends Activity {
         return properDevices;
     }
 
-    private void playMedia(Map<String, String> mediaInfos){
+    public void playMedia(Map<String, String> mediaInfos){
         String url = mediaInfos.get("URL");
-        if(url != null){
+
+        if(url != null && !url.equals("None") && !url.equals("")){
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
             ArrayList<Device> properDevices = getProperDevices("AVTransport");
             for(Device properDevice : properDevices) {
@@ -230,31 +240,25 @@ public class MainActivity extends Activity {
                     upnpService.getControlPoint().execute(getAVTransportActionCallback(SetAVTransportActionInvocation));
                 }
             }
-        } else {
-            url = getUrl(mediaInfos);
-            if (url != null){
-                mediaInfos.put("URL", url);
-                playMedia(mediaInfos);
-            }
+        } else { // No URL on tag
+            getUrl(mediaInfos);
         }
     }
 
-    private String getUrl(Map<String, String> mediaInfos){
-        String url = null;
+    private void getUrl(Map<String, String> mediaInfos){
         String type = mediaInfos.get("Type");
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String contentDirectoryDevice = sharedPref.getString("content_directory", "");
         try {
             if (type.equals("Audio")) {
-                return contentDirectoryBrowser.searchAudio(contentDirectoryDevice, mediaInfos.get("Title"), mediaInfos.get("Album"), mediaInfos.get("Artist"));
+                contentDirectoryBrowser.searchAudio(contentDirectoryDevice, mediaInfos.get("Title"), mediaInfos.get("Artist"), mediaInfos.get("Album"), this);
             } else {
-                return contentDirectoryBrowser.searchVideo(contentDirectoryDevice, mediaInfos.get("Title"));
+                contentDirectoryBrowser.searchVideo(contentDirectoryDevice, mediaInfos.get("Title"), this);
             }
         }
         catch (NoContentDirectoryException e) {
             new SimpleAlertDialog(this, "Ok", "No Device with Servive \"ContentDirectory\" found", "Error");
         }
-        return url;
     }
 
     //******** AVTransportAction ********
@@ -264,7 +268,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void success(ActionInvocation invocation) {
-                Log.d(TAG, "SetAVTransportAction was successfull");
+                Log.d(TAG, "SetAVTransportAction was successful");
                 Service aVTransportService = invocation.getAction().getService();
                 ActionInvocation SetPlayActionInvocation = new SetPlayActionInvocation(aVTransportService);
                 upnpService.getControlPoint().execute(getPlayActionCallback(SetPlayActionInvocation));
@@ -274,7 +278,7 @@ public class MainActivity extends Activity {
             public void failure(ActionInvocation invocation,
                                 UpnpResponse operation,
                                 String defaultMsg) {
-                Log.d(TAG, "failure on execute");
+                Log.d(TAG, "Failure on execute");
             }
         };
     }
@@ -288,7 +292,7 @@ public class MainActivity extends Activity {
                 setInput("CurrentURI", url);
                 setInput("CurrentURIMetaData", null);
             } catch (InvalidValueException ex) {
-                Log.d(TAG, "error calling action");
+                Log.d(TAG, "Error calling action");
             }
         }
     }
@@ -307,7 +311,8 @@ public class MainActivity extends Activity {
             public void failure(ActionInvocation invocation,
                                 UpnpResponse operation,
                                 String defaultMsg) {
-                Log.d(TAG, "failure on execute");
+                Log.d(TAG, "Failure on execute");
+                // TODO: Hier ggf. eine neue URL suchen
             }
         };
     }
@@ -320,7 +325,7 @@ public class MainActivity extends Activity {
                 setInput("InstanceID", "0");
                 setInput("Speed", "1");
             } catch (InvalidValueException ex) {
-                Log.d(TAG, "error calling action");
+                Log.d(TAG, "Error calling action");
             }
         }
     }

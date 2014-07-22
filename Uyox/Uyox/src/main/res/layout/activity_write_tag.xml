@@ -100,5 +100,13 @@
             android:visibility="gone"
             android:onClick="writeTagClicked" />
 
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBarWriteTag"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal" />
+
     </LinearLayout>
 </RelativeLayout>

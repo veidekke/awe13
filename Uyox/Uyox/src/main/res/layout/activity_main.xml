@@ -57,6 +57,14 @@
             android:textSize="30dp"
             android:visibility="gone"
             android:id="@+id/description5" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBarMain"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal" />
     </LinearLayout>
 
 </RelativeLayout>
