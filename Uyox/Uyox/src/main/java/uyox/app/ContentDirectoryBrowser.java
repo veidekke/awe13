@@ -127,7 +127,7 @@ public class ContentDirectoryBrowser implements Serializable {
 
     private static String genSearchCriteria(String title, String artist, String album, String type){
         String searchCriteriaType = "(upnp:class derivedfrom \""+type+"\"“)";
-        String searchCriteriaTitle = " and dc:title contains \""+title+"\"";
+        String searchCriteriaTitle = (title == null || title.equals("")) ? "" :" and dc:title contains \""+title+"\"";
         String searchCriteriaAlbum = (album == null || album.equals("")) ? "" : " and upnp:album contains \""+album+"\"";
         String searchCriteriaArtist = (artist == null || artist.equals("")) ? "" : " and upnp:artist contains \""+artist+"\"";
 
