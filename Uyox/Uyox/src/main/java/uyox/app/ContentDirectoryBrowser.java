@@ -52,7 +52,7 @@ public class ContentDirectoryBrowser implements Serializable{
     public static Service getService() throws NoContentDirectoryException {
         ArrayList<Device> properDevices = getProperDevices("ContentDirectory");
 
-        if(properDevices.size() < 0) {
+        if(properDevices.size() > 0) {
             Log.d(TAG, "Found " + properDevices.size() + " Devices with Service ContentDirectory");
             for(Device device : properDevices){
                 if(device.getDisplayString().equals("PacketVideo TwonkyServer 7.3")){
