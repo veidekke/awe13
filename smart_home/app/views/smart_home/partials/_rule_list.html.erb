@@ -1,0 +1,19 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4> Prioritätenliste <h4>
+  </div>
+  <ol id="priority_list" class="list-group">
+    <% @priority_list.each do |p| %>  
+      <%= content_tag_for :li, p, class: "list-group-item" do %>
+          <span class="handle">[drag]</span>
+          <% if p.priorityable.is_a?(Rule) %>
+            <%= link_to "#{p.priorityable.name}", { controller: 'smart_home', :action => 'rule_modal', :id => p.priorityable.id}, remote: true %>
+            <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, { controller: 'smart_home', :action => 'delete_rule', :id => p.id},  method: :post, :remote => true, :class => "btn btn-danger badge"%>
+            <span class="badge" id="rule-badge_<%=p.priorityable.id%>"><%= p.priorityable.status %></span>
+          <% else %>
+            <%= "#{p.priorityable.name}" %>
+          <% end %>
+      <% end %>
+    <% end %>
+  </ol>
+</div>

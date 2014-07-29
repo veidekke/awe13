@@ -1,0 +1,2 @@
+$("#flash-notice").html("<%= j render(:partial => 'smart_home/partials/flash') %>");
+$("#rule-creation").html("<%= j render(:partial => 'smart_home/partials/rule_name', :locals => { :new_conditions => @new_conditions, :new_actions => @new_actions})%>");

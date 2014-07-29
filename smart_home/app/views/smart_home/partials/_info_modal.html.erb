@@ -1,0 +1,26 @@
+<div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Informationen</h4>
+      </div>
+      <div class="modal-body">
+        Diese Webanwendung soll ein 'proof of concept' sein, in dem das Verhalten von Regeln und Benutzerinteraktionen simuliert werden kann. Alle Aktionen werden im Hintergrund mittels wongi-engine verarbeitet und ausgewertet.
+
+        <h5> Beschreibung des Konfliktmanagements </h5>
+        <ol>
+          <li>Jeder Benutzer und jede Regel besitzt eine Priorität</li>
+          <li>Prioritäten können sich nicht überschneiden</li>
+          <li>Stehen zwei Regeln in Konflikt, gewinnt die Regel mit der hoeheren Prioritaet</li>
+          <li>Steht eine Benutzeraktion mit einer bereits ausgefuehrten Regel in Konflikt, gewinnt der Anfragesteller mit der hoeheren Prioritaet</li>
+          <li>Steht eine Regelaktion mit einer bereits ausgefuehrten Benutzeraktion in Konflikt, gewinnt die Regel</li>
+        </ol>
+        Erläuterungen zum Verhalten lassen sich in meiner Bachelorarbeit nachlesen
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

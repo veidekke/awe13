@@ -1,0 +1,25 @@
+SmartHome::Application.routes.draw do
+  get "smart_home/home"
+  get "smart_home/help"
+  get "/smart_home/show_rule"
+  get "/smart_home/new_rule"
+  get "/smart_home/new_actions"
+  get "/smart_home/new_rule_name"
+  get "/smart_home/rule_list"
+  get "/smart_home/rule_modal"
+  get "/smart_home/info_modal"
+
+  put "smart_home/ajax_test"
+  put "smart_home/set_current_person"
+
+  post "smart_home/sort"
+  post "smart_home/change_actor"
+  post "smart_home/change_sensor"
+  post "smart_home/set_room_id"
+  post "smart_home/save_rule"
+  post "smart_home/save_property"
+  post "smart_home/save_condition"
+  post "smart_home/cache_conditions"
+  post "smart_home/cache_actions"
+  post "smart_home/delete_rule"
+end

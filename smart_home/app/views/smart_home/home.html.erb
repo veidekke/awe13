@@ -1,0 +1,38 @@
+<h1>
+  Smart Home
+  <%= link_to '<i class="fa fa-info-circle fa-2x"></i>'.html_safe, { controller: 'smart_home', :action => 'info_modal' }, :class => "btn btn-info", remote: true %>
+  <%= link_to '<i class="fa fa-plus fa-2x"></i> Neue Regel'.html_safe, { controller: 'smart_home', :action => 'new_rule' }, :remote => true, :class => "btn btn-success"%>
+  <%= link_to '<i class="fa fa-list fa-2x"></i>  Regelliste'.html_safe, { controller: 'smart_home', :action => 'show_rule' }, :remote => true, :class => "btn btn-primary"%>
+</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%= javascript_include_tag "smart_home.js" %>
+    </div>
+    <div class="col-md-6">
+      <h3>Aktueller Benutzer:
+        <%= select_tag(
+          :person_select, # name of selectbox
+          options_from_collection_for_select(Person.all, "id", "name"), # your options for this select box
+          :'data-remote' => 'true', # important for UJS
+          :'data-url' => url_for(:controller => 'smart_home', :action => 'set_current_person'), # we get the data from here!
+          :'data-method' => 'put',
+          :'data-type' => 'json' # tell jQuery to parse the response as JSON!
+        )%>
+      </h3>
+      
+      <div id="rule-list"><%= render partial: 'smart_home/partials/rule_list' %></div>
+    </div>
+  </div>
+</div>
+
+
+<%= javascript_tag do %>
+  window.rooms = <%=raw Room.find(:all).to_json %>;
+  window.actors = <%=raw Actor.find(:all).to_json %>;
+  window.sensors = <%=raw Sensor.find(:all).to_json %>;
+  window.people = <%=raw Person.find(:all).to_json %>;
+<% end %>
+
+<div id="modal-container"></div>

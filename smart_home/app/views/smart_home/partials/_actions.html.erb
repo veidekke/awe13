@@ -1,0 +1,32 @@
+<h3>Aktionen</h3>
+<% unless(new_actions.empty?) %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Wert</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% new_actions.each do |a| %>
+        <tr>
+          <td><%= Actor.find(a[:actor_id]).name %></td>
+          <td><%= a[:value] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<%= simple_form_for(@new_action,
+  :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } },
+  :url => smart_home_cache_actions_path(@new_action, new_conditions: new_conditions, new_actions: new_actions ),
+  remote: true
+) do |f| %>
+<%= f.association :actor,label: 'Aktor'%>
+<%= f.input :value,label: 'Wert', collection: [0,1,2,3] %>
+<%= f.button :submit, "Aktion erstellen", :class => "btn btn-primary" %>
+<% end %>
+
+<% unless(new_actions.empty?) %>
+  <%= link_to "Weiter zur Namensgebung >>", { :action => 'new_rule_name', :new_conditions => new_conditions, :new_actions => new_actions }, :remote => true, :class => "btn btn-success"%>
+<% end %>

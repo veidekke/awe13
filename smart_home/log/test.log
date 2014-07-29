@@ -1,0 +1,39 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "actors"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "actors" ("name", "room_id", "value", "resource_type", "created_at", "updated_at", "id") VALUES ('MyString', 1, 1, 'MyString', '2013-09-20 09:22:44', '2013-09-20 09:22:44', 980190962)[0m
+  [1m[35mFixture Insert (0.0ms)[0m  INSERT INTO "actors" ("name", "room_id", "value", "resource_type", "created_at", "updated_at", "id") VALUES ('MyString', 1, 1, 'MyString', '2013-09-20 09:22:44', '2013-09-20 09:22:44', 298486374)
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "people"[0m
+  [1m[35mFixture Insert (0.0ms)[0m  INSERT INTO "people" ("name", "room_id", "created_at", "updated_at", "id") VALUES ('MyString', 1, '2013-09-20 09:22:44', '2013-09-20 09:22:44', 980190962)
+  [1m[36mFixture Insert (0.0ms)[0m  [1mINSERT INTO "people" ("name", "room_id", "created_at", "updated_at", "id") VALUES ('MyString', 1, '2013-09-20 09:22:44', '2013-09-20 09:22:44', 298486374)[0m
+  [1m[35mFixture Delete (0.0ms)[0m  DELETE FROM "rooms"
+  [1m[36mFixture Insert (0.0ms)[0m  [1mINSERT INTO "rooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2013-09-20 09:22:44', '2013-09-20 09:22:44', 980190962)[0m
+  [1m[35mFixture Insert (0.0ms)[0m  INSERT INTO "rooms" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2013-09-20 09:22:44', '2013-09-20 09:22:44', 298486374)
+  [1m[36mFixture Delete (0.0ms)[0m  [1mDELETE FROM "sensors"[0m
+  [1m[35mFixture Insert (0.0ms)[0m  INSERT INTO "sensors" ("name", "room_id", "value", "resource_type", "created_at", "updated_at", "id") VALUES ('MyString', 1, 1, 'MyString', '2013-09-20 09:22:44', '2013-09-20 09:22:44', 980190962)
+  [1m[36mFixture Insert (0.0ms)[0m  [1mINSERT INTO "sensors" ("name", "room_id", "value", "resource_type", "created_at", "updated_at", "id") VALUES ('MyString', 1, 1, 'MyString', '2013-09-20 09:22:44', '2013-09-20 09:22:44', 298486374)[0m
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPerson Load (2.5ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "people" [0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPerson Load (0.1ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "people" [0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPerson Load (0.1ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPerson Load (0.1ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPerson Load (0.1ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPerson Load (0.1ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPerson Load (0.1ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m

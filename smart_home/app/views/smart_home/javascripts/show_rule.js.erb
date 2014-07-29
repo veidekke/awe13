@@ -1,0 +1,4 @@
+reprint_actors(<%=raw updated_actors.to_json %>);
+show_updated_rules(<%=raw updated_rules.to_json %>);
+$("#flash-notice").html("<%= j render(:partial => 'smart_home/partials/flash') %>");
+$("#rule-list").html("<%= j render 'smart_home/partials/rule_list' %>");

@@ -1,0 +1,36 @@
+<h3>Bedingungen definieren</h3>
+<% unless(new_conditions.empty?) %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Ressource</th>
+        <th>Operator</th>
+        <th>Wert</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% new_conditions.each do |c| %>
+        <tr>
+          <td><%= Resource.find(c[:resource_id]).name %></td>
+          <td><%= c[:operator] %></td>
+          <td><%= c[:value] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= simple_form_for(@new_condition,
+  :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } },
+  :url => smart_home_cache_conditions_path(@new_condition, new_conditions: new_conditions),
+  remote: true
+) do |f| %>
+  <%= f.input :resource_id,label: 'Ressource', :as => :grouped_select, :collection => [['Sensors', Sensor.find(:all)], ['Led', Led.find(:all)], ['Heating', Heating.find(:all)], ['Lock', Lock.find(:all)], ['Music', Music.find(:all)]], :group_method => :last %>
+  <%= f.input :operator, collection: ["=", "!=", "<", ">"] %>
+  <%= f.input :value,label: 'Wert', :as => :grouped_select, :collection => [['Standardwerte', [0,1,2,3]], ['Nur für MovementSensor relevant', ['husband', 'wife', 'kid']]], :group_method => :last %>
+  <%= f.button :submit, "Bedingung erstellen", :class => "btn btn-primary" %>
+<% end %>
+
+<% unless(new_conditions.empty?) %>
+  <%= link_to "Aktionen definieren", { :action => 'new_actions', :new_conditions => new_conditions }, :remote => true, :class => "btn btn-success"%>
+<% end %>

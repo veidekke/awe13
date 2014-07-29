@@ -1,0 +1,6 @@
+<% if(@current_rule.nil?) %>
+  <h2>Neue Regel erstellen</h2>
+  <div id="rule-creation"><%= render partial: 'smart_home/partials/conditions', :locals => { new_conditions: new_conditions, new_actions: new_actions }%></div>
+<% end %>
+
+

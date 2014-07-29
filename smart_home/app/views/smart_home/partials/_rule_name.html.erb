@@ -1,0 +1,8 @@
+<%= simple_form_for(@new_rule,
+  :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } },
+  url: smart_home_save_rule_path(@new_rule, new_conditions: new_conditions, new_actions: new_actions),
+  remote: true
+) do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit, "Regel erstellen", :class => "btn btn-success" %>
+<% end %>
